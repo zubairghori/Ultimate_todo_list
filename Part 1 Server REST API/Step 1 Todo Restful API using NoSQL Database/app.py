@@ -21,6 +21,18 @@ def all_tasks():
 
     return jsonify({'result':output})
 
+@app.route('/todo/api/v1/tasks/<task_id>',methods=['GET'])
+def one_task(task_id):
+    task = mongo.db.tasks
+    a=task.find_one({'task_id':task_id})
+
+
+    if a:
+        output={'task_title':a['task_title'],'task_description':a['task_description'], 'task_done':a['task_done']}
+    else :
+        output="no results found"
+    return jsonify({'result':output})
+
 @app.route('/todo/api/v1/tasks', methods=['POST'])
 def add():
     task = mongo.db.tasks
