@@ -17,46 +17,79 @@
 <body>
 
     <div class="z-depth-5 cyan lighten-2 todo-div">
-         <!-- Side Nav -->
-    <div class="sidenavAndHeading">
-        <ul id="slide-out" class="sidenav">
-            <!--         
-                <li>
-                    <div class="divider grey darken-4"></div>
-                </li> -->
+
+        <!-- Side Nav -->
+
+        <div class="sidenavAndHeading">
+            <ul id="slide-out" class="sidenav">
                 <li>
                     <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
                 </li>
                 <li>
                     <a href="#!" class="waves-effect red lighten-1 white-text">
                         <i class="material-icons white-text">list</i>To-do's</a>
-                    </li>
-            <!-- 
-                <li>
-                    <div class="divider"></div>
-                </li> -->
-                
-            <li>
-                <a class="waves-effect teal lighten-1 white-text" href="#!">
-                    <i class="material-icons white-text">done</i>Completed</a>
                 </li>
-                
-                
+                <li>
+                    <a class="waves-effect teal lighten-1 white-text" href="#!">
+                        <i class="material-icons white-text">done</i>Completed</a>
+                </li>
             </ul>
+
             <a href="#" data-target="slide-out" class="sidenav-trigger">
                 <i class="material-icons medium white-text">menu</i>
             </a>
-            
+
         </div>
-        
+
         <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
 
-                <h2 class="white-text">Todolist</h2>
+            <h2 class="white-text">Todolist</h2>
 
+        </div>
+
+        <br>
+        <br>
+
+        <!-- Todo List Cards -->
+
+        <div class="container center-align">
+
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="card grey lighten-5">
+
+                        <div class="card-content black-text z-depth-4">
+
+                            <span class="card-title">
+                                <h5>Read a Book</h5>
+                            </span>
+                            <h6>Read a book related to Programming</h6>
+
+                            <!-- Floating Action Button -->
+
+                            <div class="floating-action-btn">
+                                <a class="btn-floating btn-small grey darken-1 right">
+                                    <i class="large material-icons">more_vert</i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a class="btn-floating red right" data-position="top">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="btn-floating yellow right darken-1">
+                                            <i class="material-icons">delete</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            
-        <br>
-        <br>
+        </div>
 
     </div>
 
