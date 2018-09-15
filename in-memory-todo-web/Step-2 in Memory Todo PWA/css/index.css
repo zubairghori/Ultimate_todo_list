@@ -2,3 +2,7 @@
     width: 208vh;
     height: 95vh;
 }
+
+.sidenavAndHeading{
+    display: inline-block; 
+}
