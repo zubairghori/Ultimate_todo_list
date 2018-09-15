@@ -29,7 +29,6 @@ def add():              # add function.
     return jsonify({'prompt':'Added'}) # return data in jsonify format
 
 
-
 #rounting path for view
 @app.route('/todo/api/v1.0/task/view' , methods=['GET'])
 
@@ -52,18 +51,32 @@ def task_view():
 
     return jsonify({'task': list_of_task}) #jsonify the result
 
-def delete(id):
 
-    tasks = Todo_App.query.filter_by(id=id).first() # first karwa rae id s
-
+@app.route('/todo/api/v1.0/task/update/<id>', methods=['PUT'])
+def update(id):   #update function
+    tasks = Todo_App.query.filter_by(id=id).first()
     if not tasks:
+        return jsonify({'message': 'Empty Dictionary'})
+    data = request.get_json()
+    tasks.done = True
+    tasks.title = data['title']
+    tasks.description = data['description']
 
+    task_list={}
+    task_list['id']=tasks.id
+    task_list['title']=tasks.title
+    task_list['description']=tasks.description
+    task_list['done'] = tasks.done
+    database.session.commit()
+    return jsonify(task_list)
+
+
+def delete(id):
+    tasks = Todo_App.query.filter_by(id=id).first() # first karwa rae id s
+    if not tasks:
         return jsonify({'prompt': 'Empty'})
-
     else:
-
         database.session.delete(tasks) # delete query
-
         database.session.commit()
 
     return jsonify({'prompt':'Deleted'})
