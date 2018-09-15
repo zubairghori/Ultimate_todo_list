@@ -52,6 +52,22 @@ def task_view():
 
     return jsonify({'task': list_of_task}) #jsonify the result
 
+def delete(id):
+
+    tasks = Todo_App.query.filter_by(id=id).first() # first karwa rae id s
+
+    if not tasks:
+
+        return jsonify({'prompt': 'Empty'})
+
+    else:
+
+        database.session.delete(tasks) # delete query
+
+        database.session.commit()
+
+    return jsonify({'prompt':'Deleted'})
+
 
 if __name__ == "main":
     app.run(debug = True, port = 8000)
