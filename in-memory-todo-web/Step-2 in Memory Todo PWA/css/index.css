@@ -1,8 +1,16 @@
-.todo-div{
-    width: 208vh;
-    height: 95vh;
-}
 
 .sidenavAndHeading{
     display: inline-block; 
+}
+
+.header-h1{
+    color: white;
+    font-size: 9vh;
+    font-family: 'Roboto', sans-serif;    
+}
+
+.sub-h1{
+    color: white;
+    font-size: 2vh;
+    font-family: 'Noto Serif KR', sans-serif;
 }
