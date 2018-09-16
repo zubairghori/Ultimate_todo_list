@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-Do App</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- css files -->
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/mediaQueries.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
+</head>
+
+<body class="cyan lighten-2">
+
+    <!-- Side Nav -->
+
+    <div class="sidenavAndHeading">
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
+            </li>
+            <li>
+                <a href="#!" class="waves-effect red lighten-1 white-text">
+                    <i class="material-icons white-text">list</i>To-do's</a>
+            </li>
+            <li>
+                <a class="waves-effect teal lighten-1 white-text" href="#!">
+                    <i class="material-icons white-text">done</i>Completed</a>
+            </li>
+        </ul>
+
+        <!-- side nav icon -->
+
+        <a href="#" data-target="slide-out" class="sidenav-trigger">
+            <i class="material-icons medium white-text">menu</i>
+        </a>
+
+    </div>
+
+    <!-- header -->
+
+    <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
+        <h6 class="header-h1 white-text text-center">Todo List
+            <div class="sub-h1">task management leaves the rest behind.</div>
+        </h6>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- To-do's List Cards -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col s6 m12 l12">
+
+                <div class="card grey lighten-5">
+                    <div class="card-content black-text z-depth-4 hoverable">
+                        <span class="card-title">
+                            <h5>Meeting</h5>
+                        </span>
+                        <h6>Meeting on friday with the community.</h6>
+
+                        <!-- Floating Action Button at the end of the card -->
+
+                        <div class="floating-action-btn">
+                            <a class="btn-floating btn-small blue-grey lighten-2 right">
+                                <i class="large material-icons">more_vert</i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="btn-floating red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card grey lighten-5">
+                    <div class="card-content black-text z-depth-4 hoverable">
+                        <span class="card-title">
+                            <h5>Read a book</h5>
+                        </span>
+                        <h6>Read a book related to programming on monday.
+                        </h6>
+
+                        <div class="floating-action-btn">
+                            <a class="btn-floating btn-small blue-grey lighten-2 right">
+                                <i class="large material-icons">more_vert</i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Button -->
+
+    <div class="fixed-action-btn">
+        <button class="btn-floating tooltipped btn-large red waves-effect waves-light btn modal-trigger" href="#modal1" data-position="left"
+            data-delay="1000" data-tooltip="Add Task">
+            <i class="large material-icons">add</i>
+        </button>
+    </div>
+
+    <!-- Add task Modal -->
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add Task</h4>
+            <!-- FORM HERE -->
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="input_text" type="text" data-length="50">
+                            <label for="input_text">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="textarea2">Description</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Edit Task</h4>
+            <!-- FORM HERE -->
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="input_text" type="text" data-length="50">
+                            <label for="input_text">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="textarea2">Description</label>
+                        </div>
+                    </div>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" checked="checked" />
+                            <span>Task Completed</span>
+                        </label>
+                    </p>
+                </form>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- JavaScript Files -->
+    <script src="./js/materialJquery.js"></script>
+</body>
+
+</html>
