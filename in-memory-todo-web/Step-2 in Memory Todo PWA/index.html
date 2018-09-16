@@ -6,100 +6,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-Do App</title>
+    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- css file -->
+    <!-- css files -->
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/mediaQueries.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
 </head>
 
-<body>
+<body class="cyan lighten-2">
 
-    <div class="z-depth-5 cyan lighten-2 todo-div">
+    <!-- Side Nav -->
 
-        <!-- Side Nav -->
+    <div class="sidenavAndHeading">
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
+            </li>
+            <li>
+                <a href="#!" class="waves-effect red lighten-1 white-text">
+                    <i class="material-icons white-text">list</i>To-do's</a>
+            </li>
+            <li>
+                <a class="waves-effect teal lighten-1 white-text" href="#!">
+                    <i class="material-icons white-text">done</i>Completed</a>
+            </li>
+        </ul>
 
-        <div class="sidenavAndHeading">
-            <ul id="slide-out" class="sidenav">
-                <li>
-                    <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
-                </li>
-                <li>
-                    <a href="#!" class="waves-effect red lighten-1 white-text">
-                        <i class="material-icons white-text">list</i>To-do's</a>
-                </li>
-                <li>
-                    <a class="waves-effect teal lighten-1 white-text" href="#!">
-                        <i class="material-icons white-text">done</i>Completed</a>
-                </li>
-            </ul>
+        <!-- side nav icon -->
 
-            <a href="#" data-target="slide-out" class="sidenav-trigger">
-                <i class="material-icons medium white-text">menu</i>
-            </a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger">
+            <i class="material-icons medium white-text">menu</i>
+        </a>
 
-        </div>
+    </div>
 
-        <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
+    <!-- header -->
 
-            <h2 class="white-text">Todolist</h2>
+    <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
+        <h6 class="header-h1 white-text text-center">Todo List
+            <div class="sub-h1">task management leaves the rest behind.</div>
+        </h6>
+    </div>
 
-        </div>
+    <br>
+    <br>
 
-        <br>
-        <br>
+    <!-- Todo List Cards -->
 
-        <!-- Todo List Cards -->
+    <div class="container center-align">
 
-        <div class="container center-align">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card grey lighten-5">
 
-            <div class="row">
-                <div class="col s12 m12 l12">
-                    <div class="card grey lighten-5">
+                    <div class="card-content black-text z-depth-4">
 
-                        <div class="card-content black-text z-depth-4">
+                        <span class="card-title">
+                            <h5>Read a Book</h5>
+                        </span>
+                        <h6>Read a book related to Programming</h6>
 
-                            <span class="card-title">
-                                <h5>Read a Book</h5>
-                            </span>
-                            <h6>Read a book related to Programming</h6>
+                        <!-- Floating Action Button -->
 
-                            <!-- Floating Action Button -->
-
-                            <div class="floating-action-btn">
-                                <a class="btn-floating btn-small grey darken-1 right">
-                                    <i class="large material-icons">more_vert</i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a class="btn-floating red right" data-position="top">
-                                            <i class="material-icons">mode_edit</i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="btn-floating yellow right darken-1">
-                                            <i class="material-icons">delete</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div class="floating-action-btn">
+                            <a class="btn-floating btn-small grey darken-1 right">
+                                <i class="large material-icons">more_vert</i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a class="btn-floating red right" data-position="top">
+                                        <i class="material-icons">mode_edit</i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn-floating yellow right darken-1">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 
-        <!-- Add Task Button -->
-        
-        <div class="fixed-action-btn">
-            <button class="btn-floating tooltipped btn-large red" data-position="left" data-delay="1000" data-tooltip="Add Task">
-                <i class="large material-icons">add</i>
-            </button>
+    <!-- Add Task Button -->
 
-            </ul>
-        </div>
+    <div class="fixed-action-btn">
+        <button class="btn-floating tooltipped btn-large red" data-position="left" data-delay="1000" data-tooltip="Add Task">
+            <i class="large material-icons">add</i>
+        </button>
+
+        </ul>
+    </div>
 
 
 
@@ -112,7 +119,7 @@
         crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- JS file -->
+    <!-- JavaScript Files -->
     <script src="./js/materialJquery.js"></script>
 </body>
 
