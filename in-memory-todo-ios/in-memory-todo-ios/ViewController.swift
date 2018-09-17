@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ultimate-todo-app
+//  in-memory-todo-ios
 //
 //  Created by Nasrullah Khan  on 17/09/2018.
 //  Copyright © 2018 Nasrullah Khan . All rights reserved.
