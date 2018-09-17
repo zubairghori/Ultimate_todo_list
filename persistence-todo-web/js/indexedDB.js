@@ -95,7 +95,7 @@ function getAllFromDatabase() {
                     </a>
                     <ul>
                         <li>
-                            <a class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
+                            <a onclick="triggerModel(${cursor.value.id});" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
                                 <i class="material-icons">mode_edit</i>
                             </a>
                         </li>
@@ -134,3 +134,37 @@ function deleteTodoFromDatabase(id) {
     };
 
 };
+
+// Update data
+
+function updateATodoInDatabase() {
+
+    let id = localStorage.getItem('todoToUpdate');
+    var objectStore = database.transaction(["allTodos"], "readwrite")
+        .objectStore("allTodos");
+    const myDesiredObject = objectStore.get(Number(id));
+    myDesiredObject.onerror = e => console.log('error');
+
+    myDesiredObject.onsuccess = function (event) {
+
+        let updatedDescription = document.getElementById("updateDescription").value;
+        let updatedTitle = document.getElementById("updateTitle").value;
+
+        todo = event.target.result;
+        console.log(todo);
+        todo.title = updatedTitle;
+        todo.description = updatedDescription;
+        const requestUpdate = objectStore.put(todo);
+        requestUpdate.onsuccess = e => {
+            getAllFromDatabase();
+        };
+        requestUpdate.onerror = e => console.log('Some error!');
+    }
+};
+
+
+function triggerModel(id) {
+    localStorage.setItem("todoToUpdate", id);
+    $('#modal2').modal();
+
+}

@@ -115,35 +115,32 @@
                 <form class="col s12">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="50">
-                            <label for="input_text">Title</label>
+                            <input id="updateTitle" type="text" data-length="50">
+                            <label for="updateTitle">Title</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Description</label>
+                            <textarea id="updateDescription" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="updateDescription">Description</label>
                         </div>
                     </div>
                     <p>
                         <label>
-                            <input type="checkbox" class="filled-in" checked="checked" />
+                            <input id="checkbox" type="checkbox" class="filled-in"/>
                             <span>Task Completed</span>
                         </label>
                     </p>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="button" onClick="updateATodoInDatabase();" class="modal-close waves-effect waves-green btn-flat">Add</button>
+                    </div>
                 </form>
             </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
         </div>
     </div>
 
-
-
-
+    <footer class="py-5 mt-5"></footer>
 
     <!-- Compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
