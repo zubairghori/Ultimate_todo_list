@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:in-memory-todo-ios.xcodeproj">
+      location = "self:Marathon-ToDo.xcodeproj">
    </FileRef>
 </Workspace>

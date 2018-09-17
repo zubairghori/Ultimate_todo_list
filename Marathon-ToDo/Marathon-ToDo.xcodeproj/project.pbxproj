@@ -7,27 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5FF56275214FD6B500BF1E87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF56274214FD6B500BF1E87 /* AppDelegate.swift */; };
-		5FF56277214FD6B500BF1E87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF56276214FD6B500BF1E87 /* ViewController.swift */; };
-		5FF5627A214FD6B500BF1E87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FF56278214FD6B500BF1E87 /* Main.storyboard */; };
-		5FF5627D214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5FF5627B214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodeld */; };
-		5FF5627F214FD6B500BF1E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FF5627E214FD6B500BF1E87 /* Assets.xcassets */; };
-		5FF56282214FD6B500BF1E87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FF56280214FD6B500BF1E87 /* LaunchScreen.storyboard */; };
+		F2F54CDF214FDD2300728BC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */; };
+		F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F54CE0214FDD2300728BC7 /* ViewController.swift */; };
+		F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE2214FDD2300728BC7 /* Main.storyboard */; };
+		F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE5214FDD2400728BC7 /* Assets.xcassets */; };
+		F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5FF56271214FD6B500BF1E87 /* in-memory-todo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "in-memory-todo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FF56274214FD6B500BF1E87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5FF56276214FD6B500BF1E87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5FF56279214FD6B500BF1E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5FF5627C214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = in_memory_todo_ios.xcdatamodel; sourceTree = "<group>"; };
-		5FF5627E214FD6B500BF1E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5FF56281214FD6B500BF1E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5FF56283214FD6B500BF1E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2F54CDB214FDD2300728BC7 /* Marathon-ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Marathon-ToDo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F2F54CE0214FDD2300728BC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F2F54CE3214FDD2300728BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F2F54CE5214FDD2400728BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F2F54CE8214FDD2400728BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F2F54CEA214FDD2400728BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5FF5626E214FD6B500BF1E87 /* Frameworks */ = {
+		F2F54CD8214FDD2300728BC7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,72 +35,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5FF56268214FD6B500BF1E87 = {
+		F2F54CD2214FDD2200728BC7 = {
 			isa = PBXGroup;
 			children = (
-				5FF56273214FD6B500BF1E87 /* in-memory-todo-ios */,
-				5FF56272214FD6B500BF1E87 /* Products */,
+				F2F54CDD214FDD2300728BC7 /* Marathon-ToDo */,
+				F2F54CDC214FDD2300728BC7 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5FF56272214FD6B500BF1E87 /* Products */ = {
+		F2F54CDC214FDD2300728BC7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5FF56271214FD6B500BF1E87 /* in-memory-todo-ios.app */,
+				F2F54CDB214FDD2300728BC7 /* Marathon-ToDo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5FF56273214FD6B500BF1E87 /* in-memory-todo-ios */ = {
+		F2F54CDD214FDD2300728BC7 /* Marathon-ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				5FF56274214FD6B500BF1E87 /* AppDelegate.swift */,
-				5FF56276214FD6B500BF1E87 /* ViewController.swift */,
-				5FF56278214FD6B500BF1E87 /* Main.storyboard */,
-				5FF5627E214FD6B500BF1E87 /* Assets.xcassets */,
-				5FF56280214FD6B500BF1E87 /* LaunchScreen.storyboard */,
-				5FF56283214FD6B500BF1E87 /* Info.plist */,
-				5FF5627B214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodeld */,
+				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
+				F2F54CE0214FDD2300728BC7 /* ViewController.swift */,
+				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
+				F2F54CE5214FDD2400728BC7 /* Assets.xcassets */,
+				F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */,
+				F2F54CEA214FDD2400728BC7 /* Info.plist */,
 			);
-			path = "in-memory-todo-ios";
+			path = "Marathon-ToDo";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5FF56270214FD6B500BF1E87 /* in-memory-todo-ios */ = {
+		F2F54CDA214FDD2300728BC7 /* Marathon-ToDo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FF56286214FD6B500BF1E87 /* Build configuration list for PBXNativeTarget "in-memory-todo-ios" */;
+			buildConfigurationList = F2F54CED214FDD2400728BC7 /* Build configuration list for PBXNativeTarget "Marathon-ToDo" */;
 			buildPhases = (
-				5FF5626D214FD6B500BF1E87 /* Sources */,
-				5FF5626E214FD6B500BF1E87 /* Frameworks */,
-				5FF5626F214FD6B500BF1E87 /* Resources */,
+				F2F54CD7214FDD2300728BC7 /* Sources */,
+				F2F54CD8214FDD2300728BC7 /* Frameworks */,
+				F2F54CD9214FDD2300728BC7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "in-memory-todo-ios";
-			productName = "in-memory-todo-ios";
-			productReference = 5FF56271214FD6B500BF1E87 /* in-memory-todo-ios.app */;
+			name = "Marathon-ToDo";
+			productName = "Marathon-ToDo";
+			productReference = F2F54CDB214FDD2300728BC7 /* Marathon-ToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5FF56269214FD6B500BF1E87 /* Project object */ = {
+		F2F54CD3214FDD2200728BC7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "Nasrullah Khan ";
+				ORGANIZATIONNAME = "Syed ShahRukh Haider";
 				TargetAttributes = {
-					5FF56270214FD6B500BF1E87 = {
-						CreatedOnToolsVersion = 9.4.1;
+					F2F54CDA214FDD2300728BC7 = {
+						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
-			buildConfigurationList = 5FF5626C214FD6B500BF1E87 /* Build configuration list for PBXProject "in-memory-todo-ios" */;
+			buildConfigurationList = F2F54CD6214FDD2200728BC7 /* Build configuration list for PBXProject "Marathon-ToDo" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,55 +107,54 @@
 				en,
 				Base,
 			);
-			mainGroup = 5FF56268214FD6B500BF1E87;
-			productRefGroup = 5FF56272214FD6B500BF1E87 /* Products */;
+			mainGroup = F2F54CD2214FDD2200728BC7;
+			productRefGroup = F2F54CDC214FDD2300728BC7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5FF56270214FD6B500BF1E87 /* in-memory-todo-ios */,
+				F2F54CDA214FDD2300728BC7 /* Marathon-ToDo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5FF5626F214FD6B500BF1E87 /* Resources */ = {
+		F2F54CD9214FDD2300728BC7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FF56282214FD6B500BF1E87 /* LaunchScreen.storyboard in Resources */,
-				5FF5627F214FD6B500BF1E87 /* Assets.xcassets in Resources */,
-				5FF5627A214FD6B500BF1E87 /* Main.storyboard in Resources */,
+				F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */,
+				F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */,
+				F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5FF5626D214FD6B500BF1E87 /* Sources */ = {
+		F2F54CD7214FDD2300728BC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FF56277214FD6B500BF1E87 /* ViewController.swift in Sources */,
-				5FF56275214FD6B500BF1E87 /* AppDelegate.swift in Sources */,
-				5FF5627D214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodeld in Sources */,
+				F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */,
+				F2F54CDF214FDD2300728BC7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5FF56278214FD6B500BF1E87 /* Main.storyboard */ = {
+		F2F54CE2214FDD2300728BC7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5FF56279214FD6B500BF1E87 /* Base */,
+				F2F54CE3214FDD2300728BC7 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		5FF56280214FD6B500BF1E87 /* LaunchScreen.storyboard */ = {
+		F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				5FF56281214FD6B500BF1E87 /* Base */,
+				F2F54CE8214FDD2400728BC7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -166,7 +162,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5FF56284214FD6B500BF1E87 /* Debug */ = {
+		F2F54CEB214FDD2400728BC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -226,7 +222,7 @@
 			};
 			name = Debug;
 		};
-		5FF56285214FD6B500BF1E87 /* Release */ = {
+		F2F54CEC214FDD2400728BC7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -280,36 +276,36 @@
 			};
 			name = Release;
 		};
-		5FF56287214FD6B500BF1E87 /* Debug */ = {
+		F2F54CEE214FDD2400728BC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
-				INFOPLIST_FILE = "in-memory-todo-ios/Info.plist";
+				INFOPLIST_FILE = "Marathon-ToDo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.panacloud.in-memory-todo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		5FF56288214FD6B500BF1E87 /* Release */ = {
+		F2F54CEF214FDD2400728BC7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
-				INFOPLIST_FILE = "in-memory-todo-ios/Info.plist";
+				INFOPLIST_FILE = "Marathon-ToDo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.panacloud.in-memory-todo-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,38 +315,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5FF5626C214FD6B500BF1E87 /* Build configuration list for PBXProject "in-memory-todo-ios" */ = {
+		F2F54CD6214FDD2200728BC7 /* Build configuration list for PBXProject "Marathon-ToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5FF56284214FD6B500BF1E87 /* Debug */,
-				5FF56285214FD6B500BF1E87 /* Release */,
+				F2F54CEB214FDD2400728BC7 /* Debug */,
+				F2F54CEC214FDD2400728BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FF56286214FD6B500BF1E87 /* Build configuration list for PBXNativeTarget "in-memory-todo-ios" */ = {
+		F2F54CED214FDD2400728BC7 /* Build configuration list for PBXNativeTarget "Marathon-ToDo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5FF56287214FD6B500BF1E87 /* Debug */,
-				5FF56288214FD6B500BF1E87 /* Release */,
+				F2F54CEE214FDD2400728BC7 /* Debug */,
+				F2F54CEF214FDD2400728BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		5FF5627B214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				5FF5627C214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodel */,
-			);
-			currentVersion = 5FF5627C214FD6B500BF1E87 /* in_memory_todo_ios.xcdatamodel */;
-			path = in_memory_todo_ios.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = 5FF56269214FD6B500BF1E87 /* Project object */;
+	rootObject = F2F54CD3214FDD2200728BC7 /* Project object */;
 }

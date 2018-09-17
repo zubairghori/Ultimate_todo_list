@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  in-memory-todo-ios
+//  Marathon-ToDo
 //
-//  Created by Nasrullah Khan  on 17/09/2018.
-//  Copyright © 2018 Nasrullah Khan . All rights reserved.
+//  Created by Syed ShahRukh Haider on 17/09/2018.
+//  Copyright © 2018 Syed ShahRukh Haider. All rights reserved.
 //
 
 import UIKit
