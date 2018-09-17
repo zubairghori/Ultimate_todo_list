@@ -1,8 +1,7 @@
 // ========== connection code =========
 
 var database;
-var request = indexedDB.open('todo_app_db', 3); // verison
-
+var request = indexedDB.open('todo_app_db1', 4); // verison
 request.onsuccess = function (e) {
     console.log('Database is connected Succesfully!');
     database = e.target.result;
@@ -35,7 +34,9 @@ function addToDatabase(e) {
     e.preventDefault();
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
-    let taskDone = true;
+    document.getElementById('title').value = "";
+    document.getElementById('description').value = "";
+    let taskDone = false;
     const todo = {
         title,
         description,
@@ -60,6 +61,7 @@ function addToDatabase(e) {
 
 function getAllFromDatabase() {
     let todoListCards = document.getElementById('todoListCards');
+    todoListCards.innerHTML = "";
     var request = database.transaction(["allTodos"], "readwrite")
         .objectStore("allTodos")
         .openCursor()
@@ -98,7 +100,7 @@ function getAllFromDatabase() {
                             </a>
                         </li>
                         <li>
-                            <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
+                            <a onclick="deleteTodoFromDatabase(${cursor.value.id})" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
                                 <i class="material-icons">delete</i>
                             </a>
                         </li>
@@ -111,11 +113,24 @@ function getAllFromDatabase() {
         </div>
     </div>
 </div>
-                `;
+`;
                 cursor.continue();
 
             } else {
                 console.log('No entries');
             }
         }
+};
+
+// Delete data
+
+function deleteTodoFromDatabase(id) {
+    var request = database.transaction(["allTodos"], "readwrite")
+        .objectStore("allTodos")
+        .delete(id);
+    request.onsuccess = () => {
+        console.log('Todo deleted!')
+        getAllFromDatabase();
+    };
+
 };
