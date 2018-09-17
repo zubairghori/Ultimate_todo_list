@@ -72,6 +72,10 @@ function getAllFromDatabase() {
                 $(document).ready(function () {
                     $('.floating-action-btn').floatingActionButton();
                 });
+
+                $(document).ready(function () {
+                    $('.tooltipped').tooltip();
+                });
                 todoListCards.innerHTML +=
                     `
                 <div class"container">
