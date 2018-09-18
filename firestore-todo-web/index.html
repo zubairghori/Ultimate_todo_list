@@ -16,6 +16,9 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
 
 </head>
 
@@ -59,71 +62,8 @@
 
     <!-- To-do's List Cards -->
 
-    <div class="container">
-        <div class="row">
-            <div class="col s6 m12 l12">
-
-                <div class="card grey lighten-5">
-                    <div class="card-content black-text z-depth-4 hoverable">
-                        <span class="card-title">
-                            <h5>Meeting</h5>
-                        </span>
-                        <h6>Meeting on friday with the community.</h6>
-
-                        <!-- Floating Action Button at the end of the card -->
-
-                        <div class="floating-action-btn">
-                            <a class="btn-floating btn-small blue-grey lighten-2 right">
-                                <i class="large material-icons">more_vert</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-                                        <i class="material-icons">mode_edit</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-                                        <i class="material-icons">delete</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card grey lighten-5">
-                    <div class="card-content black-text z-depth-4 hoverable">
-                        <span class="card-title">
-                            <h5>Read a book</h5>
-                        </span>
-                        <h6>Read a book related to programming on monday.
-                        </h6>
-
-                        <div class="floating-action-btn">
-                            <a class="btn-floating btn-small blue-grey lighten-2 right">
-                                <i class="large material-icons">more_vert</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-                                        <i class="material-icons">mode_edit</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-                                        <i class="material-icons">delete</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <div class="container" id="todoListCards">
     </div>
-
     <!-- Add Task Button -->
 
     <div class="fixed-action-btn">
@@ -140,26 +80,25 @@
             <h4>Add Task</h4>
             <!-- FORM HERE -->
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" id="addTaskForm">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="50">
-                            <label for="input_text">Title</label>
+                            <input id="Title" name="Title" type="text" data-length="50">
+                            <label for="Title">Title</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Description</label>
+                            <textarea id="Description" name="Description" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="Description">Description</label>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="submit" class="modal-close waves-effect waves-green btn-flat">Add</buttton>
                     </div>
                 </form>
             </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
         </div>
     </div>
 
@@ -210,6 +149,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript Files -->
     <script src="./js/materialJquery.js"></script>
+    <script src="./js/app.js"></script>
 </body>
 
 </html>
