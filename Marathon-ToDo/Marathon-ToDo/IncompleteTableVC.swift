@@ -13,9 +13,9 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
 
     @IBOutlet weak var IncompleteTable: UITableView!
    
-    var dummyData = [TodoData]()
+    var displayData = [[String : String]]()
     
-    
+    var ShareData = UIApplication.shared.delegate as! AppDelegate
     
     
     override func viewDidLoad() {
@@ -26,23 +26,35 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         IncompleteTable.dataSource = self
         
         
-        let value1 = TodoData(Title: "Third", Description: "sjvbfsdjbv;sdfbvhdbvb dfvbdsb vdsbvbdsvbdsbvdsbv", Status: "Incomplete")
-        let value2 = TodoData(Title: "Fourth", Description: "sjvbfsdjbv;sdfbvhdbvb dfvbdsb vdsbvbdsvbdsbvdsbv", Status: "Incomplete")
+
+        if  ShareData.incompleteDatabse.isEmpty == false{
+            self.displayData = ShareData.incompleteDatabse
+
+        }
         
-        self.dummyData.append(value1)
-        self.dummyData.append(value2)
+        
+        
+        
         IncompleteTable.reloadData()
- 
-        
-   
-       
-        
+  
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        IncompleteTable.reloadData()
+        
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.displayData = ShareData.incompleteDatabse
+        IncompleteTable.reloadData()
+
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyData.count
+        return displayData.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,23 +65,98 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         cell.backgroundColor = UIColor.clear
 
         
-        cell.incompleteTitle.text = dummyData[indexPath.row].Title
-        cell.incompleteDescription.text = dummyData[indexPath.row].Description
+        cell.incompleteTitle.text = displayData[indexPath.row]["Title"]
+        cell.incompleteDescription.text = displayData[indexPath.row]["Description"]
         
         return cell
     }
+    
+    
+    
+    // ******** Cell Selected ************
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // EDIT
+        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+            
+            let selectedIndex = indexPath.row
+            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
+        }
+        
+        option.addAction(EditButton)
+        
+        
+        // COMPLETE
+
+        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+            
+            
+            
+            self.displayData[indexPath.row]["Status"] = "Complete"
+            self.ShareData.completeDatabase.append(self.displayData[indexPath.row])
+
+            self.displayData.remove(at: indexPath.row)
+            self.ShareData.incompleteDatabse.remove(at: indexPath.row)
+           
+            
+            self.IncompleteTable.reloadData()
+        }
+        
+        option.addAction(Complete)
+        
+        
+        // CANCEL
+        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        option.addAction(cancel)
+        
+        self.present(option, animated: true, completion: nil)
+        
+     
+        
+    }
+    
+    
+    
+    // ****** Prepare Segue ****************
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "Edit_Segue"{
+            
+            let dest = segue.destination as! CreateTodo
+            
+            
+            dest.segueName = "Edit"
+            dest.selectedIndex = sender as? Int
+            
+            
+        }
+    }
 
   
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
         
         
     }
+    
+    
+    
+    
 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            
+            self.displayData.remove(at: indexPath.row)
+            self.ShareData.incompleteDatabse.remove(at: indexPath.row)
+            self.IncompleteTable.reloadData()
         }
     }
 
