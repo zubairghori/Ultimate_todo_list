@@ -22,7 +22,19 @@
 		F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE2214FDD2300728BC7 /* Main.storyboard */; };
 		F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE5214FDD2400728BC7 /* Assets.xcassets */; };
 		F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */; };
+		F2F8A36D2151544600D5CC50 /* Marathon_ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8A36C2151544600D5CC50 /* Marathon_ToDoTests.swift */; };
+		F2F8A3752151555E00D5CC50 /* CreateToDoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8A3742151555E00D5CC50 /* CreateToDoTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F2F8A36F2151544600D5CC50 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2F54CD3214FDD2200728BC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F2F54CDA214FDD2300728BC7;
+			remoteInfo = Marathon_ToDo;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.release.xcconfig"; sourceTree = "<group>"; };
@@ -44,6 +56,10 @@
 		F2F54CE5214FDD2400728BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2F54CE8214FDD2400728BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2F54CEA214FDD2400728BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2F8A36A2151544600D5CC50 /* Marathon_ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Marathon_ToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2F8A36C2151544600D5CC50 /* Marathon_ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marathon_ToDoTests.swift; sourceTree = "<group>"; };
+		F2F8A36E2151544600D5CC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2F8A3742151555E00D5CC50 /* CreateToDoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateToDoTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +68,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				52278524C4A4B0C4278F5186 /* Pods_Marathon_ToDo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2F8A3672151544600D5CC50 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				F2F54CDD214FDD2300728BC7 /* Marathon_ToDo */,
+				F2F8A36B2151544600D5CC50 /* Marathon_ToDoTests */,
 				F2F54CDC214FDD2300728BC7 /* Products */,
 				45E9AAD292AEB495E0DA4E01 /* Pods */,
 				907BA0EE8CE9BD3F99EAADE0 /* Frameworks */,
@@ -113,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				F2F54CDB214FDD2300728BC7 /* Marathon_ToDo.app */,
+				F2F8A36A2151544600D5CC50 /* Marathon_ToDoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +154,16 @@
 				F2F54CEA214FDD2400728BC7 /* Info.plist */,
 			);
 			path = Marathon_ToDo;
+			sourceTree = "<group>";
+		};
+		F2F8A36B2151544600D5CC50 /* Marathon_ToDoTests */ = {
+			isa = PBXGroup;
+			children = (
+				F2F8A36C2151544600D5CC50 /* Marathon_ToDoTests.swift */,
+				F2F8A36E2151544600D5CC50 /* Info.plist */,
+				F2F8A3742151555E00D5CC50 /* CreateToDoTest.swift */,
+			);
+			path = Marathon_ToDoTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +188,24 @@
 			productReference = F2F54CDB214FDD2300728BC7 /* Marathon_ToDo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F2F8A3692151544600D5CC50 /* Marathon_ToDoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2F8A3732151544600D5CC50 /* Build configuration list for PBXNativeTarget "Marathon_ToDoTests" */;
+			buildPhases = (
+				F2F8A3662151544600D5CC50 /* Sources */,
+				F2F8A3672151544600D5CC50 /* Frameworks */,
+				F2F8A3682151544600D5CC50 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2F8A3702151544600D5CC50 /* PBXTargetDependency */,
+			);
+			name = Marathon_ToDoTests;
+			productName = Marathon_ToDoTests;
+			productReference = F2F8A36A2151544600D5CC50 /* Marathon_ToDoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -165,6 +218,10 @@
 				TargetAttributes = {
 					F2F54CDA214FDD2300728BC7 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					F2F8A3692151544600D5CC50 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = F2F54CDA214FDD2300728BC7;
 					};
 				};
 			};
@@ -182,6 +239,7 @@
 			projectRoot = "";
 			targets = (
 				F2F54CDA214FDD2300728BC7 /* Marathon_ToDo */,
+				F2F8A3692151544600D5CC50 /* Marathon_ToDoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +252,13 @@
 				F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */,
 				F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */,
 				F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2F8A3682151544600D5CC50 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +322,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2F8A3662151544600D5CC50 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2F8A36D2151544600D5CC50 /* Marathon_ToDoTests.swift in Sources */,
+				F2F8A3752151555E00D5CC50 /* CreateToDoTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F2F8A3702151544600D5CC50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F2F54CDA214FDD2300728BC7 /* Marathon_ToDo */;
+			targetProxy = F2F8A36F2151544600D5CC50 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F2F54CE2214FDD2300728BC7 /* Main.storyboard */ = {
@@ -431,6 +513,46 @@
 			};
 			name = Release;
 		};
+		F2F8A3712151544600D5CC50 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SUBZ24DP5B;
+				INFOPLIST_FILE = Marathon_ToDoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marathon_ToDo.app/Marathon_ToDo";
+			};
+			name = Debug;
+		};
+		F2F8A3722151544600D5CC50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SUBZ24DP5B;
+				INFOPLIST_FILE = Marathon_ToDoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Marathon_ToDo.app/Marathon_ToDo";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -448,6 +570,15 @@
 			buildConfigurations = (
 				F2F54CEE214FDD2400728BC7 /* Debug */,
 				F2F54CEF214FDD2400728BC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2F8A3732151544600D5CC50 /* Build configuration list for PBXNativeTarget "Marathon_ToDoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2F8A3712151544600D5CC50 /* Debug */,
+				F2F8A3722151544600D5CC50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
