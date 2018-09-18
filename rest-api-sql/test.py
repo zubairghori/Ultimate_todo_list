@@ -18,7 +18,7 @@ class apiTest(unittest.TestCase):
 
     # test function for view
     def test_view(self):
-        response = self.viewapp.get('/todo/api/v1.0/task/view', content_type = 'application/json')
+        response = self.appli.get('/todo/api/v1.0/task/view', content_type = 'application/json')
         self.assertEqual(response.status_code,200)
 
 
