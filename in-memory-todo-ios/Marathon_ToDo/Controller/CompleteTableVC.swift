@@ -71,14 +71,7 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-//        // EDIT
-//        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-//            
-//            let selectedIndex = indexPath.row
-//            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
-//        }
-//        
-//        option.addAction(EditButton)
+
         
         
         // COMPLETE
