@@ -104,6 +104,8 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
     e.preventDefault();
     let updatedTitle = document.getElementById("updatedTitle").value;
     let updatedDescription = document.getElementById("updatedDescription").value;
+    let doneStatus = document.getElementById('checkbox').value;
+    console.log(doneStatus);
     document.getElementById("updatedTitle").value = "";
     document.getElementById("updatedDescription").value = "";
     let id = localStorage.getItem('id');
@@ -111,7 +113,7 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
     db.collection('todos').doc(id).update({
         Title: updatedTitle,
         Description: updatedDescription,
-        taskDone: false
+        taskDone: doneStatus.checked ? false : true
     }).then(() => console.log('data updated'))
         .catch((error) => console.log('error: ', error))
 
@@ -121,6 +123,8 @@ const setIdToLocalStorage = (id) => {
     console.log(id);
     localStorage.setItem('id', id);
 };
+
+
 
 // ===== Deleting Data =====
 

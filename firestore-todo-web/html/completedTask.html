@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- css files -->
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/mediaQueries.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
+
+    <title>Todo App</title>
+</head>
+
+<body class="cyan lighten-2">
+
+
+    <!-- Side Nav -->
+
+    <div class="sidenavAndHeading">
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
+            </li>
+            <li>
+                <a href="../index.html" class="waves-effect deep-purple white-text" href="#!">
+                    <i class="material-icons white-text">home</i>Home</a>
+            </li>
+            <li>
+                <a href="./unCompletedTask.html" class="waves-effect teal lighten-1 white-text" href="#!">
+                    <i class="material-icons white-text">clear</i>Uncompleted</a>
+            </li>
+        </ul>
+
+        <!-- side nav icon -->
+
+        <a href="#!" data-target="slide-out" class="sidenav-trigger">
+            <i class="material-icons medium white-text">menu</i>
+        </a>
+
+    </div>
+
+    <!-- header -->
+
+    <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
+
+        <h6 class="header-h1 white-text center-align">
+            Todo List
+            <div class="sub-h1 center-align">task management leaves the rest behind.</div>
+            <h5 class="center-align white-text">Completed To-do's</h5>
+        </h6>
+
+    </div>
+    s
+    <br>
+    <br>
+
+    <!-- To-do's List Cards -->
+
+    <div class="container" id="todoListCards">
+
+    </div>
+
+    <footer class="py-5 mt-5"></footer>
+
+</body>
+<!-- Compiled and minified Jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- JavaScript Files -->
+<!-- <script src="./database2.js"></script> -->
+<script src="../js/materialJquery.js"></script>
+<script src="../js/completeTask.js"></script>
+
+</html>
