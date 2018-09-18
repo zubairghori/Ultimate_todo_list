@@ -15,9 +15,9 @@ db.settings({ timestampsInSnapshots: true })
 // ===== Reading all from DATABASE =====
 
 db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
-
     let todoArray = [];
     snapshot.docs.forEach(doc => {
+        console.log(doc.data());
         let todo = {
             id: doc.id,
             ...doc.data()
@@ -61,7 +61,7 @@ let printToDOM = (doc) => {
         </a>
         <ul>
         <li>
-        <a class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
+        <button onclick="setIdToLocalStorage('${item.id}');" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
         <i class="material-icons">mode_edit</i>
         </a>
         </li>
@@ -69,7 +69,7 @@ let printToDOM = (doc) => {
         <button onclick="deleteThisTaskFromDatabase('${item.id}');" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
         <i class="material-icons">delete</i>
         </button>
-        </li>
+        </li> 
         </ul>
         </div>
         </div>
@@ -98,6 +98,29 @@ addTaskForm.addEventListener('submit', (e) => {
 
 })
 
+// ===== Updating Data =====
+
+document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
+    e.preventDefault();
+    let updatedTitle = document.getElementById("updatedTitle").value;
+    let updatedDescription = document.getElementById("updatedDescription").value;
+    document.getElementById("updatedTitle").value = "";
+    document.getElementById("updatedDescription").value = "";
+    let id = localStorage.getItem('id');
+    console.log({ id, updatedTitle, updatedDescription });
+    db.collection('todos').doc(id).update({
+        Title: updatedTitle,
+        Description: updatedDescription,
+        taskDone: false
+    }).then(() => console.log('data updated'))
+        .catch((error) => console.log('error: ', error))
+
+});
+
+const setIdToLocalStorage = (id) => {
+    console.log(id);
+    localStorage.setItem('id', id);
+};
 
 // ===== Deleting Data =====
 

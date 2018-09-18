@@ -64,6 +64,7 @@
 
     <div class="container" id="todoListCards">
     </div>
+    
     <!-- Add Task Button -->
 
     <div class="fixed-action-btn">
@@ -109,32 +110,31 @@
             <h4>Edit Task</h4>
             <!-- FORM HERE -->
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" id="updateTaskForm">
                     <div class="row">
                         <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="50">
-                            <label for="input_text">Title</label>
+                            <input id="updatedTitle" type="text" data-length="50">
+                            <label for="Title">Title</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Description</label>
+                            <textarea id="updatedDescription" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="Description">Description</label>
                         </div>
                     </div>
                     <p>
                         <label>
-                            <input type="checkbox" class="filled-in" checked="checked" />
+                            <input type="checkbox" class="filled-in"/>
                             <span>Task Completed</span>
                         </label>
                     </p>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="submit" class="modal-close waves-effect waves-green btn-flat">Add</button>
+                    </div>
                 </form>
             </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
         </div>
     </div>
 
