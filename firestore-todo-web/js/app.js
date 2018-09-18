@@ -14,7 +14,7 @@ db.settings({ timestampsInSnapshots: true })
 
 // ===== Reading all from DATABASE =====
 
-db.collection('todos').onSnapshot((snapshot) => {
+db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
 
     let todoArray = [];
     snapshot.docs.forEach(doc => {
@@ -41,7 +41,7 @@ let printToDOM = (doc) => {
         $(document).ready(function () {
             $('.tooltipped').tooltip();
         });
-        
+
         todoListCards.innerHTML +=
             `
         <div class"container">
