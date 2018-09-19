@@ -67,7 +67,6 @@ function getAllFromDatabase() {
         .openCursor()
         .onsuccess = (e) => {
             let cursor = e.target.result;
-            console.log(cursor);
             if (cursor) {
                 $(document).ready(function () {
                     $('.floating-action-btn').floatingActionButton();
@@ -120,9 +119,7 @@ function getAllFromDatabase() {
 `;
                 cursor.continue();
 
-            } else {
-                console.log('No entries');
-            }
+            } 
         }
 };
 
@@ -153,11 +150,14 @@ function updateATodoInDatabase() {
 
         let updatedDescription = document.getElementById("updateDescription").value;
         let updatedTitle = document.getElementById("updateTitle").value;
+        let doneStatus = document.getElementById('checkbox'); 
+        document.getElementById("updateDescription").value = "";
+        document.getElementById("updateTitle").value = "";
 
         todo = event.target.result;
-        console.log(todo);
         todo.title = updatedTitle;
         todo.description = updatedDescription;
+        todo.taskDone = doneStatus.checked ? true : false; 
         const requestUpdate = objectStore.put(todo);
         requestUpdate.onsuccess = e => {
             getAllFromDatabase();
