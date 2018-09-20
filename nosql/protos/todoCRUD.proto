@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package todoCRUD;
+
+service ToDoCRUD{
+    rpc tasks(AllRequest) returns (stream SingleResponse) {}
+
+    rpc taskSingle(SingleRequest) returns (SingleResponse) {}
+
+    rpc taskCreate(CreateRequest) returns (SingleResponse) {}
+    
+    rpc taskUpdate(UpdateRequest) returns (SingleResponse) {}
+
+    rpc taskDelete(SingleRequest) returns (DeleteResponse) {}
+}
+
+// message AllRequest{
+
+// }
+
+message AllRequest{
+}
+
+message SingleRequest{
+    string _id = 1;
+}
+
+message SingleResponse{
+    string _id = 1;
+    string title = 2;
+    string description = 3;
+    string status = 4;
+}
+
+message CreateRequest{
+    string title = 2;
+    string description = 3;
+    string status = 4;
+}
+
+message DeleteResponse{
+    string message = 1;
+}
+
+message UpdateRequest{
+    string _id = 1;
+    string title = 2;
+    string description = 3;
+    string status = 4;
+}
+
+message AllResponse{
+    message SingleResponse {
+        string title = 2;
+        string description = 3;
+        string status = 4;
+    }
+    repeated SingleResponse result = 1;
+}
