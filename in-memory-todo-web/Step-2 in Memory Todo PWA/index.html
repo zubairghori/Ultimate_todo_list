@@ -16,6 +16,7 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
 
 </head>
 
@@ -32,10 +33,14 @@
                 <a href="#!" class="waves-effect red lighten-1 white-text">
                     <i class="material-icons white-text">list</i>To-do's</a>
             </li>
+            <ul id="uncompleted-task"></ul>
+        
+
             <li>
                 <a class="waves-effect teal lighten-1 white-text" href="#!">
                     <i class="material-icons white-text">done</i>Completed</a>
             </li>
+            <ul id="completed-task"></ul>
         </ul>
 
         <!-- side nav icon -->
@@ -50,7 +55,7 @@
 
     <div class="sidenavAndHeading" style="margin-left: 40%; margin-right: 40%;">
         <h6 class="header-h1 white-text text-center">Todo List
-            <div class="sub-h1">task management leaves the rest behind.</div>
+            <div class="sub-h1">Task management leaves the rest behind.</div>
         </h6>
     </div>
 
@@ -58,78 +63,16 @@
     <br>
 
     <!-- To-do's List Cards -->
+<div class="container" id="cardContainer">
 
-    <div class="container">
-        <div class="row">
-            <div class="col s6 m12 l12">
-
-                <div class="card grey lighten-5">
-                    <div class="card-content black-text z-depth-4 hoverable">
-                        <span class="card-title">
-                            <h5>Meeting</h5>
-                        </span>
-                        <h6>Meeting on friday with the community.</h6>
-
-                        <!-- Floating Action Button at the end of the card -->
-
-                        <div class="floating-action-btn">
-                            <a class="btn-floating btn-small blue-grey lighten-2 right">
-                                <i class="large material-icons">more_vert</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-                                        <i class="material-icons">mode_edit</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-                                        <i class="material-icons">delete</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card grey lighten-5">
-                    <div class="card-content black-text z-depth-4 hoverable">
-                        <span class="card-title">
-                            <h5>Read a book</h5>
-                        </span>
-                        <h6>Read a book related to programming on monday.
-                        </h6>
-
-                        <div class="floating-action-btn">
-                            <a class="btn-floating btn-small blue-grey lighten-2 right">
-                                <i class="large material-icons">more_vert</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-                                        <i class="material-icons">mode_edit</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-                                        <i class="material-icons">delete</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+</div>
 
     <!-- Add Task Button -->
 
     <div class="fixed-action-btn">
         <button class="btn-floating tooltipped btn-large red waves-effect waves-light btn modal-trigger" href="#modal1" data-position="left"
             data-delay="1000" data-tooltip="Add Task">
-            <i class="large material-icons">add</i>
+            <i class="large material-icons" id='addValue'>add</i>
         </button>
     </div>
 
@@ -149,7 +92,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
+                            <textarea id="textarea2"  class="materialize-textarea" data-length="120"></textarea>
                             <label for="textarea2">Description</label>
                         </div>
                     </div>
@@ -159,45 +102,10 @@
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id='add' >Add</a>
         </div>
     </div>
 
-    <!-- Edit Task Modal -->
-
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <h4>Edit Task</h4>
-            <!-- FORM HERE -->
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="50">
-                            <label for="input_text">Title</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Description</label>
-                        </div>
-                    </div>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in" checked="checked" />
-                            <span>Task Completed</span>
-                        </label>
-                    </p>
-                </form>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
-        </div>
-    </div>
 
 
 
@@ -210,6 +118,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- JavaScript Files -->
     <script src="./js/materialJquery.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
