@@ -14,7 +14,6 @@ ipaddress==1.0.22
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-pkg-resources
 pycparser==2.18
 pymongo==3.7.1
 pyOpenSSL==18.0.0
