@@ -29,15 +29,16 @@ function getAllFromDatabase() {
                         status: cursor.value.taskDone ? "Completed" : " Uncompleted"
                     };
                     todoArray.push(newTodoObject);
-                    cursor.continue();
-
-                } else {
-                    console.log('No entries');
                 }
+                cursor.continue();
+            } else {
+                console.log('No entries');
+
             }
             printItToDom(todoArray);
         }
-};
+
+}
 
 
 function printItToDom(todosArray) {

@@ -13,7 +13,6 @@ request.onerror = function () {
 };
 
 
-
 function getAllFromDatabase() {
     let todoArray = [];
     var request = database.transaction(["allTodos"], "readwrite")
