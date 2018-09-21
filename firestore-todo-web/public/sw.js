@@ -7,6 +7,7 @@ var filesToCache = [
     './js/app.js',
     './js/completeTask.js',
     './js/unCompleteTask.js',
+    './js/materialJquery.js',
     './css/index.css'
 ];
 // ===== Installing Service Worker =====
