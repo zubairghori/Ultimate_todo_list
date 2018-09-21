@@ -22,15 +22,19 @@ function getAllFromDatabase() {
             let cursor = e.target.result;
             if (cursor) {
                 if (!cursor.value.taskDone) {
-                    console.log(cursor.value)
-                    todoArray.push(cursor.value);
-                }
-                cursor.continue();
+                    let newTodoObject = {
+                        id: cursor.value.id,
+                        title: cursor.value.title,
+                        description: cursor.value.description,
+                        status: cursor.value.taskDone ? "Completed" : " Uncompleted"
+                    };
+                    todoArray.push(newTodoObject);
+                    cursor.continue();
 
-            } else {
-                console.log('No entries');
+                } else {
+                    console.log('No entries');
+                }
             }
-            console.log(todoArray);
             printItToDom(todoArray);
         }
 };
@@ -44,13 +48,14 @@ function printItToDom(todosArray) {
         <div class"container">
 
                 <div class="row">
-                <div class="col s6 m12 l12">
+                <div class="col s12 m12 l12">
                 <div class="card grey lighten-5">
                  
 
                 <div class="card-content black-text z-depth-4 hoverable">
                 <span class="card-title">
-                    <h5>${singleItem.title}</h5>
+                <div class="headerUpper">${singleItem.status}</div>                
+                <h5>${singleItem.title}</h5>
                 </span>
                 <h6>${singleItem.description}</h6>
 
@@ -64,5 +69,4 @@ function printItToDom(todosArray) {
 </div>
         `
     })
-
 }

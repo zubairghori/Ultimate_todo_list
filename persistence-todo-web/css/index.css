@@ -1,16 +1,25 @@
 
-.sidenavAndHeading{
-    display: inline-block; 
+#mainTopHeadingLower{
+    text-align: center;
+    font-size: 1.8rem;
+}
+#mainTopHeadingUpper{
+    text-align: center;
+    font-size: 4rem;
 }
 
-.header-h1{
-    color: white;
-    font-size: 9vh;
-    font-family: 'Roboto', sans-serif;    
+.CustomButton{
+    bottom: -15px !important;
+    right: -17px !important;
 }
-
-.sub-h1{
+.headerUpper{
+    margin-top: -36px;
+    background-color: #4dd0e1;
+    text-align: center !important;
     color: white;
-    font-size: 2vh;
-    font-family: 'Noto Serif KR', sans-serif;
+    font-size: 1.5rem;
+    max-width: 200px;
+    border: 1px solid white;
+    margin-left: auto;
+    margin-right: auto;
 }

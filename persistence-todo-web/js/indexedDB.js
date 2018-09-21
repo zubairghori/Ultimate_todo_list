@@ -58,8 +58,9 @@ function addToDatabase(e) {
 };
 
 //Read All Data
-
 function getAllFromDatabase() {
+
+    let todoArray = [];
     let todoListCards = document.getElementById('todoListCards');
     todoListCards.innerHTML = "";
     var request = database.transaction(["allTodos"], "readwrite")
@@ -68,6 +69,15 @@ function getAllFromDatabase() {
         .onsuccess = (e) => {
             let cursor = e.target.result;
             if (cursor) {
+                let newTodoObject = {
+                    id: cursor.value.id,
+                    title: cursor.value.title,
+                    description: cursor.value.description,
+                    status: cursor.value.taskDone ? "Completed" : " Uncompleted"
+                };
+
+                todoArray.push(newTodoObject);
+
                 $(document).ready(function () {
                     $('.floating-action-btn').floatingActionButton();
                 });
@@ -80,15 +90,15 @@ function getAllFromDatabase() {
                 <div class"container">
 
                 <div class="row">
-                <div class="col s6 m12 l12">
+                <div class="col s12 m12 l12">
                 <div class="card grey lighten-5">
-                 
-
+        
                 <div class="card-content black-text z-depth-4 hoverable">
                 <span class="card-title">
-                    <h5>${cursor.value.title}</h5>
+                <div class="headerUpper">${newTodoObject.status}</div>
+                <h5>${newTodoObject.title}</h5>
                 </span>
-                <h6>${cursor.value.description}</h6>
+                <h6>${newTodoObject.description}</h6>
 
                 <!-- Floating Action Button at the end of card-->
 
@@ -98,12 +108,12 @@ function getAllFromDatabase() {
                     </a>
                     <ul>
                         <li>
-                            <a onclick="triggerModel(${cursor.value.id});" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
+                            <a onclick="triggerModel(${newTodoObject.id});" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
                                 <i class="material-icons">mode_edit</i>
                             </a>
                         </li>
                         <li>
-                            <a onclick="deleteTodoFromDatabase(${cursor.value.id})" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
+                            <a onclick="deleteTodoFromDatabase(${newTodoObject.id})" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
                                 <i class="material-icons">delete</i>
                             </a>
                         </li>
@@ -119,7 +129,9 @@ function getAllFromDatabase() {
 `;
                 cursor.continue();
 
-            } 
+            }
+            localStorage.setItem("todoArray", JSON.stringify(todoArray));
+
         }
 };
 
@@ -130,7 +142,6 @@ function deleteTodoFromDatabase(id) {
         .objectStore("allTodos")
         .delete(id);
     request.onsuccess = () => {
-        console.log('Todo deleted!')
         getAllFromDatabase();
     };
 
@@ -150,14 +161,15 @@ function updateATodoInDatabase() {
 
         let updatedDescription = document.getElementById("updateDescription").value;
         let updatedTitle = document.getElementById("updateTitle").value;
-        let doneStatus = document.getElementById('checkbox'); 
+        let doneStatus = document.getElementById('checkbox');
         document.getElementById("updateDescription").value = "";
         document.getElementById("updateTitle").value = "";
 
         todo = event.target.result;
         todo.title = updatedTitle;
         todo.description = updatedDescription;
-        todo.taskDone = doneStatus.checked ? true : false; 
+        todo.taskDone = doneStatus.checked ? true : false;
+
         const requestUpdate = objectStore.put(todo);
         requestUpdate.onsuccess = e => {
             getAllFromDatabase();
@@ -169,6 +181,12 @@ function updateATodoInDatabase() {
 
 function triggerModel(id) {
     localStorage.setItem("todoToUpdate", id);
-    $('#modal2').modal();
 
+    const todoArray = JSON.parse(localStorage.getItem('todoArray'));
+    const ourDesiredTodo = todoArray.filter(item => item.id === id);
+    if (ourDesiredTodo) {
+        document.getElementById('updateTitle').value = ourDesiredTodo[0].title;
+        document.getElementById('updateDescription').value = ourDesiredTodo[0].description;
+        localStorage.setItem('id', id);
+    };
 }
