@@ -20,6 +20,7 @@ db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
         console.log(doc.data());
         let todo = {
             id: doc.id,
+            status: doc.data().taskDone ? "Completed" : "Uncompleted",
             ...doc.data()
         };
         if(doc){
@@ -49,11 +50,12 @@ let printToDOM = (doc) => {
             `
         <div class"container">
         <div class="row">
-        <div class="col s6 m12 l12">
+        <div class="col s12 m12 l12">
         <div class="card grey lighten-5">
         
         <div class="card-content black-text z-depth-4 hoverable">
         <span class="card-title">
+        <div class="headerUpper">${item.status}</div>
         <h5>${item.Title}</h5>
         </span>
         <h6>${item.Description}</h6>
