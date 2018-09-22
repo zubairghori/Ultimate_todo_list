@@ -110,7 +110,7 @@ addTaskForm.addEventListener('submit', (e) => {
         Title,
         Description,
         taskDone: false
-    })
+    }) 
 
 })
 
