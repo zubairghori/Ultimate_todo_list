@@ -21,7 +21,6 @@
 		F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F54CE0214FDD2300728BC7 /* ViewController.swift */; };
 		F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE2214FDD2300728BC7 /* Main.storyboard */; };
 		F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE5214FDD2400728BC7 /* Assets.xcassets */; };
-		F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */; };
 		F2F8A36D2151544600D5CC50 /* Marathon_ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8A36C2151544600D5CC50 /* Marathon_ToDoTests.swift */; };
 		F2F8A3752151555E00D5CC50 /* CreateToDoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F8A3742151555E00D5CC50 /* CreateToDoTest.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +53,6 @@
 		F2F54CE0214FDD2300728BC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F2F54CE3214FDD2300728BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2F54CE5214FDD2400728BC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F2F54CE8214FDD2400728BC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2F54CEA214FDD2400728BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2F8A36A2151544600D5CC50 /* Marathon_ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Marathon_ToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2F8A36C2151544600D5CC50 /* Marathon_ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marathon_ToDoTests.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
 				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
 				F2F54CE5214FDD2400728BC7 /* Assets.xcassets */,
-				F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */,
 				F2F54CEA214FDD2400728BC7 /* Info.plist */,
 			);
 			path = Marathon_ToDo;
@@ -249,7 +246,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2F54CE9214FDD2400728BC7 /* LaunchScreen.storyboard in Resources */,
 				F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */,
 				F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */,
 			);
@@ -348,14 +344,6 @@
 				F2F54CE3214FDD2300728BC7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F2F54CE7214FDD2400728BC7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2F54CE8214FDD2400728BC7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -483,7 +471,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
 				INFOPLIST_FILE = Marathon_ToDo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Marathon_ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -499,7 +490,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
 				INFOPLIST_FILE = Marathon_ToDo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.perception.Marathon_ToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -514,7 +508,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
 				INFOPLIST_FILE = Marathon_ToDoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -530,7 +528,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SUBZ24DP5B;
 				INFOPLIST_FILE = Marathon_ToDoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.perception.Marathon-ToDoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -33,10 +33,10 @@ class ViewController: ButtonBarPagerTabStripViewController {
     func loadDesign(){
         
         
-        self.settings.style.selectedBarHeight =  50
+        self.settings.style.selectedBarHeight =  25
         self.settings.style.selectedBarBackgroundColor = UIColor.black
-        self.settings.style.buttonBarBackgroundColor = UIColor(red: 139/255, green: 210/255, blue: 125/255, alpha: 1)
-        self.settings.style.buttonBarItemBackgroundColor = UIColor(red: 139/255, green: 210/255, blue: 125/255, alpha: 1)
+        self.settings.style.buttonBarBackgroundColor = UIColor(red: 102/255, green: 117/255, blue: 179/255, alpha: 1)
+        self.settings.style.buttonBarItemBackgroundColor = UIColor(red: 102/255, green: 117/255, blue: 179/255, alpha: 1)
         self.settings.style.selectedBarBackgroundColor = .white
         self.settings.style.buttonBarItemFont = .boldSystemFont(ofSize: 13)
         self.settings.style.selectedBarHeight = 2.0
