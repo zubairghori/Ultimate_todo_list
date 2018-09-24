@@ -73,7 +73,7 @@
 </div>
 <br>
 <br>
-<div class="container">
+<div class="container" id="cardContainer2">
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="finished"> Finished</div>
@@ -98,34 +98,35 @@
     </div>
 
     <!-- Add task Modal -->
-
     <div id="modal1" class="modal">
         <div class="modal-content">
             <h4>Add Task</h4>
             <!-- FORM HERE -->
             <div class="row">
-                <form class="col s12">
-                    <div class="row">
+                <form class="col s12" id="addTaskForm">
+                    <div class="row ">
                         <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="50">
-                            <label for="input_text">Title</label>
+                            <input type="text" id="title" data-length="50">
+                            <label for="title">Title</label>
                         </div>
                     </div>
-                    <div class="row">
+
+                    <div class="row ">
                         <div class="input-field col s12">
-                            <textarea id="textarea2"  class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Description</label>
+                            <textarea id="description" class="materialize-textarea" data-length="120"></textarea>
+                            <label for="description">Description</label>
                         </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="submit" class="modal-close waves-effect waves-green btn-flat">Add</button>
                     </div>
                 </form>
             </div>
-
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat" id='add' >Add</a>
         </div>
     </div>
+
         <!-- Edit Task Modal -->
 
         <div id="modal2" class="modal">

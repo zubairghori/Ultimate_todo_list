@@ -10,51 +10,52 @@ module.exports = app => {
 
     app.get('/todo/api/v1/tasks', (req, res) => {
         Todo.find({})
-        .then((task) => {
-            res.send(task);
-        })
-        .catch(err => { if (err) throw err });
+            .then((task) => {
+                res.send(task);
+                console.log("here are the tasks",task)
+            })
+            .catch(err => { if (err) throw err });
     });
 
     /////   To GET the Todo Tasks by Id //////
     app.get('/todo/api/v1/tasks/<task_id>', (req, res) => {
-if(req.body.task_id){
-    Todo.find({})
-    .then((task) => {
-        res.send(task);
-    })
-    .catch(err => { if (err) throw err });
-}
+        if (req.body.task_id) {
+            Todo.find({})
+                .then((task) => {
+                    res.send(task);
+                })
+                .catch(err => { if (err) throw err });
+        }
     });
 
-        /////   to POST and PUT/update a Todo Task   //////
+    /////   to POST and PUT/update a Todo Task   //////
 
-        app.post('/todo/api/v1/tasks', (req, res) => {
+    app.post('/todo/api/v1/tasks', (req, res) => {
 
-            if (req.body.id) {
-                Posts.findByIdAndUpdate(req.body.id,
-                    {
-                        title: req.body.title,
-                        description: req.body.description,
-                        done: req.body.done    
-                    })
-                    .then((task) => {
-                        res.send(task);
-                    })
-                    .catch(err => { if (err) throw err });
-            } else {
-                var newTodo = Todo({
+        if (req.body.id) {
+            Posts.findByIdAndUpdate(req.body.id,
+                {
                     title: req.body.title,
                     description: req.body.description,
                     done: req.body.done
-                });
-    
-                newTodo.save().then((task) => {
+                })
+                .then((task) => {
                     res.send(task);
                 })
-            };
-        });
-    
+                .catch(err => { if (err) throw err });
+        } else {
+            var newTodo = Todo({
+                title: req.body.title,
+                description: req.body.description,
+                done: req.body.done
+            });
+
+            newTodo.save().then((task) => {
+                res.send(task);
+            })
+        };
+    });
+
 
 };
 /// To Delete From Server
