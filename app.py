@@ -61,8 +61,15 @@ def update_task_title(task_id):
 
     update=task.find_one({'task_id':task_id})
     task_title = request.json['task_title']
+    task_description = request.json['task_description']
+    task_done = request.json['task_done']
 
-    update['task_title']= task_title
+    
+
+    update['task_title'] = task_title
+    update['task_description'] = task_description
+    update['task_done'] = task_done
+  
 
     task.save(update)
     return 'title updated'
