@@ -20,7 +20,6 @@ db.enablePersistence()
 
         } else if (err.code == 'unimplemented') {
             console.log('unimplemented')
-
         }
     });
 
@@ -28,89 +27,123 @@ db.enablePersistence()
 
 db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
     let todoArray = [];
+    let completedTask = [];
+    let unCompletedTask = [];
     snapshot.docs.forEach(doc => {
         console.log(doc.data());
         let todo = {
             id: doc.id,
-            status: doc.data().taskDone ? "Completed" : "Uncompleted",
+            status: doc.data().taskDone,
             ...doc.data()
         };
         todoArray.push(todo);
-
     });
-    printToDOM(todoArray);
+    for (var i = 0; i < todoArray.length; i++) {
+        if (todoArray[i]['taskDone'] === false) {
+            unCompletedTask.push(todoArray[i]);
+        } else {
+            completedTask.push(todoArray[i]);
+        }
+    }
+    console.log("unCompletedTaska:", unCompletedTask)
+    console.log("completedTask:", completedTask)
+
+    printToUpcomingTask(unCompletedTask);
+    printToFinishedTask(completedTask);
+
+
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
 })
 
 
 // ===== Printing to DOM ===== 
 
-let printToDOM = (doc) => {
-    let todoListCards = document.getElementById('todoListCards');
-    todoListCards.innerHTML = "";
-    doc.map((item) => {
-        $(document).ready(function () {
-            $('.floating-action-btn').floatingActionButton();
-        });
+let printToUpcomingTask = (doc) => {
+    let todoListCards = document.getElementById('upcomingTask');
+    document.getElementById('upcomingTask').innerHTML = "";
+    if (doc.length > 0) {
 
-        $(document).ready(function () {
-            $('.tooltipped').tooltip();
-        });
-        console.log(item);
-        todoListCards.innerHTML +=
-            `
-        <div class"container">
-        <div class="row">
-        <div class="col s12 m12 l12">
-        <div class="card grey lighten-5">
-        
-        <div class="card-content black-text z-depth-4 hoverable">
-        <span class="card-title">
-        <div class="headerUpper">${item.status}</div>
-        <h5>${item.Title}</h5>
-        </span>
-        <h6>${item.Description}</h6>
-        <!-- Floating Action Button at the end of card-->
-        <div class="floating-action-btn">
-        <a class="btn-floating btn-small blue-grey lighten-2 right" style="margin-right: 15px;">
-        <i class="large material-icons">more_vert</i>
-        </a>
-        <ul>
-        <li>
-        <button onclick="setIdToLocalStorage('${item.id}')" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-        <i class="material-icons">mode_edit</i>
-        </a>
-        </li>
-        <li>
-        <button onclick="deleteThisTaskFromDatabase('${item.id}');" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-        <i class="material-icons">delete</i>
-        </button>
-        </li> 
-        </ul>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+        doc.map((item) => {
+            $(document).ready(function () {
+                $('.tooltipped').tooltip();
+            });
+            console.log(item);
+
+            todoListCards.innerHTML += ` 
+
+            <div class="card2">
+                <h5 class="card2-h5">${item.Title}</h5>
+                <div class="decriptionHeadeing" style="width: auto">${item.Description}</div>
+                <div class="decriptionHeadeing btn-margin">
+                    <button onclick="setIdToLocalStorage('${item.id}')" href="#modal2" class="waves-effect waves-light btn red white-text tooltipped modal-trigger" data-delay="1000" data-tooltip="Edit"
+                        data-position="top">
+                        <i class="material-icons">mode_edit</i>
+                    </button>
+                    <button onclick="deleteThisTaskFromDatabase('${item.id}')" class="waves-effect waves-light btn yellow darken-1 white-text tooltipped" data-delay="1000" data-tooltip="Delete"
+                        data-position="top">
+                        <i class="material-icons">delete</i>
+                    </button> 
+                </div>
+            </div>
         `;
-    })
+        })
+    } else {
+        todoListCards.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO UPCOMING TASK...
+        </div>`
+    }
+
+
 }
 
+let printToFinishedTask = (doc) => {
+    let todoListCards = document.getElementById('finishedTask');
+    document.getElementById('finishedTask').innerHTML = "";
+
+    if (doc.length > 0) {
+        doc.map((item) => {
+            todoListCards.innerHTML += `
+    
+                                <div class="card1 cyan lighten-1">
+                                    <span class="outer white-text" style="text-decoration: line-through;">
+                                        <h5 class="card1-h5 white-text">${item.Title}</h5>
+                                    </span>
+                                    <div class="decriptionHeadeing white-text" style="width: auto; text-decoration: line-through;">
+                                        ${item.Description}
+                                        </div>
+                                        <div class="decriptionHeadeing btn-margin">
+                                        <button onclick="setIdToLocalStorage('${item.id}')" href="#modal2" class="waves-effect waves-light btn red white-text tooltipped modal-trigger" data-delay="1000" data-tooltip="Edit"
+                                            data-position="top">
+                                            <i class="material-icons">mode_edit</i>
+                                        </button>
+                                        <button onclick="deleteThisTaskFromDatabase('${item.id}')" class="waves-effect waves-light btn yellow darken-1 white-text tooltipped" data-delay="1000" data-tooltip="Delete"
+                                            data-position="top">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </div>
+                                </div>
+    
+            
+    `
+        })
+    } else {
+        todoListCards.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO FINISHED TASK...
+        </div>`
+    }
+}
 // ====== Saving Data =====
 
 let addTaskForm = document.getElementById('addTaskForm');
 addTaskForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    let Title = document.getElementById("Title").value;
-    let Description = document.getElementById("Description").value;
-    document.getElementById('Title').value = "";
-    document.getElementById('Description').value = "";
+    let Title = document.getElementById("title").value;
+    let Description = document.getElementById("description").value;
+    document.getElementById('title').value = "";
+    document.getElementById('description').value = "";
     db.collection('todos').add({
         Title,
         Description,
         taskDone: false
-    }) 
+    })
 
 })
 
@@ -118,12 +151,12 @@ addTaskForm.addEventListener('submit', (e) => {
 
 document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
     e.preventDefault();
-    let updatedTitle = document.getElementById("updatedTitle").value;
-    let updatedDescription = document.getElementById("updatedDescription").value;
+    let updatedTitle = document.getElementById("updateTitle").value;
+    let updatedDescription = document.getElementById("updateDescription").value;
     let doneStatus = document.getElementById('checkbox');
     console.log(doneStatus);
-    document.getElementById("updatedTitle").value = "";
-    document.getElementById("updatedDescription").value = "";
+    document.getElementById("updateTitle").value = "";
+    document.getElementById("updateDescription").value = "";
     let id = localStorage.getItem('id');
     console.log({ id, updatedTitle, updatedDescription });
     db.collection('todos').doc(id).update({
@@ -145,13 +178,12 @@ const setIdToLocalStorage = (id) => {
     if (ourDesiredTodo) {
         console.log('inside it')
         console.log(ourDesiredTodo[0])
-        document.getElementById('updatedTitle').value = ourDesiredTodo[0].Title;
-        document.getElementById('updatedDescription').value = ourDesiredTodo[0].Description;
+        document.getElementById('updateTitle').value = ourDesiredTodo[0].Title;
+        document.getElementById('updateDescription').value = ourDesiredTodo[0].Description;
         localStorage.setItem('id', id);
     };
 
 };
-
 
 
 // ===== Deleting Data =====

@@ -16,54 +16,44 @@ db.settings({ timestampsInSnapshots: true })
 
 db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
     let todoArray = [];
+    let finishedtask = [];
     snapshot.docs.forEach(doc => {
         console.log(doc.data());
         let todo = {
             id: doc.id,
-            status: doc.data().taskDone ? "Completed" : "Uncompleted",
+            // status: doc.data().taskDone,
             ...doc.data()
         };
-        if(doc){
-            if(doc.data().taskDone){
-            todoArray.push(todo);
+        if (doc) {
+            if (doc.data().taskDone === true) {
+                todoArray.push(todo);
+            }
         }
-    }
     });
-    printToDOM(todoArray);
+    printToFinishedTask(todoArray);
 })
 
 // ===== Printing to DOM ===== 
 
-let printToDOM = (doc) => {
-    let todoListCards = document.getElementById('todoListCards');
+let printToFinishedTask = (doc) => {
+
+    let todoListCards = document.getElementById('finishedTask');
     todoListCards.innerHTML = "";
-    doc.map((item) => {
-        $(document).ready(function () {
-            $('.floating-action-btn').floatingActionButton();
-        });
+    if (doc.length > 0) {
+        doc.map((item) => {
+            todoListCards.innerHTML += `
+    
+                                <div class="card1 cyan lighten-1">
+                                    <span class="outer white-text" style="text-decoration: line-through;">
+                                        <h5 class="card1-h5 white-text">${item.Title}</h5>
+                                    </span>
+                                    <div class="decriptionHeadeing white-text" style="width: auto; text-decoration: line-through;">${item.Description}</div>
+                                </div>        
+    `
+        })
+    } else {
+        todoListCards.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO FINISHED TASK...
+        </div>`
+    }
 
-        $(document).ready(function () {
-            $('.tooltipped').tooltip();
-        });
-
-        todoListCards.innerHTML +=
-            `
-        <div class"container">
-        <div class="row">
-        <div class="col s12 m12 l12">
-        <div class="card grey lighten-5">
-        
-        <div class="card-content black-text z-depth-4 hoverable">
-        <span class="card-title">
-        <div class="headerUpper">${item.status}</div>
-        <h5>${item.Title}</h5>
-        </span>
-        <h6>${item.Description}</h6>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        `;
-    })
 };

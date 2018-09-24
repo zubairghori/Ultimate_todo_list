@@ -1,5 +1,5 @@
 
-var cacheName = 'todo-cache-03';
+var cacheName = 'todo-cache-04';
 var filesToCache = [
     '/',
     './html/unCompletedTask.html',
@@ -10,7 +10,9 @@ var filesToCache = [
     './js/materialJquery.js',
     './css/index.css'
 ];
+
 // ===== Installing Service Worker =====
+
 self.addEventListener('install', function (e) {
     console.log('[ServiceWorker] Install');
     e.waitUntil(
@@ -42,7 +44,7 @@ self.addEventListener('activate', function (e) {
 // ===== Fetch EVENT__HANDLER =====
 
 self.addEventListener('fetch', function (e) {
-    // console.log('[ServiceWorker] Fetch', e.request.url);
+    console.log('[ServiceWorker] Fetch', e.request.url);
     e.respondWith(
         caches.match(e.request).then(function (response) {
             return response || fetch(e.request);

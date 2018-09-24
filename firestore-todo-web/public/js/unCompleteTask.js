@@ -16,53 +16,46 @@ db.settings({ timestampsInSnapshots: true })
 
 db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
     let todoArray = [];
+    let finishedtask = [];
     snapshot.docs.forEach(doc => {
         console.log(doc.data());
         let todo = {
             id: doc.id,
-            status: doc.data().taskDone ? "Completed" : "Uncompleted",
+            // status: doc.data().taskDone,
             ...doc.data()
         };
-        if(doc){
-            if(!doc.data().taskDone){
-            todoArray.push(todo);
+        if (doc) {
+            if (doc.data().taskDone === false) {
+                todoArray.push(todo);
+            }
         }
-    }
     });
-    printToDOM(todoArray);
+    printToUpcomingTask(todoArray);
 })
+
+
 // ===== Printing to DOM =====  
 
-let printToDOM = (doc) => {
-    let todoListCards = document.getElementById('todoListCards');
+let printToUpcomingTask = (doc) => {
+    let todoListCards = document.getElementById('upcomingTask');
     todoListCards.innerHTML = "";
-    doc.map((item) => {
-        $(document).ready(function () {
-            $('.floating-action-btn').floatingActionButton();
-        });
+    if (doc.length > 0) {
+        doc.map((item) => {
+            $(document).ready(function () {
+                $('.tooltipped').tooltip();
+            });
+            console.log(item);
 
-        $(document).ready(function () {
-            $('.tooltipped').tooltip();
-        });
-
-        todoListCards.innerHTML +=
-            `
-        <div class"container">
-        <div class="row">
-        <div class="col s12 m12 l12">
-        <div class="card grey lighten-5">
-        
-        <div class="card-content black-text z-depth-4 hoverable">
-        <span class="card-title"> 
-        <div class="headerUpper">${item.status}</div>
-        <h5>${item.Title}</h5> 
-        </span>
-        <h6>${item.Description}</h6>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        `;
-    })
-};
+            todoListCards.innerHTML += ` 
+    
+                <div class="card2">
+                    <h5 class="card2-h5">${item.Title}</h5>
+                    <div class="decriptionHeadeing" style="width: auto">${item.Description}</div>
+                </div>
+            `;
+        })
+    } else {
+        todoListCards.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO UPCOMING TASK...
+        </div>`
+    }
+}
