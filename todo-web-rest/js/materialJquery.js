@@ -5,12 +5,7 @@ $(document).ready(function () {
     $('.sidenav').sidenav();
 });
 
-// ===== Floating Action Button ===== //
 
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.floating-action-btn');
-    var instances = M.FloatingActionButton.init(elems, options);
-});
 
 $(document).ready(function () {
     $('.floating-action-btn').floatingActionButton();
