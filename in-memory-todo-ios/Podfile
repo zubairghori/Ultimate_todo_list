@@ -7,4 +7,5 @@ target 'Marathon_ToDo' do
 
   # Pods for Marathon_ToDo
 pod 'XLPagerTabStrip'
+
 end
