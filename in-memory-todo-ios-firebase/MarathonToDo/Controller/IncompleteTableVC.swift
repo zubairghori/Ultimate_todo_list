@@ -56,22 +56,42 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         cell.incompleteTitle.text = displayData[indexPath.row]["Title"]
         cell.incompleteDescription.text = displayData[indexPath.row]["Description"]
         
+        cell.delete.tag = indexPath.row
+        cell.edit.tag = indexPath.row
+        
+        cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
+        cell.edit.addTarget(self, action: #selector(editTask), for: .touchUpInside)
         return cell
     }
     
     
-    
-    // ******** Cell Selected ************
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @objc func deleteTask(button : UIButton){
         
+        print(displayData)
+        print(button.tag)
+        
+        let index = button.tag
+        
+        let title = self.displayData[index]["Title"]
+        
+        print(title!)
+        
+        self.dbRef.child("ToDo").child(title!).removeValue()
+        self.displayData.remove(at: index)
+
+        self.IncompleteTable.reloadData()
+
+    }
+    
+    @objc func editTask(button : UIButton) {
+        let index = button.tag
         
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // EDIT
         let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
             
-            let selected = self.displayData[indexPath.row]["Title"]
+            let selected = self.displayData[index]["Title"]
             self.performSegue(withIdentifier: "Edit_Segue", sender: selected)
         }
         
@@ -79,16 +99,16 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         
         
         // COMPLETE
-
+        
         let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
             
             
-            let title = self.displayData[indexPath.row]["Title"]
+            let title = self.displayData[index]["Title"]
             self.dbRef.child("ToDo").child(title!).child("Status").setValue("Complete")
-            self.displayData[indexPath.row]["Status"] = "Complete"
-
-            self.displayData.remove(at: indexPath.row)
-           
+            self.displayData[index]["Status"] = "Complete"
+            
+            self.displayData.remove(at: index)
+            
             
             self.IncompleteTable.reloadData()
         }
@@ -101,6 +121,49 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         option.addAction(cancel)
         
         self.present(option, animated: true, completion: nil)
+
+    }
+    
+    // ******** Cell Selected ************
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+//        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//
+//        // EDIT
+//        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+//
+//            let selected = self.displayData[indexPath.row]["Title"]
+//            self.performSegue(withIdentifier: "Edit_Segue", sender: selected)
+//        }
+//
+//        option.addAction(EditButton)
+//
+//
+//        // COMPLETE
+//
+//        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+//
+//
+//            let title = self.displayData[indexPath.row]["Title"]
+//            self.dbRef.child("ToDo").child(title!).child("Status").setValue("Complete")
+//            self.displayData[indexPath.row]["Status"] = "Complete"
+//
+//            self.displayData.remove(at: indexPath.row)
+//
+//
+//            self.IncompleteTable.reloadData()
+//        }
+//
+//        option.addAction(Complete)
+//
+//
+//        // CANCEL
+//        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+//        option.addAction(cancel)
+//
+//        self.present(option, animated: true, completion: nil)
         
      
         

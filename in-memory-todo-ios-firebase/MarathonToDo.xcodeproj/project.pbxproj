@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52278524C4A4B0C4278F5186 /* Pods_MarathonToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B14F10F971B3C1C61B08F /* Pods_MarathonToDo.framework */; };
+		F233C4A32159273A001B19C0 /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F233C4A12159273A001B19C0 /* CompleteTableViewCell.swift */; };
+		F233C4A42159273A001B19C0 /* IncompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F233C4A22159273A001B19C0 /* IncompleteTableViewCell.swift */; };
 		F28A8FFE2153DB2100D3563B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F28A8FFD2153DB2100D3563B /* GoogleService-Info.plist */; };
 		F2A852AA2157885100D4F9A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A852A92157885000D4F9A1 /* LaunchScreen.storyboard */; };
 		F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA545214FE58700735164 /* CompleteTableVC.swift */; };
@@ -15,8 +17,6 @@
 		F2EFA54D214FEADD00735164 /* Custom_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA54A214FEADD00735164 /* Custom_Button.swift */; };
 		F2EFA54E214FEADD00735164 /* Custom_ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA54B214FEADD00735164 /* Custom_ImageView.swift */; };
 		F2EFA54F214FEADD00735164 /* Custom_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA54C214FEADD00735164 /* Custom_View.swift */; };
-		F2EFA551214FECE200735164 /* CompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA550214FECE200735164 /* CompleteTableViewCell.swift */; };
-		F2EFA553214FECF700735164 /* IncompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA552214FECF700735164 /* IncompleteTableViewCell.swift */; };
 		F2EFA557214FFD9000735164 /* CreateTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA556214FFD9000735164 /* CreateTodo.swift */; };
 		F2F54CDF214FDD2300728BC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */; };
 		F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F54CE0214FDD2300728BC7 /* ViewController.swift */; };
@@ -28,6 +28,8 @@
 		28C23AF8947011400000A35E /* Pods-MarathonToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarathonToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarathonToDo/Pods-MarathonToDo.release.xcconfig"; sourceTree = "<group>"; };
 		6C355150FB015394D64A3FA5 /* Pods-MarathonToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarathonToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarathonToDo/Pods-MarathonToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		B44B14F10F971B3C1C61B08F /* Pods_MarathonToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MarathonToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F233C4A12159273A001B19C0 /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompleteTableViewCell.swift; path = "../../../in-memory-todo-ios/Marathon_ToDo/Controller/CompleteTableViewCell.swift"; sourceTree = "<group>"; };
+		F233C4A22159273A001B19C0 /* IncompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncompleteTableViewCell.swift; path = "../../../in-memory-todo-ios/Marathon_ToDo/Controller/IncompleteTableViewCell.swift"; sourceTree = "<group>"; };
 		F28A8FFD2153DB2100D3563B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F2A852A92157885000D4F9A1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2EFA545214FE58700735164 /* CompleteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableVC.swift; sourceTree = "<group>"; };
@@ -35,8 +37,6 @@
 		F2EFA54A214FEADD00735164 /* Custom_Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Custom_Button.swift; sourceTree = "<group>"; };
 		F2EFA54B214FEADD00735164 /* Custom_ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Custom_ImageView.swift; sourceTree = "<group>"; };
 		F2EFA54C214FEADD00735164 /* Custom_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Custom_View.swift; sourceTree = "<group>"; };
-		F2EFA550214FECE200735164 /* CompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableViewCell.swift; sourceTree = "<group>"; };
-		F2EFA552214FECF700735164 /* IncompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteTableViewCell.swift; sourceTree = "<group>"; };
 		F2EFA556214FFD9000735164 /* CreateTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodo.swift; sourceTree = "<group>"; };
 		F2F54CDB214FDD2300728BC7 /* MarathonToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarathonToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,9 +80,9 @@
 			children = (
 				F2F54CE0214FDD2300728BC7 /* ViewController.swift */,
 				F2EFA545214FE58700735164 /* CompleteTableVC.swift */,
-				F2EFA550214FECE200735164 /* CompleteTableViewCell.swift */,
+				F233C4A12159273A001B19C0 /* CompleteTableViewCell.swift */,
 				F2EFA547214FE5A400735164 /* IncompleteTableVC.swift */,
-				F2EFA552214FECF700735164 /* IncompleteTableViewCell.swift */,
+				F233C4A22159273A001B19C0 /* IncompleteTableViewCell.swift */,
 				F2EFA556214FFD9000735164 /* CreateTodo.swift */,
 			);
 			path = Controller;
@@ -252,14 +252,14 @@
 			files = (
 				F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */,
 				F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */,
-				F2EFA551214FECE200735164 /* CompleteTableViewCell.swift in Sources */,
 				F2EFA54F214FEADD00735164 /* Custom_View.swift in Sources */,
-				F2EFA553214FECF700735164 /* IncompleteTableViewCell.swift in Sources */,
 				F2F54CDF214FDD2300728BC7 /* AppDelegate.swift in Sources */,
 				F2EFA54D214FEADD00735164 /* Custom_Button.swift in Sources */,
 				F2EFA557214FFD9000735164 /* CreateTodo.swift in Sources */,
+				F233C4A32159273A001B19C0 /* CompleteTableViewCell.swift in Sources */,
 				F2EFA548214FE5A400735164 /* IncompleteTableVC.swift in Sources */,
 				F2EFA54E214FEADD00735164 /* Custom_ImageView.swift in Sources */,
+				F233C4A42159273A001B19C0 /* IncompleteTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

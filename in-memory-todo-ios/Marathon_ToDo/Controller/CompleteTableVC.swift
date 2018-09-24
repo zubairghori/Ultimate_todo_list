@@ -42,6 +42,8 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
   
+    @IBAction func deleteAction(_ sender: Any) {
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -58,11 +60,21 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         cell.completeTitle.text = displayData[indexPath.row]["Title"]
         cell.completeDescription.text = displayData[indexPath.row]["Description"]
-        
+        cell.delete.tag = indexPath.row
+        cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
         return cell
     }
     
     
+    
+    
+    @objc func deleteTask(button : UIButton){
+        
+        let index = button.tag
+        self.displayData.remove(at: index)
+        self.ShareData.completeDatabase.remove(at: index)
+        self.CompleteTable.reloadData()
+    }
     
     // ******** Cell Selected ************
     

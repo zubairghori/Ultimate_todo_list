@@ -15,6 +15,7 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
    
     var displayData = [[String : String]]()
     
+    
     var ShareData = UIApplication.shared.delegate as! AppDelegate
     
     
@@ -53,6 +54,11 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
     }
     
     
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return displayData.count
     }
@@ -68,9 +74,66 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         cell.incompleteTitle.text = displayData[indexPath.row]["Title"]
         cell.incompleteDescription.text = displayData[indexPath.row]["Description"]
         
+        cell.delete.tag = indexPath.row
+        cell.edit.tag = indexPath.row
+        
+        cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
+        cell.edit.addTarget(self, action: #selector(editTask), for: .touchUpInside)
         return cell
     }
     
+    @objc func deleteTask(button : UIButton){
+        
+        let index = button.tag
+        self.displayData.remove(at: index)
+        self.ShareData.incompleteDatabse.remove(at: index)
+        self.IncompleteTable.reloadData()
+    }
+    
+    @objc func editTask(button : UIButton) {
+        
+        
+        let index = button.tag
+        
+        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        // EDIT
+        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+
+            let selectedIndex = index
+            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
+        }
+
+        option.addAction(EditButton)
+
+
+        // COMPLETE
+
+        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+
+
+
+            self.displayData[index]["Status"] = "Complete"
+            self.ShareData.completeDatabase.append(self.displayData[index])
+
+            self.displayData.remove(at: index)
+            self.ShareData.incompleteDatabse.remove(at: index)
+
+
+            self.IncompleteTable.reloadData()
+        }
+
+        option.addAction(Complete)
+
+
+        // CANCEL
+        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        option.addAction(cancel)
+
+        self.present(option, animated: true, completion: nil)
+        
+        
+    }
     
     
     // ******** Cell Selected ************
@@ -78,42 +141,42 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
-        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // EDIT
-        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-            
-            let selectedIndex = indexPath.row
-            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
-        }
-        
-        option.addAction(EditButton)
-        
-        
-        // COMPLETE
-
-        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
-            
-            
-            
-            self.displayData[indexPath.row]["Status"] = "Complete"
-            self.ShareData.completeDatabase.append(self.displayData[indexPath.row])
-
-            self.displayData.remove(at: indexPath.row)
-            self.ShareData.incompleteDatabse.remove(at: indexPath.row)
-           
-            
-            self.IncompleteTable.reloadData()
-        }
-        
-        option.addAction(Complete)
-        
-        
-        // CANCEL
-        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        option.addAction(cancel)
-        
-        self.present(option, animated: true, completion: nil)
+//        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//
+//        // EDIT
+//        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+//
+//            let selectedIndex = indexPath.row
+//            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
+//        }
+//
+//        option.addAction(EditButton)
+//
+//
+//        // COMPLETE
+//
+//        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+//
+//
+//
+//            self.displayData[indexPath.row]["Status"] = "Complete"
+//            self.ShareData.completeDatabase.append(self.displayData[indexPath.row])
+//
+//            self.displayData.remove(at: indexPath.row)
+//            self.ShareData.incompleteDatabse.remove(at: indexPath.row)
+//
+//
+//            self.IncompleteTable.reloadData()
+//        }
+//
+//        option.addAction(Complete)
+//
+//
+//        // CANCEL
+//        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+//        option.addAction(cancel)
+//
+//        self.present(option, animated: true, completion: nil)
         
      
         

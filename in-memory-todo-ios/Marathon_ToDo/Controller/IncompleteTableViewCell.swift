@@ -14,4 +14,6 @@ class IncompleteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var incompleteDescription: UILabel!
     
+    @IBOutlet weak var delete: UIButton!
+    @IBOutlet weak var edit: UIButton!
 }

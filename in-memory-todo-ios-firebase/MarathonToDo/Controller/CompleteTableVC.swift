@@ -50,10 +50,27 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.completeTitle.text = displayData[indexPath.row]["Title"]
         cell.completeDescription.text = displayData[indexPath.row]["Description"]
         
+        
+        cell.delete.tag = indexPath.row
+        
+        cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
+        
         return cell
     }
     
+    @objc func deleteTask(button : UIButton){
+        
+        let index = button.tag
+        
+        let title = self.displayData[index]["Title"]
+        self.dbRef.child("ToDo").child(title!).removeValue()
+        self.displayData.remove(at: index)
+
+        self.CompleteTable.reloadData()
+        
+    }
     
+  
     
     // ******** Cell Selected ************
     

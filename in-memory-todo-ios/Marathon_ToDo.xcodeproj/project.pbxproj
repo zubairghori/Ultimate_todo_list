@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52278524C4A4B0C4278F5186 /* Pods_Marathon_ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */; };
+		F233C4A02159140C001B19C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */; };
 		F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA545214FE58700735164 /* CompleteTableVC.swift */; };
 		F2EFA548214FE5A400735164 /* IncompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA547214FE5A400735164 /* IncompleteTableVC.swift */; };
 		F2EFA54D214FEADD00735164 /* Custom_Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA54A214FEADD00735164 /* Custom_Button.swift */; };
@@ -39,6 +40,7 @@
 		28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.release.xcconfig"; sourceTree = "<group>"; };
 		6C355150FB015394D64A3FA5 /* Pods-Marathon_ToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marathon_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../in-memory-todo-ios-firebase/MarathonToDo/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		F2EFA545214FE58700735164 /* CompleteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteTableVC.swift; sourceTree = "<group>"; };
 		F2EFA547214FE5A400735164 /* IncompleteTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompleteTableVC.swift; sourceTree = "<group>"; };
 		F2EFA54A214FEADD00735164 /* Custom_Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Custom_Button.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				F2E98D05215145A800DF3BF3 /* Controller */,
 				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
 				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
+				F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */,
 				F2F54CE5214FDD2400728BC7 /* Assets.xcassets */,
 				F2F54CEA214FDD2400728BC7 /* Info.plist */,
 			);
@@ -246,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F233C4A02159140C001B19C0 /* LaunchScreen.storyboard in Resources */,
 				F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */,
 				F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */,
 			);

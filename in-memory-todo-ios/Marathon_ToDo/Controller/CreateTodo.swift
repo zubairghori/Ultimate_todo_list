@@ -55,6 +55,7 @@ class CreateTodo: UIViewController {
 
     }
     
+
     
     
     
@@ -86,7 +87,6 @@ class CreateTodo: UIViewController {
             
             print(ShareData.incompleteDatabse)
      
-            
             self.navigationController?.popViewController(animated: true)
                 
                 
