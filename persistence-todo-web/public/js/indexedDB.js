@@ -7,7 +7,6 @@ request.onsuccess = function (e) {
     database = e.target.result;
     getAllFromDatabase();
 };
-
 request.onerror = function () {
     console.log('Some Error Occured!');
 };
@@ -58,82 +57,118 @@ function addToDatabase(e) {
 };
 
 //Read All Data
-function getAllFromDatabase() {
 
+function getAllFromDatabase() {
     let todoArray = [];
-    let todoListCards = document.getElementById('todoListCards');
-    todoListCards.innerHTML = "";
+    let completedTask = [];
+    let unCompletedTask = [];
     var request = database.transaction(["allTodos"], "readwrite")
         .objectStore("allTodos")
         .openCursor()
         .onsuccess = (e) => {
+
+
             let cursor = e.target.result;
             if (cursor) {
                 let newTodoObject = {
                     id: cursor.value.id,
                     title: cursor.value.title,
                     description: cursor.value.description,
-                    status: cursor.value.taskDone ? "Completed" : " Uncompleted"
+                    status: cursor.value.taskDone
                 };
-
                 todoArray.push(newTodoObject);
-
-                $(document).ready(function () {
-                    $('.floating-action-btn').floatingActionButton();
-                });
-
-                $(document).ready(function () {
-                    $('.tooltipped').tooltip();
-                });
-                todoListCards.innerHTML +=
-                    `
-                <div class"container">
-
-                <div class="row">
-                <div class="col s12 m12 l12">
-                <div class="card grey lighten-5">
-        
-                <div class="card-content black-text z-depth-4 hoverable">
-                <span class="card-title">
-                <div class="headerUpper">${newTodoObject.status}</div>
-                <h5>${newTodoObject.title}</h5>
-                </span>
-                <h6>${newTodoObject.description}</h6>
-
-                <!-- Floating Action Button at the end of card-->
-
-                <div class="floating-action-btn">
-                    <a class="btn-floating btn-small blue-grey lighten-2 right">
-                        <i class="large material-icons">more_vert</i>
-                    </a>
-                    <ul>
-                        <li>
-                            <a onclick="triggerModel(${newTodoObject.id});" class="btn-floating btn red right tooltipped modal-trigger" href="#modal2" data-delay="1000" data-tooltip="Edit" data-position="top">
-                                <i class="material-icons">mode_edit</i>
-                            </a>
-                        </li>
-                        <li>
-                            <a onclick="deleteTodoFromDatabase(${newTodoObject.id})" class="btn-floating yellow right darken-1 tooltipped" data-delay="1000" data-tooltip="Delete" data-position="top">
-                                <i class="material-icons">delete</i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-
-        </div>
-    </div>
-</div>
-`;
                 cursor.continue();
-
             }
-            localStorage.setItem("todoArray", JSON.stringify(todoArray));
-
+            PrintToDom(todoArray)
         }
+
 };
+
+// ===== Printing to DOM ===== 
+
+function PrintToDom(docs) {
+    localStorage.setItem("todoArray", JSON.stringify(docs));
+    let finishedTaskContainer = document.getElementById('finishedTask')
+    let upcomingTaskContainer = document.getElementById('upcomingTask');
+    document.getElementById('upcomingTask').innerHTML = "";
+    document.getElementById('finishedTask').innerHTML = "";
+    let completedTodo = [];
+    let unCompletedTodo = [];
+    docs.map(item => {
+
+        if (item.status) {
+            completedTodo.push(item);
+        } else {
+            unCompletedTodo.push(item);
+        }
+    })
+
+// FINISHED TASKS
+
+    if (completedTodo.length > 0) {
+        completedTodo.map((item) => {
+            $(document).ready(function () {
+                $('.tooltipped').tooltip();
+            });
+            finishedTaskContainer.innerHTML += `
+    
+                <div class="card1 cyan lighten-1">
+                    <span class="outer white-text" style="text-decoration: line-through;">
+                        <h5 class="card1-h5 white-text">${item.title}</h5>
+                    </span>
+                    <div class="decriptionHeadeing white-text" style="width: auto; text-decoration: line-through;">
+                        ${item.description}
+                        </div>
+                        <div class="decriptionHeadeing btn-margin">
+                        <button onclick="setIdToLocalStorage(${item.id})" href="#modal2" class="waves-effect waves-light btn red white-text tooltipped modal-trigger" data-delay="1000" data-tooltip="Edit"
+                            data-position="top">
+                            <i class="material-icons">mode_edit</i>
+                        </button>
+                        <button onclick="deleteTodoFromDatabase(${item.id})" class="waves-effect waves-light btn yellow darken-1 white-text tooltipped" data-delay="1000" data-tooltip="Delete"
+                            data-position="top">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </div>
+        `
+        })
+    } else {
+        finishedTaskContainer.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO FINISHED TASK...</div>`
+    }
+
+// UPCOMING TASKS
+
+    if (unCompletedTodo.length > 0) {
+
+        unCompletedTodo.map((item) => {
+            $(document).ready(function () {
+                $('.tooltipped').tooltip();
+            });
+
+            upcomingTaskContainer.innerHTML += ` 
+
+            <div class="card2">
+                <h5 class="card2-h5">${item.title}</h5>
+                <div class="decriptionHeadeing" style="width: auto">${item.description}</div>
+                <div class="decriptionHeadeing btn-margin">
+                    <button onclick="setIdToLocalStorage(${item.id})" href="#modal2" class="waves-effect waves-light btn red white-text tooltipped modal-trigger" data-delay="1000" data-tooltip="Edit"
+                        data-position="top">
+                        <i class="material-icons">mode_edit</i>
+                    </button>
+                    <button onclick="deleteTodoFromDatabase(${item.id})" class="waves-effect waves-light btn yellow darken-1 white-text tooltipped" data-delay="1000" data-tooltip="Delete"
+                        data-position="top">
+                        <i class="material-icons">delete</i>
+                    </button> 
+                </div>
+            </div>
+        `;
+        })
+    } else {
+        upcomingTaskContainer.innerHTML = `<div class="white-text" style="text-decoration: underline; font-size: 1.7em;">SEEMS LIKE YOU HAVE NO UPCOMING TASK...
+        </div>`
+    }
+
+}
 
 // Delete data
 
@@ -178,12 +213,10 @@ function updateATodoInDatabase() {
     }
 };
 
-
-function triggerModel(id) {
+function setIdToLocalStorage(id) {
     localStorage.setItem("todoToUpdate", id);
-
     const todoArray = JSON.parse(localStorage.getItem('todoArray'));
-    const ourDesiredTodo = todoArray.filter(item => item.id === id);
+    const ourDesiredTodo = todoArray.filter(item => item.id === Number(id));
     if (ourDesiredTodo) {
         document.getElementById('updateTitle').value = ourDesiredTodo[0].title;
         document.getElementById('updateDescription').value = ourDesiredTodo[0].description;
