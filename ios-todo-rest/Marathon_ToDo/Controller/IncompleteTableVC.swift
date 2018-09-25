@@ -85,21 +85,15 @@ class IncompleteTableVC: UIViewController {
                             print(error)
                         }
                     }
-
                 })
                 alert.addAction(button)
                 
                 self.present(alert, animated: true, completion: nil)
             }
-
-            
         })
         alert.addAction(button)
-        
+    
         self.present(alert, animated: true, completion: nil)
-//        self.displayData.remove(at: index)
-//        self.ShareData.incompleteDatabse.remove(at: index)
-//        self.IncompleteTable.reloadData()
     }
     
     @objc func editTask(button : UIButton) {
