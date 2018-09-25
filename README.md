@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # REST API with SQL database using a TDD Approach:
 ## Features
 Add task
@@ -49,3 +50,26 @@ https://rest-todo-sql.herokuapp.com/todo/api/v1.0/task/view (for view function)
 
 
 >>>>>>> 809dd8fb070d62f0e9b8ec7c85899929645a1e63
+=======
+ The Ultimate Todo App
+====================
+#### Simple Progressive Web Application
+
+* Service Worker Implemented
+All files will be chached and User is able to use Offline App
+
+* Manifest.json
+Add home screen icon and handle page orientation of App
+
+Features
+=========
+* Add a Todo:
+Todo will be shown in upcoming list in side navigation bar
+* Edit Todo:
+Todo title and description will be updated
+* Completed Todo:
+Todo will be marked as completed and shown in finished list in side navigation bar
+* Delete Todo:
+Todo will be deleted from homepage
+
+>>>>>>> 27fe86f065e51bb47665abc1076495ffd33cdcf9
