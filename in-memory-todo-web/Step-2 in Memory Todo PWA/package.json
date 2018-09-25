@@ -1,0 +1,17 @@
+{
+  "name": "PWA-todo",
+  "version": "1.0.0",
+  "description": "todo-web",
+  "main": "js/script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Syeda-Marium",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^5.5.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
+}
