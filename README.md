@@ -1,10 +1,10 @@
 # Ultimate_todo_list
-Todo List Adobe XD
+## Todo List Adobe XD
 
-Mobile
+### Mobile
 ![alt text](https://github.com/zubairghori/Ultimate_todo_list/blob/todo-adobexd/ios.png)
 
-Web
+### Web
 ![alt text](https://github.com/zubairghori/Ultimate_todo_list/blob/todo-adobexd/web.png)
 
 
