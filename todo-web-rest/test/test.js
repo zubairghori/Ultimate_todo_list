@@ -17,7 +17,7 @@ describe('ToDo Lists Of Tasks', () => {
     describe('II: GET Single Task', () => {
 
         it('Should Get Single Task', (done) => {
-            request.get('http://rest-nosql.herokuapp.com/todo/api/v1/tasks/dcuneyb', (error, response, body) => {
+            request.get('http://rest-nosql.herokuapp.com/todo/api/v1/tasks/195', (error, response, body) => {
                 expect(response.statusCode).to.equal(200);
                 done();
             });
@@ -45,7 +45,7 @@ describe('ToDo Lists Of Tasks', () => {
     describe('IV: UPDATE A Task', () => {
         it('Should Update A Task', (done) => {
             request.put({
-                url: 'http://rest-nosql.herokuapp.com/todo/api/v1/tasks/dcuneyb',
+                url: 'http://rest-nosql.herokuapp.com/todo/api/v1/tasks/195',
                 json: {
                     task_title: "Hello World",
                     task_description: "Bye Everyone",

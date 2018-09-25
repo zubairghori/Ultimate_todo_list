@@ -1,10 +1,10 @@
 {
-  "name": "ajax-api-tutorial",
+  "name": "In-Memory-Todo-Web-with-RestApi",
   "version": "1.0.0",
   "description": "",
   "main": "jquery.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/test.js",
     "server": "nodemon server.js"
   },
   "keywords": [],
@@ -14,5 +14,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mongoose": "^5.2.16"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }
