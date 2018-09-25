@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- css files -->
+    <link rel="stylesheet" href="../css/index.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+
+    <title>Todo App</title>
+</head>
+
+<body class="cyan darken-1">
+
+    <!-- Side Nav -->
+    <header>
+        <div class="sidnavAndHeader">
+            <ul id="slide-out" class="sidenav">
+                <li>
+                    <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
+                </li>
+                <li>
+                    <a href="../index.html" class="waves-effect deep-purple white-text">
+                        <i class="material-icons white-text">home</i>Home</a>
+                </li>
+                <li>
+                    <a href="./completedTask.html" class="waves-effect red lighten-1 white-text">
+                        <i class="material-icons white-text">done</i>FINISHED</a>
+                </li>
+            </ul>
+
+            <!-- side nav icon -->
+
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons medium white-text">menu</i>
+            </a>
+
+        </div>
+
+        <!-- heading -->
+
+        <div class="sidnavAndHeader">
+            <h6 class="white-text" id="mainTopHeadingUpper">TODO's</h6>
+        </div>
+
+    </header>
+    <br>
+    <br>
+
+    <!-- Todo List Cards -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="upcoming">UPCOMING</div>
+                <div id="upcomingTask">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<!-- Compiled and minified Jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- JavaScript Files -->
+<script src="../js/materialJquery.js"></script>
+<script src="../js/unCompleteTask.js"></script>
+
+</html>
