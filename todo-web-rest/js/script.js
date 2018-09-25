@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", ready);
+var todoArray = [];
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(function (registration) {
@@ -162,9 +163,17 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
         }
     })
         .then((formData) => {
-                console.log(formData.json())
-                // this.todoArray = data.result
-                // getData(this.todoArray)
+            let index = todoArray.findIndex((item) =>{
+                return item.task_id == task_id
+            })
+            var obj = {
+                task_title: task_title,
+                task_description: task_description,
+                task_done: doneStatus.checked ? "true" : "false",
+                task_id: task_id
+            };
+            this.todoArray[index] = obj
+                getData(this.todoArray)
         })
         .catch(err => {
             console.log(err);
@@ -181,7 +190,6 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
 
 // Add todo
 
-var todoArray = [];
 
 let addTaskForm = document.getElementById('addTaskForm');
 addTaskForm.addEventListener('submit', (e) => {
