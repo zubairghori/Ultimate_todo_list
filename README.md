@@ -1,6 +1,6 @@
  The Ultimate Todo App
 ====================
-####Simple Progressive Web Application
+#### Simple Progressive Web Application
 
 *Service Worker Implemented
 All files will be chached and User is able to use Offline App
