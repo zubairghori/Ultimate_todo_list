@@ -58,9 +58,7 @@ class CompleteTableVC: UIViewController {
     
     @objc func deleteTask(button : UIButton){
         let index = button.tag
-        self.displayData.remove(at: index)
-        self.ShareData.completeDatabase.remove(at: index)
-        self.CompleteTable.reloadData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,12 +110,36 @@ extension CompleteTableVC: UITableViewDataSource, UITableViewDelegate {
         
         // COMPLETE
         let Complete = UIAlertAction(title: "Incompleted", style:.default) { (action) in
-            self.displayData[indexPath.row]["Status"] = "Incomplete"
-            self.ShareData.incompleteDatabse.append(self.displayData[indexPath.row])
-            self.ShareData.completeDatabase.remove(at: indexPath.row)
-            self.displayData.remove(at: indexPath.row)
+            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[indexPath.row].task_id)"
             
-            self.CompleteTable.reloadData()
+            let params = ["task_title": self.tasks[indexPath.row].task_title, "task_description": self.tasks[indexPath.row].task_description,"task_done": "false" ]
+            
+            Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                let alert  =  UIAlertController(title: "Success", message: "Task InCompleted successfully", preferredStyle: .alert)
+                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+                    
+                    let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
+                    Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                        
+                        do {
+                            let json = try? JSON(data: response.data!)
+                            let result = json?["result"]
+                            let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
+                            DispatchQueue.main.async {
+                                self.tasks = tasks.filter({ $0.task_done == "true"})
+                                self.CompleteTable.reloadData()
+                            }
+                        }catch let error {
+                            print(error)
+                        }
+                    }
+                    
+                })
+                alert.addAction(button)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+
         }
         
         option.addAction(Complete)
