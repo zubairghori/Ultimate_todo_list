@@ -12,7 +12,8 @@ var config = {
 };
 firebase.initializeApp(config);
 const db = firebase.firestore();
-// suno ab ghalat karo 
+
+
 db.settings({ timestampsInSnapshots: true })
 db.enablePersistence()
     .catch(function (err) {
