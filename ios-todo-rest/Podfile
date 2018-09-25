@@ -8,5 +8,6 @@ target 'Marathon_ToDo' do
     # Pods for Marathon_ToDo
     pod 'XLPagerTabStrip'
     pod 'Alamofire', '~> 4.7'
-    
+    pod 'SVProgressHUD', '~> 2.2'
+    pod 'SwiftyJSON', '~> 4.1'
 end

@@ -8,12 +8,15 @@
 
 import UIKit
 import XLPagerTabStrip
+import Alamofire
+import SwiftyJSON
 
 class CompleteTableVC: UIViewController {
     
     @IBOutlet weak var CompleteTable: UITableView!
     var displayData = [[String : String]]()
     var ShareData = UIApplication.shared.delegate as! AppDelegate
+    var tasks = [Task]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,7 @@ class CompleteTableVC: UIViewController {
             self.displayData = ShareData.completeDatabase
         }
         CompleteTable.reloadData()
+
     }
     
     @IBAction func deleteAction(_ sender: Any) {
@@ -32,7 +36,7 @@ class CompleteTableVC: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayData.count
+        return self.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,8 +46,11 @@ class CompleteTableVC: UIViewController {
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
-        cell.completeTitle.text = displayData[indexPath.row]["Title"]
-        cell.completeDescription.text = displayData[indexPath.row]["Description"]
+        let task = self.tasks[indexPath.row]
+        
+        cell.completeTitle.text = task.task_title
+        cell.completeDescription.text = task.task_description
+        
         cell.delete.tag = indexPath.row
         cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
         return cell
@@ -55,10 +62,26 @@ class CompleteTableVC: UIViewController {
         self.ShareData.completeDatabase.remove(at: index)
         self.CompleteTable.reloadData()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.completeDatabase
-        CompleteTable.reloadData()
+
+        let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            
+            do {
+                let json = try? JSON(data: response.data!)
+                let result = json?["result"]
+                let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
+                DispatchQueue.main.async {
+                    self.tasks = tasks.filter({ $0.task_done == "true"})
+                    print(self.tasks)
+                    self.CompleteTable.reloadData()
+                }
+            }catch let error {
+                print(error)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

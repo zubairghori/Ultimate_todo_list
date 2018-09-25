@@ -15,9 +15,6 @@ class ViewController: ButtonBarPagerTabStripViewController {
         
         self.loadDesign()
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-     
     }
 
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
@@ -27,13 +24,8 @@ class ViewController: ButtonBarPagerTabStripViewController {
         return [child1, child2]
     }
 
-
-    
-    
     func loadDesign(){
         
-        
-//        self.settings.style.selectedBarHeight =  25
         self.settings.style.selectedBarBackgroundColor = UIColor.black
         self.settings.style.buttonBarBackgroundColor = UIColor(red: 80/255, green: 190/255, blue: 190/255, alpha: 1)
         self.settings.style.buttonBarItemBackgroundColor = UIColor(red: 80/255, green: 190/255, blue: 190/255, alpha: 1)
@@ -53,15 +45,9 @@ class ViewController: ButtonBarPagerTabStripViewController {
             newCell?.label.textColor = UIColor.white
             
         }
-        
-        
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: collectionView.frame.width/2, height: collectionView.frame.height)
-        
     }
 }
-

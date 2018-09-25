@@ -230,7 +230,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Eox-NR-ojB" secondAttribute="height" multiplier="1:1" id="y29-O2-uqy"/>
                                                             </constraints>
-                                                            <state key="normal" image="edit"/>
+                                                            <state key="normal" image="editIcon"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -526,9 +526,9 @@
     </scenes>
     <resources>
         <image name="delete" width="48" height="48"/>
-        <image name="edit" width="40" height="40"/>
+        <image name="editIcon" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AwN-9H-BfJ"/>
+        <segue reference="hI8-eU-T14"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,8 @@
 
 import UIKit
 import XLPagerTabStrip
+import Alamofire
+import SwiftyJSON
 
 class IncompleteTableVC: UIViewController {
 
@@ -15,6 +17,7 @@ class IncompleteTableVC: UIViewController {
    
     var displayData = [[String : String]]()
     var ShareData = UIApplication.shared.delegate as! AppDelegate
+    var tasks = [Task]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,23 @@ class IncompleteTableVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.incompleteDatabse
-        IncompleteTable.reloadData()
+
+        let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+
+            do {
+                let json = try? JSON(data: response.data!)
+                let result = json?["result"]
+                let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
+                DispatchQueue.main.async {
+                    self.tasks = tasks.filter({ $0.task_done == "false"})
+                    self.IncompleteTable.reloadData()
+                }
+            }catch let error {
+                print(error)
+            }
+        }
+
     }
     
     @objc func deleteTask(button : UIButton){
@@ -52,8 +71,8 @@ class IncompleteTableVC: UIViewController {
 
         // EDIT
         let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-            let selectedIndex = index
-            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
+          //  let selectedIndex = index
+            self.performSegue(withIdentifier: "Edit_Segue", sender: self.tasks[index])
         }
         option.addAction(EditButton)
 
@@ -80,7 +99,8 @@ class IncompleteTableVC: UIViewController {
         if segue.identifier == "Edit_Segue"{
             let dest = segue.destination as! CreateTodo
             dest.segueName = "Edit"
-            dest.selectedIndex = sender as? Int
+           // dest.selectedIndex = sender as! Task
+            dest.task = sender as! Task
         }
     }
 }
@@ -88,7 +108,7 @@ class IncompleteTableVC: UIViewController {
 extension IncompleteTableVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayData.count
+        return self.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,9 +118,10 @@ extension IncompleteTableVC: UITableViewDataSource, UITableViewDelegate {
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
         
+        let task = self.tasks[indexPath.row]
         
-        cell.incompleteTitle.text = displayData[indexPath.row]["Title"]
-        cell.incompleteDescription.text = displayData[indexPath.row]["Description"]
+        cell.incompleteTitle.text = task.task_title
+        cell.incompleteDescription.text = task.task_description
         
         cell.delete.tag = indexPath.row
         cell.edit.tag = indexPath.row
@@ -121,7 +142,6 @@ extension IncompleteTableVC: UITableViewDataSource, UITableViewDelegate {
             self.IncompleteTable.reloadData()
         }
     }
-
 }
 
 extension IncompleteTableVC : IndicatorInfoProvider{
