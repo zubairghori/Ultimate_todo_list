@@ -17,6 +17,10 @@ Clone the repo using Git:
 Git clone https://github.com/zubairghori/Ultimate_todo_list.git
 ## Live here
 https://rest-todo-sql.herokuapp.com/todo/api/v1.0/task/add (for add function)
+
 https://rest-todo-sql.herokuapp.com/todo/api/v1.0/task/delete (for delete function)
+
 https://rest-todo-sql.herokuapp.com/todo/api/v1.0/task/update (for update function)
+
 https://rest-todo-sql.herokuapp.com/todo/api/v1.0/task/view (for view function)
+
