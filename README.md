@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # REST API with SQL database using a TDD Approach:
 ## Features
 Add task
@@ -73,3 +74,15 @@ Todo will be marked as completed and shown in finished list in side navigation b
 Todo will be deleted from homepage
 
 >>>>>>> 27fe86f065e51bb47665abc1076495ffd33cdcf9
+=======
+# Ultimate_todo_list using in-memory, persistence(coredata), firestore and REST API.
+
+How to Run:
+
+1. Open terminal
+2. cd project-path
+3. pod install
+4. open .xcworkspace file.
+5. Run (in xcode)
+
+>>>>>>> 08e57f99c864c458d89a83d00dfdf9523faf4caf
