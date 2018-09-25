@@ -12,5 +12,4 @@ struct TodoData {
     var Title : String
     var Description : String
     var Status : String
-    
 }
