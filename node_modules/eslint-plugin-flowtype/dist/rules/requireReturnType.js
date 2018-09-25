@@ -72,10 +72,20 @@ var create = function create(context) {
 
   var shouldFilterNode = function shouldFilterNode(functionNode) {
     var isArrow = functionNode.type === 'ArrowFunctionExpression';
-    var identiferName = _lodash2.default.get(functionNode, isArrow ? 'parent.id.name' : 'id.name');
+    var isMethod = functionNode.parent && functionNode.parent.type === 'MethodDefinition';
+    var selector = void 0;
+
+    if (isMethod) {
+      selector = 'parent.key.name';
+    } else if (isArrow) {
+      selector = 'parent.id.name';
+    } else {
+      selector = 'id.name';
+    }
+    var identifierName = _lodash2.default.get(functionNode, selector);
 
     var checkRegExp = function checkRegExp(regex) {
-      return regex.test(identiferName);
+      return regex.test(identifierName);
     };
 
     if (excludeMatching.length && _lodash2.default.some(excludeMatching, checkRegExp)) {
@@ -105,15 +115,15 @@ var create = function create(context) {
     if (skipArrows === 'expressionsOnly' && isArrowFunctionExpression || skipArrows === true && isArrow) {
       return;
     }
-
+    if (shouldFilterNode(functionNode)) {
+      return;
+    }
     if (isFunctionReturnUndefined && isReturnTypeAnnotationUndefined && !annotateUndefined) {
       context.report(functionNode, 'Must not annotate undefined return type.');
     } else if (isFunctionReturnUndefined && !isReturnTypeAnnotationUndefined && annotateUndefined) {
       context.report(functionNode, 'Must annotate undefined return type.');
-    } else if (!isFunctionReturnUndefined && !isReturnTypeAnnotationUndefined) {
-      if (annotateReturn && !functionNode.returnType && !shouldFilterNode(functionNode)) {
-        context.report(functionNode, 'Missing return type annotation.');
-      }
+    } else if (!isFunctionReturnUndefined && !isReturnTypeAnnotationUndefined && annotateReturn && !functionNode.returnType) {
+      context.report(functionNode, 'Missing return type annotation.');
     }
   };
 
