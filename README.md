@@ -3,7 +3,7 @@
 How to Run:
 
 1. Open terminal
-2. cd <project-path>
+2. cd project-path
 3. pod install
 4. open .xcworkspace file.
 5. Run (in xcode)
