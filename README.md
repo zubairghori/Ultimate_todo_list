@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # REST API with SQL database using a TDD Approach:
 ## Features
 Add task
@@ -92,6 +93,12 @@ The Ultimate Todo App
 =====================
 
 ## Google’s Firebase Firestore Database Todo Client App using the TDD Approach  
+=======
+The Ultimate Todo App
+=====================
+
+## Persistent Todo Client App using the IndexedDB and TDD Approach
+>>>>>>> 4a40f039ca08bb76c2ac29fc87212b7b32081591
 
 ### Progressive Web Application - PWA
 
@@ -138,11 +145,19 @@ npm test
 
 #### Details
 
+<<<<<<< HEAD
 Google’s Firebase Firestore Database function's TDD tested
 
 ## Live here
 
 [firestore-todo-web](https://firestore-todo-web.firebaseapp.com/)
+=======
+IndexedDB function's TDD tested using fake-indexeddb  
+
+## Live here
+
+[persistence-todo-web](https://persistence-todo-web.firebaseapp.com)
+>>>>>>> 4a40f039ca08bb76c2ac29fc87212b7b32081591
 
 ## Download / Clone
 
@@ -153,5 +168,9 @@ Git clone https://github.com/zubairghori/Ultimate_todo_list.git
 
 ## Developed by
 
+<<<<<<< HEAD
 ##### Soha Moosa from Team Beta
 >>>>>>> 4fe34b1705d865f110322b58341220146bd2822b
+=======
+##### Soha Moosa from Team Beta
+>>>>>>> 4a40f039ca08bb76c2ac29fc87212b7b32081591

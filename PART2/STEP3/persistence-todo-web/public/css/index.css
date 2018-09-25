@@ -1,0 +1,341 @@
+.sidnavAndHeader{
+    display: inline-block;
+}
+#mainTopHeadingLower{
+    text-align: center;
+    font-size: 1.8rem;
+    
+}
+
+#mainTopHeadingUpper{
+    text-align: center;
+    font-size: 2.5rem;
+    margin-left: 85vh;
+    letter-spacing: 0.4rem;
+}
+
+.CustomButton{
+    bottom: -15px !important;
+    right: 1150% !important;
+}
+.upcoming{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+}
+.decriptionHeadeing{
+display: inline-block;
+}
+.btn-margin{
+    margin-left: 90%;
+}
+.finished{
+    letter-spacing: .1rem;
+    color: #fff;
+    padding-left: 4px !important;
+    margin-bottom: 1px;
+    font-size: 0.8rem;
+}
+.headerUpper{
+    margin-top: -36px;
+    background-color: #4dd0e1;
+    text-align: center !important;
+    color: white;
+    font-size: 1.5rem;
+    max-width: 200px;
+    border: 1px solid white;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 
+.card1{
+background: linear-gradient(
+      rgba(0, 0, 0, 0.6), 
+      rgba(0, 0, 0, 0.6)
+    )
+} */
+
+.categories{
+	/* border:1px #ccc solid !important; */
+    padding:10px !important;
+    margin-top: 20px !important;
+	/* border-radius:15px !important; */
+}
+
+
+.card1, .card2{
+    padding: 4px;
+    color: #000;
+    position: relative;
+    margin: 0.1rem 0 0.6rem 0;
+    background-color: #fff;
+    border-radius: 5px;
+    padding-left: 21px !important;
+
+}
+
+
+.card2 .btn{
+    height: 22px !important;
+    line-height: 21px !important;
+    padding: 0px 6px !important;
+    margin-left: 0.4em; 
+    margin-bottom: 0.5em;
+}
+
+.card1 .btn{
+    height: 22px !important;
+    line-height: 21px !important;
+    padding: 0px 6px !important;
+    margin-left: 0.4em;
+}
+
+/***** Media size 320 *****/
+
+@media screen and (max-width: 320px){
+    
+    .card1, .card2{
+        padding: 0.1px;
+        color: #000;
+        position: relative;
+        margin: 0.1rem 0 0.6rem 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding-left: 21px !important;
+    }
+    .btn-margin{
+        margin-left: 160px;
+    }
+    .card1-h5, .card2-h5{
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1%;
+        margin: 1rem 0 1.3rem 0;
+    }
+    i.medium {
+        font-size: 2rem !important;
+    }
+
+    #mainTopHeadingUpper{
+        text-align: center;
+        font-size: 2rem;
+        margin-left: 12vh;
+    }
+    .upcoming{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .finished{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .CustomButton{
+        bottom: -14px !important;
+        right: 205% !important;
+    }
+}
+
+/***** Media size 321 *****/
+
+@media screen and (min-width: 321px) and (max-width: 400px){
+    
+.card1, .card2{
+    padding: 4px;
+    color: #000;
+    position: relative;
+    margin: 0.1rem 0 0.6rem 0;
+    background-color: #fff;
+    border-radius: 5px;
+    padding-left: 21px !important;
+}
+.btn-margin{
+    margin-left: 193px;
+}
+.card1-h5, .card2-h5{
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1%;
+    margin: 1rem 0 1.3rem 0;
+}
+i.medium {
+    font-size: 2rem !important;
+}
+#mainTopHeadingUpper{
+    text-align: center;
+    font-size: 2rem;
+    margin-left: 15vh;
+}
+.upcoming{
+    letter-spacing: .1rem;
+    color: #fff;
+    padding-left: 4px !important;
+    margin-bottom: 1px;
+    font-size: 0.8rem;
+}
+.finished{
+    letter-spacing: .1rem;
+    color: #fff;
+    padding-left: 4px !important;
+    margin-bottom: 1px;
+    font-size: 0.8rem;
+}
+.CustomButton{
+    bottom: -15px !important;
+    right: 245% !important;
+}
+
+}
+/***** Media size 401 *****/
+
+@media screen and (min-width: 401px) and (max-width: 500px){
+    
+    .card1, .card2{
+        padding: 4px;
+        color: #000;
+        position: relative;
+        margin: 0.1rem 0 0.6rem 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding-left: 21px !important;
+    }
+    .btn-margin{
+        margin-left: 240px;
+    }   
+    .card1-h5, .card2-h5{
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1%;
+        margin: 1rem 0 1.3rem 0;
+    }
+    i.medium {
+        font-size: 2rem !important;
+    }
+
+    #mainTopHeadingUpper{
+        text-align: center;
+        font-size: 2rem;
+        margin-left: 15vh;
+    }
+    .upcoming{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .finished{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .CustomButton{
+        bottom: 1px !important;
+        right: 284% !important;
+    }
+}
+
+/***** Media size 501 *****/
+
+@media screen and (min-width: 501px) and (max-width: 770px){
+    
+    .card1, .card2{
+        padding: 4px;
+        color: #000;
+        position: relative;
+        margin: 0.1rem 0 0.6rem 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding-left: 21px !important;
+    }
+    .btn-margin{
+        margin-left: 521px;
+    }
+    .card1-h5, .card2-h5{
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1%;
+        margin: 1rem 0 1.3rem 0;
+    }
+    
+    #mainTopHeadingUpper{
+        text-align: center;
+        font-size: 2rem;
+        margin-left: 28vh;
+    }
+    .upcoming{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .finished{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .CustomButton{
+        bottom: 34px !important;
+        right: 580% !important;
+    }
+}
+
+/***** Media size 771 *****/
+
+@media screen and (min-width: 771px) and (max-width: 1050px){ 
+    
+    .card1, .card2{
+        padding: 4px;
+        color: #000;
+        position: relative;
+        margin: 0.1rem 0 0.6rem 0;
+        background-color: #fff;
+        border-radius: 5px;
+        padding-left: 21px !important;
+    }
+    .btn-margin{
+        margin-left: 581px;
+    }
+    .card1-h5, .card2-h5{
+        font-weight: bold;
+        font-size: 1rem;
+        line-height: 1%;
+        margin: 1rem 0 1.3rem 0;
+    }
+
+    #mainTopHeadingUpper{
+        text-align: center;
+        font-size: 2rem;
+        margin-left: 28vh;
+    }
+    .upcoming{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .finished{
+        letter-spacing: .1rem;
+        color: #fff;
+        padding-left: 4px !important;
+        margin-bottom: 1px;
+        font-size: 0.8rem;
+    }
+    .CustomButton{
+        bottom: 34px !important;
+        right: 825% !important;
+    }
+}

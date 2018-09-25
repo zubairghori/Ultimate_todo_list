@@ -1,0 +1,17 @@
+{
+  "name": "indexed-db-dexie",
+  "version": "1.0.0",
+  "description": "persistence-todo-web",
+  "main": "indexedDB.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dexie": "^2.0.4",
+    "fake-indexeddb": "^2.0.4",
+    "indexeddb": "0.0.0",
+    "jest": "^23.6.0"
+  }
+}

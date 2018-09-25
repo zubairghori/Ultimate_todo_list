@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#4dd0e1">
+    <title>To-Do App</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- css files -->
+    <link rel="stylesheet" href="./css/index.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR" rel="stylesheet">
+    <!-- Manifest -->
+    <link rel="manifest" href="./manifest.json">
+</head>
+
+<body class="cyan darken-1">
+
+    <!-- Side Nav -->
+    <header>
+        <div class="sidnavAndHeader">
+            <ul id="slide-out" class="sidenav">
+                <li>
+                    <a href="#!" class="waves-effect grey darken-4 white-text">Menu</a>
+                </li>
+                <li>
+                    <a href=" ./html/unCompletedTask.html" class="waves-effect teal lighten-1 white-text" href="#!">
+                        <i class="material-icons white-text">clear</i>UPCOMING</a>
+                </li>
+                <li>
+                    <a href="./html/completedTask.html" class="waves-effect red lighten-1 white-text">
+                        <i class="material-icons white-text">done</i>FINISHED</a>
+                </li>
+            </ul>
+
+            <!-- side nav icon -->
+
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons medium white-text">menu</i>
+            </a>
+
+        </div>
+
+        <!-- heading -->
+
+        <div class="sidnavAndHeader">
+            <h6 class="white-text" id="mainTopHeadingUpper">TODO's</h6>
+        </div>
+
+    </header>
+    <br>
+    <br>
+
+    <!-- Todo List Cards -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="upcoming">UPCOMING</div>
+                <div id="upcomingTask">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="finished"> Finished</div>
+                <div id="finishedTask">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Add Task Button -->
+
+    <div class="fixed-action-btn">
+        <button class="btn-floating CustomButton tooltipped btn-large white waves-effect waves-light btn modal-trigger" href="#modal1"
+            data-position="left" data-delay="1000" data-tooltip="Add Task">
+            <i class="large material-icons" style="color:#00acc1;">add</i>
+        </button>
+    </div>
+
+
+
+    <!-- Add task Modal -->
+
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add Task</h4>
+            <!-- FORM HERE -->
+            <div class="row">
+                <form class="col s12" id="AddTodoForm">
+                    <div class="row ">
+                        <div class="input-field col s6">
+                            <input type="text" required id="title" data-length="50">
+                            <label for="title">Title</label>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="input-field col s12">
+                            <textarea id="description" required class="materialize-textarea" data-length="120"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="submit" class="modal-close waves-effect waves-green btn-flat">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Edit Task Modal -->
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Edit Task</h4>
+            <!-- FORM HERE -->
+            <div class="row">
+                <form class="col s12" id="updateTaskForm">
+                    <div class="row">
+                        <div class="col s6">
+                            <label for="updateTitle">Title</label>
+                            <input id="updateTitle" required type="text" data-length="50">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="updateDescription">Description</label>
+                            <textarea id="updateDescription" required class="materialize-textarea" data-length="120"></textarea>
+                        </div>
+                    </div>
+                    <p>
+                        <label>
+                            <input id="checkbox" value="true" type="checkbox" class="filled-in" />
+                            <span>Task Completed</span>
+                        </label>
+                    </p>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                        <button type="submit" onClick="updateATodoInDatabase();" class="modal-close waves-effect
+                        waves-green btn-flat">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- JavaScript Files -->
+    <script src="./js/indexedDB.js"></script>
+    <script src="./js/materialJquery.js"></script>
+    <!-- Service Worker -->
+    <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./serviceWorker.js')
+                    .then(() => console.log('[Service Worker] registered successfully'))
+                    .catch((error) => console.log(error));
+            }
+        </script>
+</body>
+
+</html>
