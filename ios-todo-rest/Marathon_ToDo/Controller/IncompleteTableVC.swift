@@ -117,11 +117,36 @@ class IncompleteTableVC: UIViewController {
         // COMPLETE
         let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
 
-            self.displayData[index]["Status"] = "Complete"
-            self.ShareData.completeDatabase.append(self.displayData[index])
-            self.displayData.remove(at: index)
-            self.ShareData.incompleteDatabse.remove(at: index)
-            self.IncompleteTable.reloadData()
+            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[index].task_id)"
+            
+            let params = ["task_title": self.tasks[index].task_title, "task_description": self.tasks[index].task_description,"task_done": "true" ]
+            
+            Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                let alert  =  UIAlertController(title: "Success", message: "Task Completed successfully", preferredStyle: .alert)
+                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+                    
+                    let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
+                    Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                        
+                        do {
+                            let json = try? JSON(data: response.data!)
+                            let result = json?["result"]
+                            let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
+                            DispatchQueue.main.async {
+                                self.tasks = tasks.filter({ $0.task_done == "false"})
+                                self.IncompleteTable.reloadData()
+                            }
+                        }catch let error {
+                            print(error)
+                        }
+                    }
+
+                })
+                alert.addAction(button)
+                
+                self.present(alert, animated: true, completion: nil)
+            }
+
         }
         option.addAction(Complete)
 
