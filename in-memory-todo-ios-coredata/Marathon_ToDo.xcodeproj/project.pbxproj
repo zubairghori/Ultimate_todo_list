@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52278524C4A4B0C4278F5186 /* Pods_Marathon_ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */; };
+		787D04C5215A4D4C004F83A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 787D04C4215A4D4C004F83A4 /* LaunchScreen.storyboard */; };
 		78826599215908EB00255322 /* IncompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78826594215908EB00255322 /* IncompleteTableViewCell.swift */; };
 		7882659A215908EB00255322 /* CompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78826595215908EB00255322 /* CompleteTableVC.swift */; };
 		7882659B215908EB00255322 /* CreateTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78826596215908EB00255322 /* CreateTodo.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.release.xcconfig"; sourceTree = "<group>"; };
 		6C355150FB015394D64A3FA5 /* Pods-Marathon_ToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.debug.xcconfig"; sourceTree = "<group>"; };
+		787D04C4215A4D4C004F83A4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78826594215908EB00255322 /* IncompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompleteTableViewCell.swift; sourceTree = "<group>"; };
 		78826595215908EB00255322 /* CompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteTableVC.swift; sourceTree = "<group>"; };
 		78826596215908EB00255322 /* CreateTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTodo.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				F2EFA549214FEAC600735164 /* Customize */,
 				F2E98D05215145A800DF3BF3 /* Controller */,
 				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
+				787D04C4215A4D4C004F83A4 /* LaunchScreen.storyboard */,
 				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
 				F2F54CE5214FDD2400728BC7 /* Assets.xcassets */,
 				F2F54CEA214FDD2400728BC7 /* Info.plist */,
@@ -246,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787D04C5215A4D4C004F83A4 /* LaunchScreen.storyboard in Resources */,
 				F2F54CE6214FDD2400728BC7 /* Assets.xcassets in Resources */,
 				F2F54CE4214FDD2300728BC7 /* Main.storyboard in Resources */,
 			);

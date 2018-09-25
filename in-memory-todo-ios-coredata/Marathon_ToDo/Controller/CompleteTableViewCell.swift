@@ -10,6 +10,7 @@ import UIKit
 
 class CompleteTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var deleteBtnOut: UIButton!
     @IBOutlet weak var completeTitle: UILabel!
     
     @IBOutlet weak var completeDescription: UILabel!

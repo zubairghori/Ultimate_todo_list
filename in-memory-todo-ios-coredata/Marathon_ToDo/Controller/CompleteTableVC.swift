@@ -49,6 +49,8 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.backgroundColor = UIColor.clear
         cell.completeTitle.text = completedTasks[indexPath.row].taskTitle
         cell.completeDescription.text = completedTasks[indexPath.row].taskDescription
+        cell.deleteBtnOut.tag = indexPath.row
+        cell.deleteBtnOut.addTarget(self, action: #selector(deleteTask), for: .touchUpInside)
         return cell
     }
     
@@ -63,31 +65,18 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    // ******** Cell Selected ************
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @objc func deleteTask(sender:UIButton){
         
-        
-        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        // COMPLETE
-        
-        let Complete = UIAlertAction(title: "Incompleted", style:.default) { (action) in
-            self.completedTasks[indexPath.row].isCompleted = false
-            self.appDele.saveContext()
-            self.getData()
-            self.CompleteTable.reloadData()
-        }
-        
-        option.addAction(Complete)
-        
-        // CANCEL
-        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        option.addAction(cancel)
-        
-        self.present(option, animated: true, completion: nil)
+        let context = appDele.persistentContainer.viewContext
+        context.delete(completedTasks[sender.tag])
+        appDele.saveContext()
+        getData()
+        self.CompleteTable.reloadData()
         
     }
+    
+
     
     
     override func viewWillAppear(_ animated: Bool) {

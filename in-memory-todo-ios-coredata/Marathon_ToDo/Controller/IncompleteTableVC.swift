@@ -65,6 +65,10 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         cell.backgroundColor = UIColor.clear
         cell.incompleteTitle.text = incompletedTasks[indexPath.row].taskTitle
         cell.incompleteDescription.text = incompletedTasks[indexPath.row].taskDescription
+        cell.deleteBtnOut.tag = indexPath.row
+        cell.editBtnOut.tag = indexPath.row
+        cell.deleteBtnOut.addTarget(self, action: #selector(deleteTask), for: .touchUpInside)
+        cell.editBtnOut.addTarget(self, action: #selector(editTask), for: .touchUpInside)
         return cell
     }
     
@@ -73,28 +77,33 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
     }
     
     
-    // ******** Cell Selected ************
+    @objc func deleteTask(sender:UIButton){
+        let context = appDele.persistentContainer.viewContext
+        context.delete(incompletedTasks[sender.tag])
+        appDele.saveContext()
+        getData()
+        self.IncompleteTable.reloadData()
+    }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    @objc func editTask(sender:UIButton){
         
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // EDIT
         let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
             
-            let selectedIndex = indexPath.row
-            self.performSegue(withIdentifier: "Edit_Segue", sender: self.incompletedTasks[indexPath.row])
+            
+            self.performSegue(withIdentifier: "Edit_Segue", sender: self.incompletedTasks[sender.tag])
         }
         
         option.addAction(EditButton)
         
         
         // COMPLETE
-
+        
         let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
             
-            self.incompletedTasks[indexPath.row].isCompleted = true
+            self.incompletedTasks[sender.tag].isCompleted = true
             self.appDele.saveContext()
             self.getData()
             
@@ -110,8 +119,9 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         
         self.present(option, animated: true, completion: nil)
 
-        
     }
+    
+
     
     
     
@@ -134,11 +144,7 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
-            let context = appDele.persistentContainer.viewContext
-            context.delete(incompletedTasks[indexPath.row])
-            appDele.saveContext()
-            getData()
-            self.IncompleteTable.reloadData()
+           
         }
     }
 
