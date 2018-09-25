@@ -287,7 +287,9 @@ const setIdToLocalStorage = (id) => {
         console.log('inside it')
         document.getElementById('updateTitle').value = ourDesiredTodo[0].task_title;
         document.getElementById('updateDescription').value = ourDesiredTodo[0].task_description;
+        document.getElementById('checkbox').checked = JSON.parse(ourDesiredTodo[0].task_done)
         localStorage.setItem('id', id);
+        console.log(ourDesiredTodo[0].task_done)
     };
 
 };
