@@ -17,19 +17,24 @@ class Todo_App(database.Model):
 
 database.create_all() # creating tables
 
-# rounting path for add function
+#--------------------------------------- rounting path for add function ------------------------------------------------
+
 @app.route('/todo/api/v1.0/task/add' , methods=['POST'])
-def add():              # add function.
-    added = request.get_json()
-    add_task = Todo_App(title = added['title'],
+def add():  # add function.
+    if not request.json or not 'title' 'description' in request.json: # validation on title and description
+        return jsonify({'Error' : ' Fill out the fields properly'})    # if one of the field is missed it will prompt error
+        added = request.get_json()
+        add_task = Todo_App(title = added['title'],
                        description= added['description'],
-                       done = True)
-    database.session.add(add_task) # insert data query
-    database.session.commit()
-    return jsonify({'prompt':'Added'}) # return data in jsonify format
+                       done = False)
+
+        database.session.add(add_task) 				# insert data query
+        database.session.commit()
+    return jsonify({'prompt':'Added'}) 				# return data in jsonify format
 
 
-#rounting path for view function
+#--------------------------------------- rounting path for view function -----------------------------------------------
+
 @app.route('/todo/api/v1.0/task/view' , methods=['GET'])
 def task_view():                    #funtion for view task
     task = Todo_App.query.all() #fetching data for db
@@ -49,7 +54,8 @@ def task_view():                    #funtion for view task
 
     return jsonify({'task': list_of_task}) #jsonify the result
 
-# routing path for update function
+#--------------------------------------- routing path for update function -----------------------------------------------
+
 @app.route('/todo/api/v1.0/task/update/<id>', methods=['PUT'])
 def update(id):   #update function
     tasks = Todo_App.query.filter_by(id=id).first()
@@ -68,7 +74,8 @@ def update(id):   #update function
     database.session.commit()
     return jsonify(task_list)
 
-# routing path for delete function
+# ----------------------------------- routing path for delete function ------------------------------------------------
+
 @app.route('/todo/api/v1.0/task/delete/<int:id>', methods=['DELETE'])
 def delete(id):                                      # delete function
     tasks = Todo_App.query.filter_by(id=id).first() # first search the id
