@@ -2,10 +2,11 @@
 # platform :ios, '9.0'
 
 target 'Marathon_ToDo' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Marathon_ToDo
-pod 'XLPagerTabStrip'
-
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for Marathon_ToDo
+    pod 'XLPagerTabStrip'
+    pod 'SwiftGRPC', '~> 0.6'
+    
 end
