@@ -99,20 +99,15 @@ class CompleteTableVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.completeDatabase
 
-        let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        TaskServices.getAllTasks { (error, tasks) in
+            guard (error == nil) else {
+                print("Error ", error!)
+                return
+            }
             
-            do {
-                let json = try? JSON(data: response.data!)
-                let result = json?["result"]
-                let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
-                DispatchQueue.main.async {
-                    self.tasks = tasks.filter({ $0.task_done == "true"})
-                    print(self.tasks)
-                    self.CompleteTable.reloadData()
-                }
-            }catch let error {
-                print(error)
+            DispatchQueue.main.async {
+                self.tasks = tasks!.filter({ $0.task_done == "true"})
+                self.CompleteTable.reloadData()
             }
         }
     }

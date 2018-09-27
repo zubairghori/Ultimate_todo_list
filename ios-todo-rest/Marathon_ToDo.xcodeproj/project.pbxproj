@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		52278524C4A4B0C4278F5186 /* Pods_Marathon_ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */; };
 		5FE17CDE215A4B6A00C1356A /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE17CDD215A4B6A00C1356A /* Task.swift */; };
+		5FF663FD215A87DC003D0322 /* TaskServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF663FC215A87DC003D0322 /* TaskServices.swift */; };
 		F233C4A02159140C001B19C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */; };
 		F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA545214FE58700735164 /* CompleteTableVC.swift */; };
 		F2EFA548214FE5A400735164 /* IncompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA547214FE5A400735164 /* IncompleteTableVC.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.release.xcconfig"; sourceTree = "<group>"; };
 		5FE17CDD215A4B6A00C1356A /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5FF663FC215A87DC003D0322 /* TaskServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskServices.swift; sourceTree = "<group>"; };
 		6C355150FB015394D64A3FA5 /* Pods-Marathon_ToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marathon_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../in-memory-todo-ios-firebase/MarathonToDo/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -100,6 +102,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5FF663FB215A87AE003D0322 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5FF663FC215A87DC003D0322 /* TaskServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		907BA0EE8CE9BD3F99EAADE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 			children = (
 				F2EFA549214FEAC600735164 /* Customize */,
 				5FE17CDC215A4B4400C1356A /* Model */,
+				5FF663FB215A87AE003D0322 /* Services */,
 				F2E98D05215145A800DF3BF3 /* Controller */,
 				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
 				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
@@ -328,6 +339,7 @@
 				F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */,
 				F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */,
 				F2EFA551214FECE200735164 /* CompleteTableViewCell.swift in Sources */,
+				5FF663FD215A87DC003D0322 /* TaskServices.swift in Sources */,
 				F2EFA555214FF73200735164 /* TodoData.swift in Sources */,
 				5FE17CDE215A4B6A00C1356A /* Task.swift in Sources */,
 				F2EFA54F214FEADD00735164 /* Custom_View.swift in Sources */,

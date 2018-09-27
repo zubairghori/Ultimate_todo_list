@@ -39,22 +39,17 @@ class IncompleteTableVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.incompleteDatabse
 
-        let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-
-            do {
-                let json = try? JSON(data: response.data!)
-                let result = json?["result"]
-                let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
-                DispatchQueue.main.async {
-                    self.tasks = tasks.filter({ $0.task_done == "false"})
-                    self.IncompleteTable.reloadData()
-                }
-            }catch let error {
-                print(error)
+        TaskServices.getAllTasks { (error, tasks) in
+            guard (error == nil) else {
+                print("Error ", error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.tasks = tasks!.filter({ $0.task_done == "false"})
+                self.IncompleteTable.reloadData()
             }
         }
-
     }
     
     @objc func deleteTask(button : UIButton){
@@ -119,22 +114,17 @@ class IncompleteTableVC: UIViewController {
                 let alert  =  UIAlertController(title: "Success", message: "Task Completed successfully", preferredStyle: .alert)
                 let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
                     
-                    let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
-                    Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                    TaskServices.getAllTasks { (error, tasks) in
+                        guard (error == nil) else {
+                            print("Error ", error!)
+                            return
+                        }
                         
-                        do {
-                            let json = try? JSON(data: response.data!)
-                            let result = json?["result"]
-                            let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
-                            DispatchQueue.main.async {
-                                self.tasks = tasks.filter({ $0.task_done == "false"})
-                                self.IncompleteTable.reloadData()
-                            }
-                        }catch let error {
-                            print(error)
+                        DispatchQueue.main.async {
+                            self.tasks = tasks!.filter({ $0.task_done == "false"})
+                            self.IncompleteTable.reloadData()
                         }
                     }
-
                 })
                 alert.addAction(button)
                 
