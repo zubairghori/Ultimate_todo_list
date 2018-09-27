@@ -18,10 +18,8 @@ db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
     let todoArray = [];
     let finishedtask = [];
     snapshot.docs.forEach(doc => {
-        console.log(doc.data());
         let todo = {
             id: doc.id,
-            // status: doc.data().taskDone,
             ...doc.data()
         };
         if (doc) {

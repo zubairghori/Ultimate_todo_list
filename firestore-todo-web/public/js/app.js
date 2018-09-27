@@ -24,20 +24,35 @@ db.enablePersistence()
     });
 
 // ===== Reading all from DATABASE =====  
+let todoArray = [];
 
-db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
-    let todoArray = [];
+db.collection("todos").onSnapshot(function (snapshot) {
     let completedTask = [];
     let unCompletedTask = [];
-    snapshot.docs.forEach(doc => {
-        console.log(doc.data());
-        let todo = {
-            id: doc.id,
-            status: doc.data().taskDone,
-            ...doc.data()
-        };
-        todoArray.push(todo);
+    snapshot.docChanges().forEach(function (change) {
+        if (change.type === "added") {
+            let todo = {
+                id: change.doc.id,
+                status: change.doc.data().taskDone,
+                ...change.doc.data()
+            };
+            todoArray.push(todo);
+        }
+        if (change.type === "modified") {
+            todoArray = todoArray.filter(todo => {
+                if (todo.id === change.doc.id) {
+                    todo.Title = change.doc.data().Title,
+                        todo.Description = change.doc.data().Description,
+                        todo.taskDone = change.doc.data().taskDone
+                };
+                return todo;
+            })
+        }
+        if (change.type === "removed") {
+            todoArray = todoArray.filter(todo => todo.id !== change.doc.id)
+        }
     });
+
     for (var i = 0; i < todoArray.length; i++) {
         if (todoArray[i]['taskDone'] === false) {
             unCompletedTask.push(todoArray[i]);
@@ -45,15 +60,12 @@ db.collection('todos').orderBy('Title').onSnapshot((snapshot) => {
             completedTask.push(todoArray[i]);
         }
     }
-    console.log("unCompletedTaska:", unCompletedTask)
-    console.log("completedTask:", completedTask)
-
     printToUpcomingTask(unCompletedTask);
     printToFinishedTask(completedTask);
 
 
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
-})
+});
 
 
 // ===== Printing to DOM ===== 
@@ -67,7 +79,6 @@ let printToUpcomingTask = (doc) => {
             $(document).ready(function () {
                 $('.tooltipped').tooltip();
             });
-            console.log(item);
 
             todoListCards.innerHTML += ` 
 
@@ -154,11 +165,9 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
     let updatedTitle = document.getElementById("updateTitle").value;
     let updatedDescription = document.getElementById("updateDescription").value;
     let doneStatus = document.getElementById('checkbox');
-    console.log(doneStatus);
     document.getElementById("updateTitle").value = "";
     document.getElementById("updateDescription").value = "";
     let id = localStorage.getItem('id');
-    console.log({ id, updatedTitle, updatedDescription });
     db.collection('todos').doc(id).update({
         Title: updatedTitle,
         Description: updatedDescription,
@@ -169,15 +178,9 @@ document.getElementById("updateTaskForm").addEventListener('submit', (e) => {
 });
 
 const setIdToLocalStorage = (id) => {
-    // console.log(id);
-    console.log(id);
     const todoArray = JSON.parse(localStorage.getItem('todoArray'));
-    console.log(todoArray);
     const ourDesiredTodo = todoArray.filter(item => item.id === id);
-    console.log(ourDesiredTodo);
     if (ourDesiredTodo) {
-        console.log('inside it')
-        console.log(ourDesiredTodo[0])
         document.getElementById('updateTitle').value = ourDesiredTodo[0].Title;
         document.getElementById('updateDescription').value = ourDesiredTodo[0].Description;
         localStorage.setItem('id', id);
@@ -192,5 +195,3 @@ let deleteThisTaskFromDatabase = (id) => {
     db.collection('todos')
         .doc(id).delete();
 };
-
-
