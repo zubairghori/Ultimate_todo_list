@@ -25,12 +25,16 @@
             let view = UITableView()
             let delegate = UIApplication.shared.delegate as! AppDelegate
             
+//            incompleteVC.displayData = [["Title": "Test", "Description":"test", "Status":"incomplete"]]
+            delegate.incompleteDatabse.append(["Title": "Test1", "Description":"test2", "Status":"incomplete"])
+            delegate.incompleteDatabse.append(["Title": "Test22", "Description":"test", "Status":"incomplete"])
+
+            incompleteVC.displayData = delegate.incompleteDatabse
+
             
-            delegate.incompleteDatabse.append(["Title": "Test", "Description":"test", "Status":""])
+            let count = incompleteVC.displayData.count
             
-            let count = delegate.incompleteDatabse.count
-            
-            XCTAssertEqual(incompleteVC.tableView(view, numberOfRowsInSection: count), 0)
+            XCTAssertEqual(incompleteVC.tableView(view, numberOfRowsInSection: count), 2)
         }
         
         
