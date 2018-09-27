@@ -9,6 +9,8 @@
 import UIKit
 import SwiftGRPC
 
+let hostURL = "localhost:50051"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

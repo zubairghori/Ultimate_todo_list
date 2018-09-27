@@ -9,70 +9,176 @@
 import UIKit
 import XLPagerTabStrip
 
-class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
-
+class IncompleteTableVC: UIViewController {
+    
     @IBOutlet weak var IncompleteTable: UITableView!
-   
+    
     var displayData = [[String : String]]()
-    
-    
     var ShareData = UIApplication.shared.delegate as! AppDelegate
-    
+    var tasks = [Task]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//
+        
         IncompleteTable.delegate = self
         IncompleteTable.dataSource = self
         
-        
-
         if  ShareData.incompleteDatabse.isEmpty == false{
             self.displayData = ShareData.incompleteDatabse
-
         }
         
-        
-        
-        
         IncompleteTable.reloadData()
-  
-        
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
-        
         IncompleteTable.reloadData()
-        
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.incompleteDatabse
-        IncompleteTable.reloadData()
-
+        
+        let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: hostURL, secure: false)
+        let tasksRequest = TodoCRUD_AllRequest()
+        
+        do {
+            let ret = try todo.tasks(tasksRequest, completion: { (response) in
+                print("response" ,response)
+            })
+            print("ret ",ret)
+        }catch let error {
+            print("error occured ", error.localizedDescription)
+        }
+        
+        //        TaskServices.getAllTasks { (error, tasks) in
+        //            guard (error == nil) else {
+        //                print("Error ", error!)
+        //                return
+        //            }
+        //
+        //            DispatchQueue.main.async {
+        //                self.tasks = tasks!.filter({ $0.task_done == "false"})
+        //                self.IncompleteTable.reloadData()
+        //            }
+        //        }
     }
     
+    @objc func deleteTask(button : UIButton){
+        let index = button.tag
+        
+        //        let alert  =  UIAlertController(title: "Alert", message: "Are you sure? you want to delete this task?", preferredStyle: .alert)
+        //        let cancelButton = UIAlertAction(title: "Cancel", style: .default, handler:nil)
+        //        alert.addAction(cancelButton)
+        //        let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+        //
+        //            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[index].task_id)"
+        //            Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        //                let alert  =  UIAlertController(title: "Delete", message: "Task Deleted successfully", preferredStyle: .alert)
+        //                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+        //
+        //                    let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
+        //                    Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        //
+        //                        do {
+        //                            let json = try? JSON(data: response.data!)
+        //                            let result = json?["result"]
+        //                            let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
+        //                            DispatchQueue.main.async {
+        //                                self.tasks = tasks.filter({ $0.task_done == "false"})
+        //                                self.IncompleteTable.reloadData()
+        //                            }
+        //                        }catch let error {
+        //                            print(error)
+        //                        }
+        //                    }
+        //                })
+        //                alert.addAction(button)
+        //
+        //                self.present(alert, animated: true, completion: nil)
+        //            }
+        //        })
+        //        alert.addAction(button)
+        //
+        //        self.present(alert, animated: true, completion: nil)
+    }
     
+    @objc func editTask(button : UIButton) {
+        let index = button.tag
+        
+        //        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        //
+        //        // EDIT
+        //        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+        //            //  let selectedIndex = index
+        //            self.performSegue(withIdentifier: "Edit_Segue", sender: self.tasks[index])
+        //        }
+        //        option.addAction(EditButton)
+        
+        // COMPLETE
+        //        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+        //
+        //            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[index].task_id)"
+        //
+        //            let params = ["task_title": self.tasks[index].task_title, "task_description": self.tasks[index].task_description,"task_done": "true" ]
+        //
+        //            Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        //                let alert  =  UIAlertController(title: "Success", message: "Task Completed successfully", preferredStyle: .alert)
+        //                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+        //
+        //                    TaskServices.getAllTasks { (error, tasks) in
+        //                        guard (error == nil) else {
+        //                            print("Error ", error!)
+        //                            return
+        //                        }
+        //
+        //                        DispatchQueue.main.async {
+        //                            self.tasks = tasks!.filter({ $0.task_done == "false"})
+        //                            self.IncompleteTable.reloadData()
+        //                        }
+        //                    }
+        //                })
+        //                alert.addAction(button)
+        //
+        //                self.present(alert, animated: true, completion: nil)
+        //            }
+        //
+        //        }
+        //        option.addAction(Complete)
+        //
+        //        // CANCEL
+        //        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        //        option.addAction(cancel)
+        //
+        //        self.present(option, animated: true, completion: nil)
+    }
     
-    
-    
-    
+    // ****** Prepare Segue ****************
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Edit_Segue"{
+            let dest = segue.destination as! CreateTodo
+            dest.segueName = "Edit"
+            // dest.selectedIndex = sender as! Task
+            dest.task = sender as! Task
+        }
+    }
+}
+
+extension IncompleteTableVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayData.count
+        return self.tasks.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IncompleteCell", for: indexPath) as! IncompleteTableViewCell
         
         tableView.separatorStyle = .none
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
-
         
-        cell.incompleteTitle.text = displayData[indexPath.row]["Title"]
-        cell.incompleteDescription.text = displayData[indexPath.row]["Description"]
+        let task = self.tasks[indexPath.row]
+        
+        cell.incompleteTitle.text = task.task_title
+        cell.incompleteDescription.text = task.task_description
         
         cell.delete.tag = indexPath.row
         cell.edit.tag = indexPath.row
@@ -82,138 +188,9 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
         return cell
     }
     
-    @objc func deleteTask(button : UIButton){
-        
-        let index = button.tag
-        self.displayData.remove(at: index)
-        self.ShareData.incompleteDatabse.remove(at: index)
-        self.IncompleteTable.reloadData()
-    }
-    
-    @objc func editTask(button : UIButton) {
-        
-        
-        let index = button.tag
-        
-        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        // EDIT
-        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-
-            let selectedIndex = index
-            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
-        }
-
-        option.addAction(EditButton)
-
-
-        // COMPLETE
-
-        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
-
-
-
-            self.displayData[index]["Status"] = "Complete"
-            self.ShareData.completeDatabase.append(self.displayData[index])
-
-            self.displayData.remove(at: index)
-            self.ShareData.incompleteDatabse.remove(at: index)
-
-
-            self.IncompleteTable.reloadData()
-        }
-
-        option.addAction(Complete)
-
-
-        // CANCEL
-        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        option.addAction(cancel)
-
-        self.present(option, animated: true, completion: nil)
-        
-        
-    }
-    
-    
-    // ******** Cell Selected ************
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-//        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//        // EDIT
-//        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-//
-//            let selectedIndex = indexPath.row
-//            self.performSegue(withIdentifier: "Edit_Segue", sender: selectedIndex)
-//        }
-//
-//        option.addAction(EditButton)
-//
-//
-//        // COMPLETE
-//
-//        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
-//
-//
-//
-//            self.displayData[indexPath.row]["Status"] = "Complete"
-//            self.ShareData.completeDatabase.append(self.displayData[indexPath.row])
-//
-//            self.displayData.remove(at: indexPath.row)
-//            self.ShareData.incompleteDatabse.remove(at: indexPath.row)
-//
-//
-//            self.IncompleteTable.reloadData()
-//        }
-//
-//        option.addAction(Complete)
-//
-//
-//        // CANCEL
-//        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//        option.addAction(cancel)
-//
-//        self.present(option, animated: true, completion: nil)
-        
-     
-        
-    }
-    
-    
-    
-    // ****** Prepare Segue ****************
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "Edit_Segue"{
-            
-            let dest = segue.destination as! CreateTodo
-            
-            
-            dest.segueName = "Edit"
-            dest.selectedIndex = sender as? Int
-            
-            
-        }
-    }
-
-  
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
-        
-        
     }
-    
-    
-    
-    
-
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
@@ -222,7 +199,6 @@ class IncompleteTableVC: UIViewController, UITableViewDelegate,UITableViewDataSo
             self.IncompleteTable.reloadData()
         }
     }
-
 }
 
 extension IncompleteTableVC : IndicatorInfoProvider{

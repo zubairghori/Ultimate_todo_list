@@ -51,7 +51,7 @@ class CreateTodo: UIViewController {
             }
             else{
             
-                let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: "localhost:50051", secure: false)
+                let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: hostURL, secure: false)
                 var createRequest = TodoCRUD_CreateRequest()
                 createRequest.title = self.TitleTF.text!
                 createRequest.description_p = self.DescriptionTF.text!
