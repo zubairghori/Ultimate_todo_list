@@ -13,6 +13,4 @@ class Task: Codable {
     let task_description: String
     let task_id: String
     let task_title: String
-    
-    
 }

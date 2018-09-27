@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		52278524C4A4B0C4278F5186 /* Pods_Marathon_ToDo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */; };
+		5FC986EA215D181B00E2B9DE /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC986E9215D181B00E2B9DE /* UIViewControllerExtension.swift */; };
+		5FEACF5E215D15A900289547 /* todo.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEACF5D215D15A900289547 /* todo.grpc.swift */; };
+		5FEACF60215D15AF00289547 /* todo.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEACF5F215D15AF00289547 /* todo.pb.swift */; };
+		5FEACF63215D165800289547 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FEACF62215D165800289547 /* Task.swift */; };
 		F233C4A02159140C001B19C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */; };
 		F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA545214FE58700735164 /* CompleteTableVC.swift */; };
 		F2EFA548214FE5A400735164 /* IncompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EFA547214FE5A400735164 /* IncompleteTableVC.swift */; };
@@ -38,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.release.xcconfig"; sourceTree = "<group>"; };
+		5FC986E9215D181B00E2B9DE /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		5FEACF5D215D15A900289547 /* todo.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todo.grpc.swift; sourceTree = "<group>"; };
+		5FEACF5F215D15AF00289547 /* todo.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = todo.pb.swift; sourceTree = "<group>"; };
+		5FEACF62215D165800289547 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Task.swift; path = "../../../ios-todo-rest/Marathon_ToDo/Model/Task.swift"; sourceTree = "<group>"; };
 		6C355150FB015394D64A3FA5 /* Pods-Marathon_ToDo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marathon_ToDo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Marathon_ToDo/Pods-Marathon_ToDo.debug.xcconfig"; sourceTree = "<group>"; };
 		B44B14F10F971B3C1C61B08F /* Pods_Marathon_ToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marathon_ToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../in-memory-todo-ios-firebase/MarathonToDo/LaunchScreen.storyboard"; sourceTree = "<group>"; };
@@ -88,6 +96,31 @@
 				28C23AF8947011400000A35E /* Pods-Marathon_ToDo.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5FC986EB215D182300E2B9DE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5FC986E9215D181B00E2B9DE /* UIViewControllerExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5FEACF5C215D158500289547 /* Protos Generated */ = {
+			isa = PBXGroup;
+			children = (
+				5FEACF5D215D15A900289547 /* todo.grpc.swift */,
+				5FEACF5F215D15AF00289547 /* todo.pb.swift */,
+			);
+			path = "Protos Generated";
+			sourceTree = "<group>";
+		};
+		5FEACF61215D163000289547 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5FEACF62215D165800289547 /* Task.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		907BA0EE8CE9BD3F99EAADE0 /* Frameworks */ = {
@@ -145,9 +178,12 @@
 		F2F54CDD214FDD2300728BC7 /* Marathon_ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				F2EFA549214FEAC600735164 /* Customize */,
-				F2E98D05215145A800DF3BF3 /* Controller */,
 				F2F54CDE214FDD2300728BC7 /* AppDelegate.swift */,
+				F2EFA549214FEAC600735164 /* Customize */,
+				5FC986EB215D182300E2B9DE /* Extensions */,
+				5FEACF61215D163000289547 /* Models */,
+				5FEACF5C215D158500289547 /* Protos Generated */,
+				F2E98D05215145A800DF3BF3 /* Controller */,
 				F2F54CE2214FDD2300728BC7 /* Main.storyboard */,
 				F233C49F2159140C001B19C0 /* LaunchScreen.storyboard */,
 				F2F54CE5214FDD2400728BC7 /* Assets.xcassets */,
@@ -320,14 +356,18 @@
 			files = (
 				F2EFA546214FE58700735164 /* CompleteTableVC.swift in Sources */,
 				F2F54CE1214FDD2300728BC7 /* ViewController.swift in Sources */,
+				5FEACF5E215D15A900289547 /* todo.grpc.swift in Sources */,
 				F2EFA551214FECE200735164 /* CompleteTableViewCell.swift in Sources */,
 				F2EFA555214FF73200735164 /* TodoData.swift in Sources */,
 				F2EFA54F214FEADD00735164 /* Custom_View.swift in Sources */,
 				F2EFA553214FECF700735164 /* IncompleteTableViewCell.swift in Sources */,
+				5FC986EA215D181B00E2B9DE /* UIViewControllerExtension.swift in Sources */,
+				5FEACF60215D15AF00289547 /* todo.pb.swift in Sources */,
 				F2F54CDF214FDD2300728BC7 /* AppDelegate.swift in Sources */,
 				F2EFA54D214FEADD00735164 /* Custom_Button.swift in Sources */,
 				F2EFA557214FFD9000735164 /* CreateTodo.swift in Sources */,
 				F2EFA548214FE5A400735164 /* IncompleteTableVC.swift in Sources */,
+				5FEACF63215D165800289547 /* Task.swift in Sources */,
 				F2EFA54E214FEADD00735164 /* Custom_ImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

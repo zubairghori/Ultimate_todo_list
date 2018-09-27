@@ -9,9 +9,6 @@
 import UIKit
 
 class CreateTodo: UIViewController {
-
-    
-    
     
     @IBOutlet weak var TitleTF: UITextField!
     @IBOutlet weak var DescriptionTF: UITextView!
@@ -19,82 +16,59 @@ class CreateTodo: UIViewController {
     
     var segueName = ""
     var selectedIndex : Int?
-    
-    
-    var ShareData = UIApplication.shared.delegate as! AppDelegate
-    
-    var mainArray = [[String : String]]()
-    
-    
-    
-    
-    
+    var task: Task? = nil
     
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
-       
-//        ActionButton.setTitle("Edit", for: .normal)
         
-//
-            if segueName == "Edit"{
-                
-                self.ActionButton.setTitle("Edit", for: .normal)
-                
-          self.mainArray = ShareData.incompleteDatabse
-                
-                self.TitleTF.text = ShareData.incompleteDatabse[selectedIndex!]["Title"]
-                self.DescriptionTF.text = ShareData.incompleteDatabse[selectedIndex!]["Description"]
-                
-          
-            }
-        
-        
-     
-        
-
+        if segueName == "Edit"{
+            self.ActionButton.setTitle("Edit", for: .normal)
+            self.TitleTF.text = self.task!.task_title
+            self.DescriptionTF.text = self.task!.task_description
+        }
     }
     
-
-    
-    
-    
-
     @IBAction func buttonAction(_ sender: Any) {
         
         if TitleTF.text?.isEmpty == false && DescriptionTF.text.isEmpty == false{
             
-            
-            if self.segueName == "Edit"
-            {
-                let value = ["Title": TitleTF.text!, "Description": DescriptionTF.text!, "Status": "Incomplete"]
-                self.ShareData.incompleteDatabse[selectedIndex!] = value
-
-                self.navigationController?.popViewController(animated: true)
-
+            if self.segueName == "Edit" {
+                
+                //                let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.task!.task_id)"
+                //
+                //                let params = ["task_title": self.TitleTF.text!, "task_description": self.DescriptionTF.text!,"task_done": self.task!.task_done ]
+                //
+                //                Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+                //                    let alert  =  UIAlertController(title: "Success", message: "Task Edited successfully", preferredStyle: .alert)
+                //                    let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
+                //                        self.navigationController?.popViewController(animated: true)
+                //                    })
+                //                    alert.addAction(button)
+                //
+                //                    self.present(alert, animated: true, completion: nil)
+                //                }
             }
-                
-                
-          else{
-                
-                let value = ["Title": TitleTF.text!, "Description": DescriptionTF.text!, "Status": "Incomplete"]
-           
-                
-//
-//
-                self.ShareData.incompleteDatabse.append(value)
+            else{
             
-            
-            print(ShareData.incompleteDatabse)
-     
-            self.navigationController?.popViewController(animated: true)
+                let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: "localhost:50051", secure: false)
+                var createRequest = TodoCRUD_CreateRequest()
+                createRequest.title = self.TitleTF.text!
+                createRequest.description_p = self.DescriptionTF.text!
+                createRequest.status = "pending"
                 
+                do {
+                    let ret = try todo.taskCreate(createRequest)
+                    self.showAlert(title: "Success", message: "Task \(ret.title) created successfully.") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } catch let error {
+                    self.showAlert(title: "Error", message: error.localizedDescription)
+                }
                 
             }
-            
-            
         }
-        
+            
         else{
             let alert  =  UIAlertController(title: "SOME FIELD IS EMPTY", message: "Please assure all field are properly filled", preferredStyle: .alert)
             let button = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
@@ -102,7 +76,5 @@ class CreateTodo: UIViewController {
             
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
-    
 }
