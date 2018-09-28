@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify , json, session, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 
@@ -7,6 +9,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI']='postgres://nwabmkhn:Ckfn-9UibDBRM1zM3Zji-WfQsSIyYSCc@pellefant.db.elephantsql.com:5432/nwabmkhn'
 
 database = SQLAlchemy(app)
+
+cors = CORS(app, resources={r'/*': {"origins": '*'}})
 
 class Todo_App(database.Model):
     __tablename__ = 'todo'
