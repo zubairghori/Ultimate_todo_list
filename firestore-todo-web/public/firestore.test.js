@@ -12,76 +12,114 @@ var config = {
 };
 firebase.initializeApp(config);
 const db = firebase.firestore();
-
-
 db.settings({ timestampsInSnapshots: true })
 db.enablePersistence()
     .catch(function (err) {
         if (err.code == 'failed-precondition') {
             console.log('failed');
-
         } else if (err.code == 'unimplemented') {
             console.log('unimplemented')
-
         }
     });
 
+
 //===== Reading all from DATABASE =====  
 
-test('It should read all documents', (done) => {
-
+test('Test1 [It should read all documents]', (done) => {
     db.collection('todos').onSnapshot((snapshot) => {
         let todoArray = [];
         snapshot.docs.forEach(doc => {
             todoArray.push(doc.data());
         });
-        expect(todoArray.length).toEqual(5)
+        expect(todoArray.length).toEqual(21)
         done();
     });
-
 })
 
+test('Test2 [It should read all documents]', (done) => {
+    db.collection('todos').onSnapshot((snapshot) => {
+        let todoArray = [];
+        snapshot.docs.forEach(doc => {
+            todoArray.push(doc.data());
+        });
+        expect.arrayContaining(todoArray);
+        done();
+    });
+})
 
 //====== Saving Data =====
 
-test('It should add the data', (done) =>{
-
+test('Test3 [It should add the data]', (done) => {
     db.collection('todos').add({
-        Title : "Shopping",
-        Description : "Go for shopping on monday",
+        Title: "Shopping",
+        Description: "Go for shopping on monday",
         taskDone: false
     }).then(res => {
         expect(res.id.length).toEqual(20)
         done();
     })
+})
 
-}) 
+test('Test4 [It should add the data]', (done) => {
+    db.collection('todos').add({
+        Title: "Homework",
+        Description: "Complete the homework",
+        taskDone: true
+    }).then((docRef) => {
+        expect(console.log(docRef.id));
+        done();
+    })
+})
 
 // ===== Updating Data =====
 
-test('It should update the data', async (done) => {
-
-    db.collection('todos').doc('1kvs1KVBcc0Gyt8hSihO').update({
-        Title: "Go to Library",
-        Description: "Go to library",
-        taskDone: true
-    }).then((res) => {
-        expect(200)
-        done();
-    })
-},30000)
-
-
-
-// ===== Deleting Data =====
-
-
-test('It should delete the data', async (done) => {
-
-    db.collection('todos')
-        .doc('sRopxDmz9BtHEFHYieQl').delete()
-        .then((res) => {
+test('Test5 [It should update the data]', async (done) => {
+    await new Promise(response => {
+        db.collection('todos').doc('4I1y8ynwJSR3lIYvGjY4').update({
+            Title: "Go to Library",
+            Description: "Go to library",
+            taskDone: true
+        }).then((res) => {
             expect(200)
             done();
         })
-}, 30000)
+    })
+})
+
+test('Test6 [It should update the data]', async (done) => {
+    await new Promise(response => {
+        let updateTodo = (todoId) => {
+            db.collection('todos').doc(todoId).update({
+                Title: "Go to Library",
+                Description: "Go to library",
+                taskDone: true
+            })
+        }
+        expect(updateTodo("HIdGE9L48rGoLoprXpMp")).toBeUndefined();
+        done();
+    })
+})
+
+// ===== Deleting Data =====
+
+test('Test7 [It should delete the data]', async (done) => {
+    await new Promise(response => {
+        db.collection('todos')
+            .doc('4I1y8ynwJSR3lIYvGjY4').delete()
+            .then((res) => {
+                expect(200)
+                done();
+            })
+    })
+})
+
+test('Test8 [It should delete the data]', async (done) => {
+    await new Promise(response => {
+        let deletTodo = (todoId) => {
+            db.collection('todos')
+                .doc(todoId).delete()
+        }
+        expect(deletTodo('HIdGE9L48rGoLoprXpMp')).toBeUndefined();
+        done();
+    })
+})
