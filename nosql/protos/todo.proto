@@ -1,9 +1,10 @@
 syntax = "proto3";
 
-package todoCRUD;
+package todo;
 
-service ToDoCRUD{
-    rpc tasks(AllRequest) returns (stream SingleResponse) {}
+service ToDo{
+
+    rpc tasksAll(AllRequest) returns (stream SingleResponse) {}
 
     rpc taskSingle(SingleRequest) returns (SingleResponse) {}
 
@@ -13,11 +14,6 @@ service ToDoCRUD{
 
     rpc taskDelete(SingleRequest) returns (DeleteResponse) {}
 }
-
-// message AllRequest{
-
-// }
-
 message AllRequest{
 }
 
@@ -50,10 +46,5 @@ message UpdateRequest{
 }
 
 message AllResponse{
-    message SingleResponse {
-        string title = 2;
-        string description = 3;
-        string status = 4;
-    }
-    repeated SingleResponse result = 1;
+    repeated SingleResponse results = 1;
 }

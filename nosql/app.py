@@ -2,19 +2,14 @@
 from concurrent import futures
 import time, math, grpc, pymongo, json
 from bson.json_util import dumps, ObjectId
-import todoCRUD_pb2
-import todoCRUD_pb2_grpc
+import todo_pb2
+import todo_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 pyMongo = pymongo.MongoClient("mongodb://grpc:grpc123@ds261450.mlab.com:61450/grpc")
 pyMongoDB = pyMongo['grpc']
 pyMongoTable = pyMongoDB['tasks']
-
-# mydict = dict({'title': "irfan", 'description': 'abc'})
-# x = pyMongoTable.insert(mydict)
-# print("x")
-# print(x)
 
 class Tasks:
     def __init__(self, _id, title, description, status):
@@ -31,17 +26,23 @@ def find_one(db, id):
         return task
     return None
 
-# def get_all(db):
-#     tasks = []
-#     data = db.find()
-#     if data:
-#         for d in data:
-#             tasks.append(json.loads(dumps(d)))
-#         return tasks
-#     return None
+def get_all(db):
+    tasks = []
+    data = db.find()
+
+    for d in data:
+        id = json.loads(dumps(d['_id']))
+        task = todo_pb2.SingleResponse(
+            _id = id['$oid'],
+            title = d['title'],
+            description = d['description'],
+            status = d['status']
+        )
+        tasks.append(task)
+    return tasks
 
 def delete_one(db, id):
-    task = db.delete_one({'_id': id})
+    db.delete_one({'_id': id})
 
 def update(db, id, request):
     d = {}
@@ -60,7 +61,7 @@ def update(db, id, request):
     return find_one(db, id)
 
 
-class ToDoCRUD(todoCRUD_pb2_grpc.ToDoCRUDServicer):
+class ToDo(todo_pb2_grpc.ToDoServicer):
 
     def __init__(self):
         self.db = pyMongoTable
@@ -73,37 +74,38 @@ class ToDoCRUD(todoCRUD_pb2_grpc.ToDoCRUDServicer):
         })
         task = find_one(self.db, id)
         if task:
-            return todoCRUD_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
-        return todoCRUD_pb2.SingleResponse(_id='', title='', description='', status='')
+            return todo_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
+        return todo_pb2.SingleResponse(_id='', title='', description='', status='')
 
     def taskSingle(self, request, context):
         task = find_one(self.db, ObjectId(request._id))
         if task:
-            return todoCRUD_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
-        return todoCRUD_pb2.SingleResponse(_id='', title='', description='', status='')
+            return todo_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
+        return todo_pb2.SingleResponse(_id='', title='', description='', status='')
 
     def taskDelete(self, request, context):
         delete_one(self.db, ObjectId(request._id))
-        return todoCRUD_pb2.DeleteResponse(message="Successfully deleted :-p")
+        return todo_pb2.DeleteResponse(message="Successfully deleted :-p")
 
     def taskUpdate(self, request, context):
         task =update(self.db, ObjectId(request._id), request)
         if task:
-            return todoCRUD_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
-        return todoCRUD_pb2.SingleResponse(_id='', title='', description='', status='')
+            return todo_pb2.SingleResponse(_id=task['_id'], title=task['title'], description=task['description'], status=task['status'])
+        return todo_pb2.SingleResponse(_id='', title='', description='', status='')
 
-    # def tasks(self, request, context):
-    #     tasks = get_all(self.db)
-        
-    #     for task in tasks:
-    #         print(task)
-    #         yield task
+    def tasksAll(self, request, context):
+        tasks = get_all(self.db)
+        for task in tasks:
+            print("=====Task Single=======")
+            print(task)
+
+            yield task
         
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    todoCRUD_pb2_grpc.add_ToDoCRUDServicer_to_server(
-        ToDoCRUD(), server
+    todo_pb2_grpc.add_ToDoServicer_to_server(
+        ToDo(), server
     )
     server.add_insecure_port('[::]:50051')
     server.start()
