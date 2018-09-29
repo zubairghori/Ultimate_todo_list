@@ -22,7 +22,7 @@ def find_one(db, id):
 
 def delete_one(db, id):
     cur = db.cursor()
-    sql = ("DELETE FROM TASKS WHERE id = %d" % id)
+    sql = ("DELETE FROM TASKS WHERE id = 1" % id)
     cur.execute(sql)
     conn.commit()
     cur.close()
@@ -46,13 +46,13 @@ class ToDoCRUD(todoCRUD_pb2_grpc.ToDoCRUDServicer):
         cur = self.db.cursor()
         sql = "INSERT INTO TASKS(title, description, status) VALUES (%s, %s, %s) RETURNING id"
         cur.execute(sql, (request.title,request.description,request.status))
-        # id = cur.fetchone()[0]
+        id = cur.fetchone()[0]
         self.db.commit()
         cur.close
-        task = find_one(self.db, id)
-        if task:
-            return todoCRUD_pb2.SingleResponse(_id=task[0], title=task[1], description=task[2], status=task[3])
-        return todoCRUD_pb2.SingleResponse(_id='', title='', description='', status='')
+        # task = find_one(self.db, 10)
+        # if task:
+        return todoCRUD_pb2.SingleResponse(_id=id, title=request.title, description=request.description, status=request.status)
+        # return todoCRUD_pb2.SingleResponse(_id='', title='', description='', status='')
 
     def taskSingle(self, request, context):
         print(request._id)
