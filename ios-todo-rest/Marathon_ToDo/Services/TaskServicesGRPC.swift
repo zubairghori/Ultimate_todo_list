@@ -55,7 +55,19 @@ class TaskServices {
 
     }
     
-    class func updateTask(task: Task, completion: @escaping ((_ error: String?)->Void)) {
+    class func updateTask(task: Task, completion: @escaping ((_ error: String?, _ task: Todo_SingleResponse?)->Void)) {
+        var udpdateRequest = Todo_UpdateRequest()
+        udpdateRequest.id = task._id
+        udpdateRequest.title = task.title
+        udpdateRequest.description_p = task.description
+        udpdateRequest.status = task.status
+        
+        do {
+            let task = try self.client.taskUpdate(udpdateRequest)
+            completion(nil, task)
+        } catch let error {
+            completion(error.localizedDescription, nil)
+        }
 
     }
     

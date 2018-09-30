@@ -13,41 +13,34 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     @IBOutlet weak var CompleteTable: UITableView!
    
-
     var displayData = [[String : String]]()
     
     var ShareData = UIApplication.shared.delegate as! AppDelegate
-    
+    var tasks = [Task]() { didSet  { DispatchQueue.main.async { self.CompleteTable.reloadData() }}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //
         CompleteTable.delegate = self
         CompleteTable.dataSource = self
-        
-        
-        
-        if  ShareData.incompleteDatabse.isEmpty == false{
-            self.displayData = ShareData.completeDatabase
-            
-        }
-        
-        
-        
-        
-        CompleteTable.reloadData()
-        
-        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        TaskServices.getAllTasks { (error, tasks) in
+            guard (error == nil) else {
+                return
+            }
+            self.tasks = tasks!.filter({ $0.status == "done" })
+        }
+    }
   
     @IBAction func deleteAction(_ sender: Any) {
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayData.count
+        return self.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,17 +49,14 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tableView.separatorStyle = .none
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.clear
-        
-        
-        cell.completeTitle.text = displayData[indexPath.row]["Title"]
-        cell.completeDescription.text = displayData[indexPath.row]["Description"]
+
+        let item = self.tasks[indexPath.row]
+        cell.completeTitle.text = item.title
+        cell.completeDescription.text = item.description
         cell.delete.tag = indexPath.row
         cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
         return cell
     }
-    
-    
-    
     
     @objc func deleteTask(button : UIButton){
         
@@ -80,17 +70,10 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
 
-        
-        
         // COMPLETE
-        
         let Complete = UIAlertAction(title: "Incompleted", style:.default) { (action) in
-            
-            
             
             self.displayData[indexPath.row]["Status"] = "Incomplete"
             self.ShareData.incompleteDatabse.append(self.displayData[indexPath.row])
@@ -109,50 +92,23 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         option.addAction(cancel)
         
         self.present(option, animated: true, completion: nil)
-        
-        
-        
+
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.displayData = ShareData.completeDatabase
-        CompleteTable.reloadData()
-        
-    }
-    
     
     // ****** Prepare Segue ****************
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "Edit_Segue"{
-            
             let dest = segue.destination as! CreateTodo
-            
-            
             dest.segueName = "Edit"
             dest.selectedIndex = sender as? Int
-            
-            
         }
     }
     
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
-        
-        
     }
-    
-    
-    
-    
-    
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             self.displayData.remove(at: indexPath.row)
@@ -160,7 +116,6 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             self.CompleteTable.reloadData()
         }
     }
-
 }
 
 extension CompleteTableVC: IndicatorInfoProvider{

@@ -15,4 +15,5 @@ class CompleteTableViewCell: UITableViewCell {
     @IBOutlet weak var completeDescription: UILabel!
     
     @IBOutlet weak var delete: UIButton!
+    @IBOutlet weak var editButton: UIButton!
 }

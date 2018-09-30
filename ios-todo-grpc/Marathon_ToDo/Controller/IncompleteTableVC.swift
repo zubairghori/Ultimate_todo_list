@@ -15,7 +15,7 @@ class IncompleteTableVC: UIViewController {
     
     var displayData = [[String : String]]()
     var ShareData = UIApplication.shared.delegate as! AppDelegate
-    var tasks = [Task]() { didSet  { self.IncompleteTable.reloadData() }}
+    var tasks = [Task]() { didSet  { DispatchQueue.main.async { self.IncompleteTable.reloadData() }}}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ class IncompleteTableVC: UIViewController {
             guard (error == nil) else {
                 return
             }
-            self.tasks = tasks!
+            self.tasks = tasks!.filter({ $0.status == "pending" })
         }
 
     }
@@ -82,53 +82,31 @@ class IncompleteTableVC: UIViewController {
     }
     
     @objc func editTask(button : UIButton) {
-        let index = button.tag
+
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        //        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        //
-        //        // EDIT
-        //        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
-        //            //  let selectedIndex = index
-        //            self.performSegue(withIdentifier: "Edit_Segue", sender: self.tasks[index])
-        //        }
-        //        option.addAction(EditButton)
+        // EDIT
+        let EditButton = UIAlertAction(title: "Edit", style: .default) { (action) in
+            self.performSegue(withIdentifier: "Edit_Segue", sender: self.tasks[button.tag])
+        }
+        alert.addAction(EditButton)
         
-        // COMPLETE
-        //        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
-        //
-        //            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[index].task_id)"
-        //
-        //            let params = ["task_title": self.tasks[index].task_title, "task_description": self.tasks[index].task_description,"task_done": "true" ]
-        //
-        //            Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-        //                let alert  =  UIAlertController(title: "Success", message: "Task Completed successfully", preferredStyle: .alert)
-        //                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
-        //
-        //                    TaskServices.getAllTasks { (error, tasks) in
-        //                        guard (error == nil) else {
-        //                            print("Error ", error!)
-        //                            return
-        //                        }
-        //
-        //                        DispatchQueue.main.async {
-        //                            self.tasks = tasks!.filter({ $0.task_done == "false"})
-        //                            self.IncompleteTable.reloadData()
-        //                        }
-        //                    }
-        //                })
-        //                alert.addAction(button)
-        //
-        //                self.present(alert, animated: true, completion: nil)
-        //            }
-        //
-        //        }
-        //        option.addAction(Complete)
-        //
-        //        // CANCEL
-        //        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-        //        option.addAction(cancel)
-        //
-        //        self.present(option, animated: true, completion: nil)
+        //COMPLETE
+        let Complete = UIAlertAction(title: "Completed", style:.default) { (action) in
+            let task = self.tasks[button.tag]
+            task.status = "done"
+            TaskServices.updateTask(task: task, completion: { (error, task) in
+                guard (error == nil) else { self.showAlert(title: "Error", message: error!); return }
+                if task!.status == "done" { self.tasks.remove(at: button.tag)}
+            })
+        }
+        alert.addAction(Complete)
+        
+        // CANCEL
+        let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     // ****** Prepare Segue ****************
