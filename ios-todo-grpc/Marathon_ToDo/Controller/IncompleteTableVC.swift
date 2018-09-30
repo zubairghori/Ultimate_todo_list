@@ -84,8 +84,7 @@ class IncompleteTableVC: UIViewController {
         if segue.identifier == "Edit_Segue"{
             let dest = segue.destination as! CreateTodo
             dest.segueName = "Edit"
-            // dest.selectedIndex = sender as! Task
-            dest.task = sender as! Task
+            dest.task = sender as? Task
         }
     }
 }

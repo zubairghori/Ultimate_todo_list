@@ -35,22 +35,14 @@ class CreateTodo: UIViewController {
             
             if self.segueName == "Edit" {
                 
-                //                let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.task!.task_id)"
-                //
-                //                let params = ["task_title": self.TitleTF.text!, "task_description": self.DescriptionTF.text!,"task_done": self.task!.task_done ]
-                //
-                //                Alamofire.request(url, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-                //                    let alert  =  UIAlertController(title: "Success", message: "Task Edited successfully", preferredStyle: .alert)
-                //                    let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
-                //                        self.navigationController?.popViewController(animated: true)
-                //                    })
-                //                    alert.addAction(button)
-                //
-                //                    self.present(alert, animated: true, completion: nil)
-                //                }
-            }
-            else{
+                self.task = Task.init(_id: self.task!._id, title: self.TitleTF.text!, description: self.DescriptionTF.text!, status: self.task!.status)
                 
+                TaskServices.updateTask(task: task!, completion: { (error, task) in
+                    guard (error == nil) else { self.showAlert(title: "Error", message: error!); return }
+                    self.navigationController?.popViewController(animated: true)
+                })
+                
+            }else{
                 let task = Task.init(title: self.TitleTF.text!, description: self.DescriptionTF.text!, status: "pending")
                 TaskServices.createTask(task: task) { (error , response) in
                     guard (error == nil) else {
