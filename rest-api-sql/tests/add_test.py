@@ -20,5 +20,12 @@ class apiTest(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+# -------------------------- unit test for without json form -------------------------------------
+
+    def test_create_without_json(self):
+        response = self.appli.post('/todo/api/v1.0/task/add')
+        self.assertEqual(response.status_code, 400)
+
+
 if __name__ == "__main__":
     unittest.main()
