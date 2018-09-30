@@ -55,6 +55,10 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.completeDescription.text = item.description
         cell.delete.tag = indexPath.row
         cell.delete.addTarget(self, action: #selector(self.deleteTask), for: .touchUpInside)
+        
+        cell.editButton.tag = indexPath.row
+        cell.editButton.addTarget(self, action: #selector(self.edit(_:)), for: .touchUpInside)
+
         return cell
     }
     
@@ -66,34 +70,30 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.CompleteTable.reloadData()
     }
     
-    // ******** Cell Selected ************
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    @objc func edit(_ sender: UIButton) {
         
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
+        
         // COMPLETE
         let Complete = UIAlertAction(title: "Incompleted", style:.default) { (action) in
-            
-            self.displayData[indexPath.row]["Status"] = "Incomplete"
-            self.ShareData.incompleteDatabse.append(self.displayData[indexPath.row])
-            
-            self.ShareData.completeDatabase.remove(at: indexPath.row)
-            self.displayData.remove(at: indexPath.row)
-            
-            self.CompleteTable.reloadData()
+            let task = self.tasks[sender.tag]
+            task.status = "pending"
+            TaskServices.updateTask(task: task, completion: { (error, task) in
+                guard (error == nil) else { self.showAlert(title: "Error", message: error!); return }
+                if task!.status == "pending" { self.tasks.remove(at: sender.tag)}
+            })
         }
         
         option.addAction(Complete)
-        
         
         // CANCEL
         let cancel = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         option.addAction(cancel)
         
         self.present(option, animated: true, completion: nil)
-
     }
+
+    
     
     // ****** Prepare Segue ****************
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -106,15 +106,10 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 130
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            self.displayData.remove(at: indexPath.row)
-            self.ShareData.completeDatabase.remove(at: indexPath.row)
-            self.CompleteTable.reloadData()
-        }
     }
 }
 
