@@ -17,5 +17,12 @@ class apiTest(unittest.TestCase):
         response = self.appli.delete('/todo/api/v1.0/task/delete/30',data=json.dumps(dict({'title':'Ali', 'description' : 'Ali'})), content_type = 'application/json')
         self.assertEqual(response.status_code, 200, "OK")
 
+# -------------------------- unit test for without json form -------------------------------------
+
+    def test_create_without_json(self):
+        response = self.appli.delete('/todo/api/v1.0/task/delete/30')
+        self.assertEqual(response.status_code, 200, "OK")
+
+
 
 
