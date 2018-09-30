@@ -29,6 +29,15 @@ class apiTest(unittest.TestCase):
     def test_delete_characterid(self):
             response = self.appli.delete('/todo/api/v1.0/task/delete/a',data=json.dumps(dict({'title':'Ali', 'description' : 'Ali'})), content_type = 'application/json')
             self.assertEqual(response.status_code, 404)
+# -------------------------- unit test for wrong id -------------------------------------
+            
+    def test_delete_wrongid(self):
+            response = self.appli.delete('/todo/api/v1.0/task/delete/30.',data=json.dumps(dict({'title':'Ali', 'description' : 'Ali'})), content_type = 'application/json')
+            self.assertEqual(response.status_code, 404)        
+
+if __name__ == "__main__":
+    unittest.main()
+# -*- coding: utf-8 -*-
             
 
 
