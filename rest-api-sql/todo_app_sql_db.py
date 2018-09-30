@@ -24,17 +24,25 @@ database.create_all() # creating tables
 #--------------------------------------- rounting path for add function ------------------------------------------------
 
 @app.route('/todo/api/v1.0/task/add' , methods=['POST'])
-def add():  # add function.
-    if not request.json or not 'title' 'description' in request.json: # validation on title and description
-        return jsonify({'Error' : ' Fill out the fields properly'})    # if one of the field is missed it will prompt error
-        added = request.get_json()
-        add_task = Todo_App(title = added['title'],
-                       description= added['description'],
-                       done = False)
+def add():  							# add function.
+    added = request.get_json(silent=True)
 
-        database.session.add(add_task) 				# insert data query
-        database.session.commit()
-    return jsonify({'prompt':'Added'}) 				# return data in jsonify format
+    if (request.data):						# validation 
+        if "title" and "description" in added:			 # if title and descption in json form
+            add_task = Todo_App(title = added['title'],
+                                description = added['description'],
+                                done=False)
+
+            database.session.add(add_task)  				# insert data query
+            database.session.commit()
+            return jsonify({'prompt': 'Added successfully'}), 200  	# return data in jsonify format and successfully added
+
+        else:
+            return jsonify({'Error': 'fields can not be null'}),400	# else error prompt
+
+    else:
+        return jsonify({'Error' : 'Request must contain json data'}) ,400 	# Error Fields must contain json data
+
 
 
 #--------------------------------------- rounting path for view function -----------------------------------------------
