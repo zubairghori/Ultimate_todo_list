@@ -43,42 +43,12 @@ class IncompleteTableVC: UIViewController {
     }
     
     @objc func deleteTask(button : UIButton){
-        let index = button.tag
+        let task = self.tasks[button.tag]
         
-        //        let alert  =  UIAlertController(title: "Alert", message: "Are you sure? you want to delete this task?", preferredStyle: .alert)
-        //        let cancelButton = UIAlertAction(title: "Cancel", style: .default, handler:nil)
-        //        alert.addAction(cancelButton)
-        //        let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
-        //
-        //            let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks/\(self.tasks[index].task_id)"
-        //            Alamofire.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-        //                let alert  =  UIAlertController(title: "Delete", message: "Task Deleted successfully", preferredStyle: .alert)
-        //                let button = UIAlertAction(title: "OK", style: .default, handler: { (handler) in
-        //
-        //                    let url = "http://rest-nosql.herokuapp.com/todo/api/v1/tasks"
-        //                    Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-        //
-        //                        do {
-        //                            let json = try? JSON(data: response.data!)
-        //                            let result = json?["result"]
-        //                            let tasks = try JSONDecoder().decode([Task].self, from: result!.rawData())
-        //                            DispatchQueue.main.async {
-        //                                self.tasks = tasks.filter({ $0.task_done == "false"})
-        //                                self.IncompleteTable.reloadData()
-        //                            }
-        //                        }catch let error {
-        //                            print(error)
-        //                        }
-        //                    }
-        //                })
-        //                alert.addAction(button)
-        //
-        //                self.present(alert, animated: true, completion: nil)
-        //            }
-        //        })
-        //        alert.addAction(button)
-        //
-        //        self.present(alert, animated: true, completion: nil)
+        TaskServices.deleteTask(taskid: task._id) { (error) in
+            guard error == nil else { return }
+            self.tasks.remove(at: button.tag)
+        }
     }
     
     @objc func editTask(button : UIButton) {

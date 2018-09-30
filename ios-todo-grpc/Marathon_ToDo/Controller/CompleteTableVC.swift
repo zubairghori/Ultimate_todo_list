@@ -63,11 +63,12 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     @objc func deleteTask(button : UIButton){
+        let task = self.tasks[button.tag]
         
-        let index = button.tag
-        self.displayData.remove(at: index)
-        self.ShareData.completeDatabase.remove(at: index)
-        self.CompleteTable.reloadData()
+        TaskServices.deleteTask(taskid: task._id) { (error) in
+            guard error == nil else { return }
+            self.tasks.remove(at: button.tag)
+        }
     }
     
     @objc func edit(_ sender: UIButton) {
@@ -93,8 +94,6 @@ class CompleteTableVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.present(option, animated: true, completion: nil)
     }
 
-    
-    
     // ****** Prepare Segue ****************
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

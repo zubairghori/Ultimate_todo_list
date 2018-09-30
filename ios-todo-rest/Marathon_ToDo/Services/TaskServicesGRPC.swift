@@ -35,7 +35,6 @@ class TaskServices {
             var searching = true
             let ret = try self.client.tasksAll(allTasksRequest, completion: { (response) in
                 searching = false
-                print("response" ,response)
                 completion(nil, tasks)
             })
             
@@ -68,10 +67,19 @@ class TaskServices {
         } catch let error {
             completion(error.localizedDescription, nil)
         }
-
     }
     
-    class func deleteTask(task: Task, completion: @escaping ((_ error: String?)->Void)) {
+    class func deleteTask(taskid: String, completion: @escaping ((_ error: String?)->Void)) {
+        var deleteRequest = Todo_SingleRequest()
+        deleteRequest.id = taskid
+        
+        do {
+            let deleteResponse = try self.client.taskDelete(deleteRequest)
+            print(deleteResponse)
+            completion(nil)
+        } catch let error {
+            completion(error.localizedDescription)
+        }
 
     }
 }
