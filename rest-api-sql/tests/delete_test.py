@@ -23,6 +23,12 @@ class apiTest(unittest.TestCase):
         response = self.appli.delete('/todo/api/v1.0/task/delete/30')
         self.assertEqual(response.status_code, 200, "OK")
 
+# -------------------------- unit test for character id -------------------------------------
 
+
+    def test_delete_characterid(self):
+            response = self.appli.delete('/todo/api/v1.0/task/delete/a',data=json.dumps(dict({'title':'Ali', 'description' : 'Ali'})), content_type = 'application/json')
+            self.assertEqual(response.status_code, 404)
+            
 
 
