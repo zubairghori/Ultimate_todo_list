@@ -15,7 +15,7 @@ class IncompleteTableVC: UIViewController {
     
     var displayData = [[String : String]]()
     var ShareData = UIApplication.shared.delegate as! AppDelegate
-    var tasks = [Task]()
+    var tasks = [Task]() { didSet  { self.IncompleteTable.reloadData() }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,36 +30,16 @@ class IncompleteTableVC: UIViewController {
         IncompleteTable.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        IncompleteTable.reloadData()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.displayData = ShareData.incompleteDatabse
         
-        let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: hostURL, secure: false)
-        let tasksRequest = TodoCRUD_AllRequest()
-        
-        do {
-            let ret = try todo.tasks(tasksRequest, completion: { (response) in
-                print("response" ,response)
-            })
-            print("ret ",ret)
-        }catch let error {
-            print("error occured ", error.localizedDescription)
+        TaskServices.getAllTasks { (error, tasks) in
+            guard (error == nil) else {
+                return
+            }
+            self.tasks = tasks!
         }
-        
-        //        TaskServices.getAllTasks { (error, tasks) in
-        //            guard (error == nil) else {
-        //                print("Error ", error!)
-        //                return
-        //            }
-        //
-        //            DispatchQueue.main.async {
-        //                self.tasks = tasks!.filter({ $0.task_done == "false"})
-        //                self.IncompleteTable.reloadData()
-        //            }
-        //        }
+
     }
     
     @objc func deleteTask(button : UIButton){
@@ -177,8 +157,8 @@ extension IncompleteTableVC: UITableViewDataSource, UITableViewDelegate {
         
         let task = self.tasks[indexPath.row]
         
-        cell.incompleteTitle.text = task.task_title
-        cell.incompleteDescription.text = task.task_description
+        cell.incompleteTitle.text = task.title
+        cell.incompleteDescription.text = task.description
         
         cell.delete.tag = indexPath.row
         cell.edit.tag = indexPath.row

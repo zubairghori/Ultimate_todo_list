@@ -24,8 +24,8 @@ class CreateTodo: UIViewController {
         
         if segueName == "Edit"{
             self.ActionButton.setTitle("Edit", for: .normal)
-            self.TitleTF.text = self.task!.task_title
-            self.DescriptionTF.text = self.task!.task_description
+            self.TitleTF.text = self.task!.title
+            self.DescriptionTF.text = self.task!.description
         }
     }
     
@@ -50,22 +50,17 @@ class CreateTodo: UIViewController {
                 //                }
             }
             else{
-            
-                let todo = TodoCRUD_ToDoCRUDServiceClient.init(address: hostURL, secure: false)
-                var createRequest = TodoCRUD_CreateRequest()
-                createRequest.title = self.TitleTF.text!
-                createRequest.description_p = self.DescriptionTF.text!
-                createRequest.status = "pending"
                 
-                do {
-                    let ret = try todo.taskCreate(createRequest)
-                    self.showAlert(title: "Success", message: "Task \(ret.title) created successfully.") {
+                let task = Task.init(title: self.TitleTF.text!, description: self.DescriptionTF.text!, status: "pending")
+                TaskServices.createTask(task: task) { (error , response) in
+                    guard (error == nil) else {
+                        self.showAlert(title: "Error", message: error!)
+                        return
+                    }
+                    self.showAlert(title: "Success", message: "Task: \(response!.title) \n created successfully.") {
                         self.navigationController?.popViewController(animated: true)
                     }
-                } catch let error {
-                    self.showAlert(title: "Error", message: error.localizedDescription)
                 }
-                
             }
         }
             

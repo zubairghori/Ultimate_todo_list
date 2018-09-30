@@ -25,126 +25,126 @@ import Dispatch
 import SwiftGRPC
 import SwiftProtobuf
 
-internal protocol TodoCRUD_ToDoCRUDtasksCall: ClientCallServerStreaming {
+internal protocol Todo_ToDotasksAllCall: ClientCallServerStreaming {
   /// Do not call this directly, call `receive()` in the protocol extension below instead.
-  func _receive(timeout: DispatchTime) throws -> TodoCRUD_SingleResponse?
+  func _receive(timeout: DispatchTime) throws -> Todo_SingleResponse?
   /// Call this to wait for a result. Nonblocking.
-  func receive(completion: @escaping (ResultOrRPCError<TodoCRUD_SingleResponse?>) -> Void) throws
+  func receive(completion: @escaping (ResultOrRPCError<Todo_SingleResponse?>) -> Void) throws
 }
 
-internal extension TodoCRUD_ToDoCRUDtasksCall {
+internal extension Todo_ToDotasksAllCall {
   /// Call this to wait for a result. Blocking.
-  func receive(timeout: DispatchTime = .distantFuture) throws -> TodoCRUD_SingleResponse? { return try self._receive(timeout: timeout) }
+  func receive(timeout: DispatchTime = .distantFuture) throws -> Todo_SingleResponse? { return try self._receive(timeout: timeout) }
 }
 
-fileprivate final class TodoCRUD_ToDoCRUDtasksCallBase: ClientCallServerStreamingBase<TodoCRUD_AllRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtasksCall {
-  override class var method: String { return "/todoCRUD.ToDoCRUD/tasks" }
+fileprivate final class Todo_ToDotasksAllCallBase: ClientCallServerStreamingBase<Todo_AllRequest, Todo_SingleResponse>, Todo_ToDotasksAllCall {
+  override class var method: String { return "/todo.ToDo/tasksAll" }
 }
 
-internal protocol TodoCRUD_ToDoCRUDtaskSingleCall: ClientCallUnary {}
+internal protocol Todo_ToDotaskSingleCall: ClientCallUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskSingleCallBase: ClientCallUnaryBase<TodoCRUD_SingleRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskSingleCall {
-  override class var method: String { return "/todoCRUD.ToDoCRUD/taskSingle" }
+fileprivate final class Todo_ToDotaskSingleCallBase: ClientCallUnaryBase<Todo_SingleRequest, Todo_SingleResponse>, Todo_ToDotaskSingleCall {
+  override class var method: String { return "/todo.ToDo/taskSingle" }
 }
 
-internal protocol TodoCRUD_ToDoCRUDtaskCreateCall: ClientCallUnary {}
+internal protocol Todo_ToDotaskCreateCall: ClientCallUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskCreateCallBase: ClientCallUnaryBase<TodoCRUD_CreateRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskCreateCall {
-  override class var method: String { return "/todoCRUD.ToDoCRUD/taskCreate" }
+fileprivate final class Todo_ToDotaskCreateCallBase: ClientCallUnaryBase<Todo_CreateRequest, Todo_SingleResponse>, Todo_ToDotaskCreateCall {
+  override class var method: String { return "/todo.ToDo/taskCreate" }
 }
 
-internal protocol TodoCRUD_ToDoCRUDtaskUpdateCall: ClientCallUnary {}
+internal protocol Todo_ToDotaskUpdateCall: ClientCallUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskUpdateCallBase: ClientCallUnaryBase<TodoCRUD_UpdateRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskUpdateCall {
-  override class var method: String { return "/todoCRUD.ToDoCRUD/taskUpdate" }
+fileprivate final class Todo_ToDotaskUpdateCallBase: ClientCallUnaryBase<Todo_UpdateRequest, Todo_SingleResponse>, Todo_ToDotaskUpdateCall {
+  override class var method: String { return "/todo.ToDo/taskUpdate" }
 }
 
-internal protocol TodoCRUD_ToDoCRUDtaskDeleteCall: ClientCallUnary {}
+internal protocol Todo_ToDotaskDeleteCall: ClientCallUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskDeleteCallBase: ClientCallUnaryBase<TodoCRUD_SingleRequest, TodoCRUD_DeleteResponse>, TodoCRUD_ToDoCRUDtaskDeleteCall {
-  override class var method: String { return "/todoCRUD.ToDoCRUD/taskDelete" }
+fileprivate final class Todo_ToDotaskDeleteCallBase: ClientCallUnaryBase<Todo_SingleRequest, Todo_DeleteResponse>, Todo_ToDotaskDeleteCall {
+  override class var method: String { return "/todo.ToDo/taskDelete" }
 }
 
 
-/// Instantiate TodoCRUD_ToDoCRUDServiceClient, then call methods of this protocol to make API calls.
-internal protocol TodoCRUD_ToDoCRUDService: ServiceClient {
+/// Instantiate Todo_ToDoServiceClient, then call methods of this protocol to make API calls.
+internal protocol Todo_ToDoService: ServiceClient {
   /// Asynchronous. Server-streaming.
   /// Send the initial message.
   /// Use methods on the returned object to get streamed responses.
-  func tasks(_ request: TodoCRUD_AllRequest, completion: ((CallResult) -> Void)?) throws -> TodoCRUD_ToDoCRUDtasksCall
+  func tasksAll(_ request: Todo_AllRequest, completion: ((CallResult) -> Void)?) throws -> Todo_ToDotasksAllCall
 
   /// Synchronous. Unary.
-  func taskSingle(_ request: TodoCRUD_SingleRequest) throws -> TodoCRUD_SingleResponse
+  func taskSingle(_ request: Todo_SingleRequest) throws -> Todo_SingleResponse
   /// Asynchronous. Unary.
-  func taskSingle(_ request: TodoCRUD_SingleRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskSingleCall
+  func taskSingle(_ request: Todo_SingleRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskSingleCall
 
   /// Synchronous. Unary.
-  func taskCreate(_ request: TodoCRUD_CreateRequest) throws -> TodoCRUD_SingleResponse
+  func taskCreate(_ request: Todo_CreateRequest) throws -> Todo_SingleResponse
   /// Asynchronous. Unary.
-  func taskCreate(_ request: TodoCRUD_CreateRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskCreateCall
+  func taskCreate(_ request: Todo_CreateRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskCreateCall
 
   /// Synchronous. Unary.
-  func taskUpdate(_ request: TodoCRUD_UpdateRequest) throws -> TodoCRUD_SingleResponse
+  func taskUpdate(_ request: Todo_UpdateRequest) throws -> Todo_SingleResponse
   /// Asynchronous. Unary.
-  func taskUpdate(_ request: TodoCRUD_UpdateRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskUpdateCall
+  func taskUpdate(_ request: Todo_UpdateRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskUpdateCall
 
   /// Synchronous. Unary.
-  func taskDelete(_ request: TodoCRUD_SingleRequest) throws -> TodoCRUD_DeleteResponse
+  func taskDelete(_ request: Todo_SingleRequest) throws -> Todo_DeleteResponse
   /// Asynchronous. Unary.
-  func taskDelete(_ request: TodoCRUD_SingleRequest, completion: @escaping (TodoCRUD_DeleteResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskDeleteCall
+  func taskDelete(_ request: Todo_SingleRequest, completion: @escaping (Todo_DeleteResponse?, CallResult) -> Void) throws -> Todo_ToDotaskDeleteCall
 
 }
 
-internal final class TodoCRUD_ToDoCRUDServiceClient: ServiceClientBase, TodoCRUD_ToDoCRUDService {
+internal final class Todo_ToDoServiceClient: ServiceClientBase, Todo_ToDoService {
   /// Asynchronous. Server-streaming.
   /// Send the initial message.
   /// Use methods on the returned object to get streamed responses.
-  internal func tasks(_ request: TodoCRUD_AllRequest, completion: ((CallResult) -> Void)?) throws -> TodoCRUD_ToDoCRUDtasksCall {
-    return try TodoCRUD_ToDoCRUDtasksCallBase(channel)
+  internal func tasksAll(_ request: Todo_AllRequest, completion: ((CallResult) -> Void)?) throws -> Todo_ToDotasksAllCall {
+    return try Todo_ToDotasksAllCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func taskSingle(_ request: TodoCRUD_SingleRequest) throws -> TodoCRUD_SingleResponse {
-    return try TodoCRUD_ToDoCRUDtaskSingleCallBase(channel)
+  internal func taskSingle(_ request: Todo_SingleRequest) throws -> Todo_SingleResponse {
+    return try Todo_ToDotaskSingleCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func taskSingle(_ request: TodoCRUD_SingleRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskSingleCall {
-    return try TodoCRUD_ToDoCRUDtaskSingleCallBase(channel)
+  internal func taskSingle(_ request: Todo_SingleRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskSingleCall {
+    return try Todo_ToDotaskSingleCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func taskCreate(_ request: TodoCRUD_CreateRequest) throws -> TodoCRUD_SingleResponse {
-    return try TodoCRUD_ToDoCRUDtaskCreateCallBase(channel)
+  internal func taskCreate(_ request: Todo_CreateRequest) throws -> Todo_SingleResponse {
+    return try Todo_ToDotaskCreateCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func taskCreate(_ request: TodoCRUD_CreateRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskCreateCall {
-    return try TodoCRUD_ToDoCRUDtaskCreateCallBase(channel)
+  internal func taskCreate(_ request: Todo_CreateRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskCreateCall {
+    return try Todo_ToDotaskCreateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func taskUpdate(_ request: TodoCRUD_UpdateRequest) throws -> TodoCRUD_SingleResponse {
-    return try TodoCRUD_ToDoCRUDtaskUpdateCallBase(channel)
+  internal func taskUpdate(_ request: Todo_UpdateRequest) throws -> Todo_SingleResponse {
+    return try Todo_ToDotaskUpdateCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func taskUpdate(_ request: TodoCRUD_UpdateRequest, completion: @escaping (TodoCRUD_SingleResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskUpdateCall {
-    return try TodoCRUD_ToDoCRUDtaskUpdateCallBase(channel)
+  internal func taskUpdate(_ request: Todo_UpdateRequest, completion: @escaping (Todo_SingleResponse?, CallResult) -> Void) throws -> Todo_ToDotaskUpdateCall {
+    return try Todo_ToDotaskUpdateCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func taskDelete(_ request: TodoCRUD_SingleRequest) throws -> TodoCRUD_DeleteResponse {
-    return try TodoCRUD_ToDoCRUDtaskDeleteCallBase(channel)
+  internal func taskDelete(_ request: Todo_SingleRequest) throws -> Todo_DeleteResponse {
+    return try Todo_ToDotaskDeleteCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func taskDelete(_ request: TodoCRUD_SingleRequest, completion: @escaping (TodoCRUD_DeleteResponse?, CallResult) -> Void) throws -> TodoCRUD_ToDoCRUDtaskDeleteCall {
-    return try TodoCRUD_ToDoCRUDtaskDeleteCallBase(channel)
+  internal func taskDelete(_ request: Todo_SingleRequest, completion: @escaping (Todo_DeleteResponse?, CallResult) -> Void) throws -> Todo_ToDotaskDeleteCall {
+    return try Todo_ToDotaskDeleteCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
@@ -153,45 +153,45 @@ internal final class TodoCRUD_ToDoCRUDServiceClient: ServiceClientBase, TodoCRUD
 /// To build a server, implement a class that conforms to this protocol.
 /// If one of the methods returning `ServerStatus?` returns nil,
 /// it is expected that you have already returned a status to the client by means of `session.close`.
-internal protocol TodoCRUD_ToDoCRUDProvider: ServiceProvider {
-  func tasks(request: TodoCRUD_AllRequest, session: TodoCRUD_ToDoCRUDtasksSession) throws -> ServerStatus?
-  func taskSingle(request: TodoCRUD_SingleRequest, session: TodoCRUD_ToDoCRUDtaskSingleSession) throws -> TodoCRUD_SingleResponse
-  func taskCreate(request: TodoCRUD_CreateRequest, session: TodoCRUD_ToDoCRUDtaskCreateSession) throws -> TodoCRUD_SingleResponse
-  func taskUpdate(request: TodoCRUD_UpdateRequest, session: TodoCRUD_ToDoCRUDtaskUpdateSession) throws -> TodoCRUD_SingleResponse
-  func taskDelete(request: TodoCRUD_SingleRequest, session: TodoCRUD_ToDoCRUDtaskDeleteSession) throws -> TodoCRUD_DeleteResponse
+internal protocol Todo_ToDoProvider: ServiceProvider {
+  func tasksAll(request: Todo_AllRequest, session: Todo_ToDotasksAllSession) throws -> ServerStatus?
+  func taskSingle(request: Todo_SingleRequest, session: Todo_ToDotaskSingleSession) throws -> Todo_SingleResponse
+  func taskCreate(request: Todo_CreateRequest, session: Todo_ToDotaskCreateSession) throws -> Todo_SingleResponse
+  func taskUpdate(request: Todo_UpdateRequest, session: Todo_ToDotaskUpdateSession) throws -> Todo_SingleResponse
+  func taskDelete(request: Todo_SingleRequest, session: Todo_ToDotaskDeleteSession) throws -> Todo_DeleteResponse
 }
 
-extension TodoCRUD_ToDoCRUDProvider {
-  internal var serviceName: String { return "todoCRUD.ToDoCRUD" }
+extension Todo_ToDoProvider {
+  internal var serviceName: String { return "todo.ToDo" }
 
   /// Determines and calls the appropriate request handler, depending on the request's method.
   /// Throws `HandleMethodError.unknownMethod` for methods not handled by this service.
   internal func handleMethod(_ method: String, handler: Handler) throws -> ServerStatus? {
     switch method {
-    case "/todoCRUD.ToDoCRUD/tasks":
-      return try TodoCRUD_ToDoCRUDtasksSessionBase(
+    case "/todo.ToDo/tasksAll":
+      return try Todo_ToDotasksAllSessionBase(
         handler: handler,
-        providerBlock: { try self.tasks(request: $0, session: $1 as! TodoCRUD_ToDoCRUDtasksSessionBase) })
+        providerBlock: { try self.tasksAll(request: $0, session: $1 as! Todo_ToDotasksAllSessionBase) })
           .run()
-    case "/todoCRUD.ToDoCRUD/taskSingle":
-      return try TodoCRUD_ToDoCRUDtaskSingleSessionBase(
+    case "/todo.ToDo/taskSingle":
+      return try Todo_ToDotaskSingleSessionBase(
         handler: handler,
-        providerBlock: { try self.taskSingle(request: $0, session: $1 as! TodoCRUD_ToDoCRUDtaskSingleSessionBase) })
+        providerBlock: { try self.taskSingle(request: $0, session: $1 as! Todo_ToDotaskSingleSessionBase) })
           .run()
-    case "/todoCRUD.ToDoCRUD/taskCreate":
-      return try TodoCRUD_ToDoCRUDtaskCreateSessionBase(
+    case "/todo.ToDo/taskCreate":
+      return try Todo_ToDotaskCreateSessionBase(
         handler: handler,
-        providerBlock: { try self.taskCreate(request: $0, session: $1 as! TodoCRUD_ToDoCRUDtaskCreateSessionBase) })
+        providerBlock: { try self.taskCreate(request: $0, session: $1 as! Todo_ToDotaskCreateSessionBase) })
           .run()
-    case "/todoCRUD.ToDoCRUD/taskUpdate":
-      return try TodoCRUD_ToDoCRUDtaskUpdateSessionBase(
+    case "/todo.ToDo/taskUpdate":
+      return try Todo_ToDotaskUpdateSessionBase(
         handler: handler,
-        providerBlock: { try self.taskUpdate(request: $0, session: $1 as! TodoCRUD_ToDoCRUDtaskUpdateSessionBase) })
+        providerBlock: { try self.taskUpdate(request: $0, session: $1 as! Todo_ToDotaskUpdateSessionBase) })
           .run()
-    case "/todoCRUD.ToDoCRUD/taskDelete":
-      return try TodoCRUD_ToDoCRUDtaskDeleteSessionBase(
+    case "/todo.ToDo/taskDelete":
+      return try Todo_ToDotaskDeleteSessionBase(
         handler: handler,
-        providerBlock: { try self.taskDelete(request: $0, session: $1 as! TodoCRUD_ToDoCRUDtaskDeleteSessionBase) })
+        providerBlock: { try self.taskDelete(request: $0, session: $1 as! Todo_ToDotaskDeleteSessionBase) })
           .run()
     default:
       throw HandleMethodError.unknownMethod
@@ -199,11 +199,11 @@ extension TodoCRUD_ToDoCRUDProvider {
   }
 }
 
-internal protocol TodoCRUD_ToDoCRUDtasksSession: ServerSessionServerStreaming {
+internal protocol Todo_ToDotasksAllSession: ServerSessionServerStreaming {
   /// Send a message to the stream. Nonblocking.
-  func send(_ message: TodoCRUD_SingleResponse, completion: @escaping (Error?) -> Void) throws
+  func send(_ message: Todo_SingleResponse, completion: @escaping (Error?) -> Void) throws
   /// Do not call this directly, call `send()` in the protocol extension below instead.
-  func _send(_ message: TodoCRUD_SingleResponse, timeout: DispatchTime) throws
+  func _send(_ message: Todo_SingleResponse, timeout: DispatchTime) throws
 
   /// Close the connection and send the status. Non-blocking.
   /// This method should be called if and only if your request handler returns a nil value instead of a server status;
@@ -211,26 +211,26 @@ internal protocol TodoCRUD_ToDoCRUDtasksSession: ServerSessionServerStreaming {
   func close(withStatus status: ServerStatus, completion: (() -> Void)?) throws
 }
 
-internal extension TodoCRUD_ToDoCRUDtasksSession {
+internal extension Todo_ToDotasksAllSession {
   /// Send a message to the stream and wait for the send operation to finish. Blocking.
-  func send(_ message: TodoCRUD_SingleResponse, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
+  func send(_ message: Todo_SingleResponse, timeout: DispatchTime = .distantFuture) throws { try self._send(message, timeout: timeout) }
 }
 
-fileprivate final class TodoCRUD_ToDoCRUDtasksSessionBase: ServerSessionServerStreamingBase<TodoCRUD_AllRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtasksSession {}
+fileprivate final class Todo_ToDotasksAllSessionBase: ServerSessionServerStreamingBase<Todo_AllRequest, Todo_SingleResponse>, Todo_ToDotasksAllSession {}
 
-internal protocol TodoCRUD_ToDoCRUDtaskSingleSession: ServerSessionUnary {}
+internal protocol Todo_ToDotaskSingleSession: ServerSessionUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskSingleSessionBase: ServerSessionUnaryBase<TodoCRUD_SingleRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskSingleSession {}
+fileprivate final class Todo_ToDotaskSingleSessionBase: ServerSessionUnaryBase<Todo_SingleRequest, Todo_SingleResponse>, Todo_ToDotaskSingleSession {}
 
-internal protocol TodoCRUD_ToDoCRUDtaskCreateSession: ServerSessionUnary {}
+internal protocol Todo_ToDotaskCreateSession: ServerSessionUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskCreateSessionBase: ServerSessionUnaryBase<TodoCRUD_CreateRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskCreateSession {}
+fileprivate final class Todo_ToDotaskCreateSessionBase: ServerSessionUnaryBase<Todo_CreateRequest, Todo_SingleResponse>, Todo_ToDotaskCreateSession {}
 
-internal protocol TodoCRUD_ToDoCRUDtaskUpdateSession: ServerSessionUnary {}
+internal protocol Todo_ToDotaskUpdateSession: ServerSessionUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskUpdateSessionBase: ServerSessionUnaryBase<TodoCRUD_UpdateRequest, TodoCRUD_SingleResponse>, TodoCRUD_ToDoCRUDtaskUpdateSession {}
+fileprivate final class Todo_ToDotaskUpdateSessionBase: ServerSessionUnaryBase<Todo_UpdateRequest, Todo_SingleResponse>, Todo_ToDotaskUpdateSession {}
 
-internal protocol TodoCRUD_ToDoCRUDtaskDeleteSession: ServerSessionUnary {}
+internal protocol Todo_ToDotaskDeleteSession: ServerSessionUnary {}
 
-fileprivate final class TodoCRUD_ToDoCRUDtaskDeleteSessionBase: ServerSessionUnaryBase<TodoCRUD_SingleRequest, TodoCRUD_DeleteResponse>, TodoCRUD_ToDoCRUDtaskDeleteSession {}
+fileprivate final class Todo_ToDotaskDeleteSessionBase: ServerSessionUnaryBase<Todo_SingleRequest, Todo_DeleteResponse>, Todo_ToDotaskDeleteSession {}
 

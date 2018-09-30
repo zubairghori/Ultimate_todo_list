@@ -19,7 +19,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct TodoCRUD_AllRequest {
+struct Todo_AllRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -29,7 +29,7 @@ struct TodoCRUD_AllRequest {
   init() {}
 }
 
-struct TodoCRUD_SingleRequest {
+struct Todo_SingleRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -41,7 +41,7 @@ struct TodoCRUD_SingleRequest {
   init() {}
 }
 
-struct TodoCRUD_SingleResponse {
+struct Todo_SingleResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -59,7 +59,7 @@ struct TodoCRUD_SingleResponse {
   init() {}
 }
 
-struct TodoCRUD_CreateRequest {
+struct Todo_CreateRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -75,7 +75,7 @@ struct TodoCRUD_CreateRequest {
   init() {}
 }
 
-struct TodoCRUD_DeleteResponse {
+struct Todo_DeleteResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -87,7 +87,7 @@ struct TodoCRUD_DeleteResponse {
   init() {}
 }
 
-struct TodoCRUD_UpdateRequest {
+struct Todo_UpdateRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -105,44 +105,23 @@ struct TodoCRUD_UpdateRequest {
   init() {}
 }
 
-struct TodoCRUD_AllResponse {
+struct Todo_AllResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var result: [TodoCRUD_AllResponse.SingleResponse] = []
+  var results: [Todo_SingleResponse] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  struct SingleResponse {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var title: String = String()
-
-    var description_p: String = String()
-
-    var status: String = String()
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    init() {}
-  }
 
   init() {}
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate let _protobuf_package = "todoCRUD"
+fileprivate let _protobuf_package = "todo"
 
-extension TodoCRUD_AllRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_AllRequest) -> Bool {
-        return true
-
-    }
-    
+extension Todo_AllRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".AllRequest"
   static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
@@ -155,18 +134,13 @@ extension TodoCRUD_AllRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_AllRequest, rhs: TodoCRUD_AllRequest) -> Bool {
+  static func ==(lhs: Todo_AllRequest, rhs: Todo_AllRequest) -> Bool {
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension TodoCRUD_SingleRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_SingleRequest) -> Bool {
-        return true
-
-    }
-    
+extension Todo_SingleRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SingleRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "_id"),
@@ -188,19 +162,14 @@ extension TodoCRUD_SingleRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_SingleRequest, rhs: TodoCRUD_SingleRequest) -> Bool {
+  static func ==(lhs: Todo_SingleRequest, rhs: Todo_SingleRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension TodoCRUD_SingleResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_SingleResponse) -> Bool {
-        return true
-
-    }
-    
+extension Todo_SingleResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".SingleResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "_id"),
@@ -237,7 +206,7 @@ extension TodoCRUD_SingleResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_SingleResponse, rhs: TodoCRUD_SingleResponse) -> Bool {
+  static func ==(lhs: Todo_SingleResponse, rhs: Todo_SingleResponse) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.title != rhs.title {return false}
     if lhs.description_p != rhs.description_p {return false}
@@ -247,13 +216,7 @@ extension TodoCRUD_SingleResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
   }
 }
 
-extension TodoCRUD_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_CreateRequest) -> Bool {
-        print("Khasdnasdf isEqual ", other)
-        return true
-
-    }
-    
+extension Todo_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     2: .same(proto: "title"),
@@ -285,7 +248,7 @@ extension TodoCRUD_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_CreateRequest, rhs: TodoCRUD_CreateRequest) -> Bool {
+  static func ==(lhs: Todo_CreateRequest, rhs: Todo_CreateRequest) -> Bool {
     if lhs.title != rhs.title {return false}
     if lhs.description_p != rhs.description_p {return false}
     if lhs.status != rhs.status {return false}
@@ -294,12 +257,7 @@ extension TodoCRUD_CreateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 }
 
-extension TodoCRUD_DeleteResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_DeleteResponse) -> Bool {
-        return true
-
-    }
-    
+extension Todo_DeleteResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".DeleteResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "message"),
@@ -321,19 +279,14 @@ extension TodoCRUD_DeleteResponse: SwiftProtobuf.Message, SwiftProtobuf._Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_DeleteResponse, rhs: TodoCRUD_DeleteResponse) -> Bool {
+  static func ==(lhs: Todo_DeleteResponse, rhs: Todo_DeleteResponse) -> Bool {
     if lhs.message != rhs.message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
 
-extension TodoCRUD_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_UpdateRequest) -> Bool {
-        return true
-
-    }
-    
+extension Todo_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".UpdateRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "_id"),
@@ -370,7 +323,7 @@ extension TodoCRUD_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_UpdateRequest, rhs: TodoCRUD_UpdateRequest) -> Bool {
+  static func ==(lhs: Todo_UpdateRequest, rhs: Todo_UpdateRequest) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.title != rhs.title {return false}
     if lhs.description_p != rhs.description_p {return false}
@@ -380,82 +333,30 @@ extension TodoCRUD_UpdateRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageI
   }
 }
 
-extension TodoCRUD_AllResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_AllResponse) -> Bool {
-        return true
-
-    }
-    
+extension Todo_AllResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".AllResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "result"),
+    1: .same(proto: "results"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.result)
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.results)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.result.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.result, fieldNumber: 1)
+    if !self.results.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.results, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: TodoCRUD_AllResponse, rhs: TodoCRUD_AllResponse) -> Bool {
-    if lhs.result != rhs.result {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension TodoCRUD_AllResponse.SingleResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-    func _protobuf_generated_isEqualTo(other: TodoCRUD_AllResponse.SingleResponse) -> Bool {
-        return true
-    }
-    
-
-    
-  static let protoMessageName: String = TodoCRUD_AllResponse.protoMessageName + ".SingleResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .same(proto: "title"),
-    3: .same(proto: "description"),
-    4: .same(proto: "status"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 2: try decoder.decodeSingularStringField(value: &self.title)
-      case 3: try decoder.decodeSingularStringField(value: &self.description_p)
-      case 4: try decoder.decodeSingularStringField(value: &self.status)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.title.isEmpty {
-      try visitor.visitSingularStringField(value: self.title, fieldNumber: 2)
-    }
-    if !self.description_p.isEmpty {
-      try visitor.visitSingularStringField(value: self.description_p, fieldNumber: 3)
-    }
-    if !self.status.isEmpty {
-      try visitor.visitSingularStringField(value: self.status, fieldNumber: 4)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: TodoCRUD_AllResponse.SingleResponse, rhs: TodoCRUD_AllResponse.SingleResponse) -> Bool {
-    if lhs.title != rhs.title {return false}
-    if lhs.description_p != rhs.description_p {return false}
-    if lhs.status != rhs.status {return false}
+  static func ==(lhs: Todo_AllResponse, rhs: Todo_AllResponse) -> Bool {
+    if lhs.results != rhs.results {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

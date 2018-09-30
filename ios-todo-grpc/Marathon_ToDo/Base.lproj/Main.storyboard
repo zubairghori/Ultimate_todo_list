@@ -108,7 +108,7 @@
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dcv-1t-Z6U">
                                                             <rect key="frame" x="13" y="12" width="256" height="32"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -212,7 +212,7 @@
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Op-RP-sl7">
                                                             <rect key="frame" x="14.5" y="7" width="288" height="31"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -230,7 +230,7 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="Eox-NR-ojB" secondAttribute="height" multiplier="1:1" id="y29-O2-uqy"/>
                                                             </constraints>
-                                                            <state key="normal" image="edit"/>
+                                                            <state key="normal" image="editIcon"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -525,8 +525,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="delete" width="48" height="48"/>
-        <image name="edit" width="40" height="40"/>
+        <image name="delete" width="203.29411315917969" height="203.29411315917969"/>
+        <image name="editIcon" width="200.34782409667969" height="200.34782409667969"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="AwN-9H-BfJ"/>
