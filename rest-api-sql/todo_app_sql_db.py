@@ -69,22 +69,35 @@ def task_view():                    #funtion for view task
 #--------------------------------------- routing path for update function -----------------------------------------------
 
 @app.route('/todo/api/v1.0/task/update/<id>', methods=['PUT'])
-def update(id):   #update function
-    tasks = Todo_App.query.filter_by(id=id).first()
-    if not tasks:
-        return jsonify({'message': 'Empty Dictionary'})
-    data = request.get_json()
-    tasks.done = True
-    tasks.title = data['title']
-    tasks.description = data['description']
 
-    task_list={}
-    task_list['id']=tasks.id
-    task_list['title']=tasks.title
-    task_list['description']=tasks.description
-    task_list['done'] = tasks.done
-    database.session.commit()
-    return jsonify(task_list)
+def update(id):                 #update function
+
+    #looking for id to be update in the DB
+    tasks = Todo_App.query.filter_by(id=id).first()
+
+    # Validation: If ID id not found in the DB return message ID not found
+    if not tasks:
+        return jsonify({'Message': 'ID Not Found!'})
+
+    else:
+        # getting new data  to update in the database
+        data = request.get_json()
+        tasks.done = True
+        tasks.title = data['title']
+        tasks.description = data['description']
+
+        # making new dictionary 'task_list' to save data in DB
+        task_list={}
+        task_list['id']=tasks.id
+        task_list['title']=tasks.title
+        task_list['description']=tasks.description
+        task_list['done'] = tasks.done
+
+    #saving into the DB
+        database.session.commit()
+
+    #display the new data which is added in the DB
+        return jsonify(task_list)
 
 # ----------------------------------- routing path for delete function ------------------------------------------------
 
