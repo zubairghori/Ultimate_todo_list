@@ -48,8 +48,20 @@ test('Activate SW',(done) =>{
       expect(console.log('SW Activate'))
       done();
 })
-
-
+//Fetching Data
+test('Fetch Data',(done)=>{
+    self.addEventListener('fetch', function(e) {
+        console.log('[ServiceWorker] Fetch', e.request.url);
+        e.respondWith(
+          caches.match(e.request).then(function(response) {
+            return response || fetch(e.request);
+          })
+          
+        );
+        expect(console.log('Fetching Data'))
+        done();
+    })
+})
 
 //Adding Todos 
 test('It should add the data', (done) =>{
@@ -65,7 +77,13 @@ test('It should add the data', (done) =>{
     expect(200)
     done()
 });
-
+//Delete Todos
+test('It should delete data',(done)=>{
+    todoArray = todoArray.filter(singleTodo => singleTodo.id !== id);
+    getData(todoArray);
+    expect(200)
+    done()
+})
 
 
 
