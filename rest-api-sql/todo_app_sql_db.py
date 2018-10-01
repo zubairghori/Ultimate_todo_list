@@ -82,22 +82,29 @@ def update(id):                 #update function
     else:
         # getting new data  to update in the database
         data = request.get_json()
-        tasks.done = True
-        tasks.title = data['title']
-        tasks.description = data['description']
+        
+        # if the 'title' and 'description' fields are not empty then add in DB otherwise prompt message: 'fields can not be null'
+        if data['title'] != "" and data['description'] != "":
+           tasks.done = True
+           tasks.title = data['title']
+           tasks.description = data['description']
 
         # making new dictionary 'task_list' to save data in DB
-        task_list={}
-        task_list['id']=tasks.id
-        task_list['title']=tasks.title
-        task_list['description']=tasks.description
-        task_list['done'] = tasks.done
+           task_list={}
+           task_list['id']=tasks.id
+           task_list['title']=tasks.title
+           task_list['description']=tasks.description
+           task_list['done'] = tasks.done
 
     #saving into the DB
-        database.session.commit()
+           database.session.commit()
 
     #display the new data which is added in the DB
-        return jsonify(task_list)
+           return jsonify(task_list)
+        
+        # return error
+        else:
+            return jsonify({'Message': 'fields cannot be null'})
 
 # ----------------------------------- routing path for delete function ------------------------------------------------
 
@@ -117,6 +124,6 @@ def delete(id):     # delete function
     #Display the message that ID id deleted
     return jsonify({'Message':'ID is Deleted'})
 
-if __name__ == "main":
-    app.run(debug = True, port = 8000)
 
+#if __name__ == "main":
+app.run(debug = True, port = 5000)
