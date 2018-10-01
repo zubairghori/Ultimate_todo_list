@@ -25,13 +25,12 @@ class apiTest(unittest.TestCase):
         response = self.appli.post('/todo/api/v1.0/task/add')
         self.assertEqual(response.status_code, 400)
 
-
 # -------------------------- unit test for invalid json form --------------------------------------
 
     def test_create_with_invalid_json(self):
         response = self.appli.post('/todo/api/v1.0/task/add',
-                                       data=json.dumps(dict(status='changed')),
-                                       content_type='application/json')
+                                 data=json.dumps(dict(status='changed')),
+                                 content_type='application/json')
         self.assertEqual(response.status_code, 400)
 
 
