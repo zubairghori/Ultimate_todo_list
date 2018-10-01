@@ -125,5 +125,5 @@ def delete(id):     # delete function
     return jsonify({'Message':'ID is Deleted'})
 
 
-#if __name__ == "main":
-app.run(debug = True, port = 5000)
+if __name__ == "main":
+	app.run(debug = True, port = 8000)    	#port change
