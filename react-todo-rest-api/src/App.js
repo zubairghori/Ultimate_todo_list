@@ -90,14 +90,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "#00acc1" }}>
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link rel="stylesheet" href="./App.css" />
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=Noto+Serif+KR"
+          rel="stylesheet"
+        />
         <Titles />
         <Form postTask={this.postTask} />
         {this.state.task_array.map((temp, a) => {
           console.log(temp, a);
           return (
             <Task key={temp.task_id} tacos={temp.task_id}>
-              <font face="verdana"> {temp.task_title} </font>
+              {temp.task_title}
             </Task>
           );
         })}

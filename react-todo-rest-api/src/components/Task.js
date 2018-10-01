@@ -160,6 +160,7 @@ class Task extends React.Component {
           >
             Remove{" "}
           </Button>
+
           {this.props.children}
 
           <Button
