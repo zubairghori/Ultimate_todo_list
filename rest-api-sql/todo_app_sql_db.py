@@ -102,16 +102,19 @@ def update(id):                 #update function
 # ----------------------------------- routing path for delete function ------------------------------------------------
 
 @app.route('/todo/api/v1.0/task/delete/<int:id>', methods=['DELETE'])
-def delete(id):                                      # delete function
-    tasks = Todo_App.query.filter_by(id=id).first() # first search the id
+
+def delete(id):     # delete function
+    # looking for id to be update in the DB
+    tasks = Todo_App.query.filter_by(id=id).first()
+
+    # Validation: If ID id not found in the DB return message ID not found
     if not tasks:
-        return jsonify({'prompt': 'Empty'})
+        return jsonify({'Message': 'ID Not Found!'})
     else:
-        database.session.delete(tasks) # delete query
+        #delete the task from DB and save the changes
+        database.session.delete(tasks)
         database.session.commit()
-    return jsonify({'prompt':'Deleted'})
+    #Display the message that ID id deleted
+    return jsonify({'Message':'ID is Deleted'})
 
-
-if __name__ == "main":
-    app.run(debug = True, port = 8000)
 
