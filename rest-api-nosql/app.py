@@ -75,4 +75,4 @@ def update_task_title(task_id):
     return 'title updated'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
