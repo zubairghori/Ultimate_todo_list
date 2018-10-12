@@ -1,0 +1,8 @@
+Dockerize-rest-api-sql
+
+1) clone the project 
+2) Build an image using this cmd. 
+    docker build -t <image-name:tag> .
+3) Run image using this cmd.
+    docker run -d -p 5000:5000 <image-name>
+    
